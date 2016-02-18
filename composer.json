@@ -1,0 +1,27 @@
+{
+    "name": "outermedia/sep-core",
+    "version": "1.0.0",
+    "require": {
+        "php": ">=5.6"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "~2.5",
+        "phpmd/phpmd": ">=2.1",
+        "sebastian/phpcpd": ">=2.0",
+        "pdepend/pdepend": ">=2.0",
+        "phake/phake": "2.*",
+        "phploc/phploc": "~3",
+        "phpunit/phpunit": "~5",
+        "theseer/phpdox": ">=0.7"
+    },
+    "autoload": {
+    },
+    "authors": [
+        {
+            "name": "Denny Kunschmann",
+            "email": "dku@outermedia.de",
+            "homepage": "http://www.outermedia.de",
+            "role": "Developer"
+        }
+    ]
+}

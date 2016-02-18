@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<phpdox xmlns="http://xml.phpdox.net/config">
+
+    <bootstrap>
+		<require file="../vendor/autoload.php" />
+	</bootstrap>
+
+    <project name="SEP" source="../module/Ida/src" workdir="${basedir}/../build/api/xml">
+        <collector publiconly="false">
+            <include mask="*.php"/>
+        </collector>
+
+        <generator output="${basedir}/../build/api">
+            <enrich base="logs">
+                <source type="build"/>
+                <source type="phploc"/>
+                <source type="checkstyle"/>
+                <source type="pmd"/>
+                <source type="phpunit"/>
+            </enrich>
+
+            <build engine="html" enabled="true"> <!-- output="${basedir}/../build/api"-->
+                <file extension="html"/>
+            </build>
+        </generator>
+    </project>
+</phpdox>
