@@ -1,2 +1,1 @@
-# vufind-ida
-https://travis-ci.org/chboehm/vufind-ida.svg?branch=master
+# vufind-ida  [![Build Status](https://travis-ci.org/chboehm/vufind-ida.svg?branch=master)](https://travis-ci.org/chboehm/vufind-ida)
