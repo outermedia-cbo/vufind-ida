@@ -5,6 +5,10 @@ php:
 
 script: ant
 
+addons:
+  ssh_known_hosts:
+    - $DEPLOY_HOST
+
 after_success:
 - mkdir build- chmod 600 deploy-key
 - mv ssh_ida_travis_rsa-key ~/.ssh/id_rsa
