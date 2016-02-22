@@ -11,7 +11,7 @@ addons:
 
 after_success:
 - mkdir build- chmod 600 deploy-key
-- mv ssh_ida_travis_rsa-key ~/.ssh/id_rsa
+- mv ssh_ida_travis_rsa ~/.ssh/id_rsa
 # Add Server to known_hosts manually because variables are not evaluated in addons phase.
 - ssh-keyscan -H $DEPLOY_HOST >> ~/.ssh/known_hosts
 #- sshpass -e scp -r ??package.tgz -p 2222 $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
