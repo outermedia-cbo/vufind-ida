@@ -10,16 +10,15 @@ addons:
     - $DEPLOY_HOST
 
 after_success:
-- mkdir build- chmod 600 deploy-key
-- mv ssh_ida_travis_rsa ~/.ssh/id_rsa
-- chmod 0600 ~/.ssh/id_rsa
 # Add Server to known_hosts manually because variables are not evaluated in addons phase.
 - ssh-keyscan -H $DEPLOY_HOST >> ~/.ssh/known_hosts
-#- sshpass -e scp -r ??package.tgz -p 2222 $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+# Fetch VuFind and build package
 - curl http://heanet.dl.sourceforge.net/project/vufind/VuFind/2.3.1/vufind-$VUFIND_VERSION.tar.gz > vufind-$VUFIND_VERSION.tar.gz
 - tar xzf vufind-$VUFIND_VERSION.tar.gz
 - cp -R themes module ida languages solr vufind-$VUFIND_VERSION/
-- scp -r  vufind-$VUFIND_VERSION/* -P 2222 -p $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+# SCP to Server
+- chmod 0600 ssh_ida_travis_rsa
+- scp -r  vufind-$VUFIND_VERSION/* -i ssh_ida_travis_rsa -P 2222 -p $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
 
 before_install:
 - openssl aes-256-cbc -K $encrypted_6dde9588b8f6_key -iv $encrypted_6dde9588b8f6_iv
