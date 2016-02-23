@@ -18,7 +18,7 @@ after_success:
 - cp -R themes module ida languages solr vufind-$VUFIND_VERSION/
 # SCP to Server
 - chmod 0600 ssh_ida_travis_rsa
-- scp -r -i ssh_ida_travis_rsa -P 2222 -p vufind-$VUFIND_VERSION/* $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+- scp -C -r -i ssh_ida_travis_rsa -P 2222 -p vufind-$VUFIND_VERSION/* $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
 
 before_install:
 - openssl aes-256-cbc -K $encrypted_6dde9588b8f6_key -iv $encrypted_6dde9588b8f6_iv
