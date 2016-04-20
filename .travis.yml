@@ -9,22 +9,13 @@ addons:
   ssh_known_hosts:
     - $DEPLOY_HOST
 
-after_success:
-# Add Server to known_hosts manually because variables are not evaluated in addons phase.
-- ssh-keyscan -t $TRAVIS_SSH_KEY_TYPES -p 2222 -H $DEPLOY_HOST 2>&1 | tee -a $HOME/.ssh/known_hosts
-## Fetch VuFind and build package
-#- curl http://heanet.dl.sourceforge.net/project/vufind/VuFind/2.3.1/vufind-$VUFIND_VERSION.tar.gz > vufind-$VUFIND_VERSION.tar.gz
-#- tar xzf vufind-$VUFIND_VERSION.tar.gz
-#- cp -R themes module ida languages solr vufind-$VUFIND_VERSION/
-# SCP to Server
-- chmod 0600 ssh_ida_travis_rsa
-#- scp -C -r -i ssh_ida_travis_rsa -P 2222 -p vufind-$VUFIND_VERSION/* $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-#- scp -C -q -r -i ssh_ida_travis_rsa -P 2222 -p themes module ida languages solr $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-- rsync -az -e "ssh -p 2222 -i ssh_ida_travis_rsa" themes module ida languages solr $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-
 before_install:
 - openssl aes-256-cbc -K $encrypted_6dde9588b8f6_key -iv $encrypted_6dde9588b8f6_iv
   -in ssh_ida_travis_rsa.enc -out ssh_ida_travis_rsa -d
+  
+deploy:
+  provider: script
+  script: travis_deploy_dev.sh
 
 env:
   global:
