@@ -137,7 +137,21 @@ abstract class SolrIDA extends SolrDefault
         return $retval;
     }
 
+    public function getAccess()
+    {
+        return $this->getMultiValuedField("url");
+    }
     
+    public function getDisplayFormats()
+    {
+        return $this->getMultiValuedField("format");
+    }
+    
+    public function getSearchFilter()
+    {
+        return $this->getSingleValuedField('searchfilter');
+    }
+
      public function getEditions()
     {
         return $this->getMultiValuedField("edition");
