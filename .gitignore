@@ -1,4 +1,6 @@
 /.directory
+/.idea
+/build
 /cache.properties
 ### Composer template
 composer.phar
