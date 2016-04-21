@@ -61,6 +61,22 @@
             <td property="signatory"><?= $this->escapeHtml($signatory) ?></td>
         </tr>
     <? endif; ?>
+    
+          <? $urls = $this->driver->getAccess();
+    if (!empty($urls)): ?>
+        <? $contentDisplayed = true; ?>
+        <tr valign="top">
+            <th><?= $this->transEsc('Link') ?>:</th>
+            <td>
+	      <? foreach ($urls as $url): ?>
+		<a href="<?= $this->escapeHtml($url) ?>" class="fulltext" target="new">
+		  <i class="fa fa-external-link"></i>
+                   <?=$this->transEsc('Get full text')?></a>
+		 <? endforeach; ?>
+		</td>
+       </tr>
+    <? endif; ?>
+    
 <!--
     <? $displayTitle = $this->driver->getdisplayTitle(); ?>
     <? if (isset($displayTitle)): ?>
@@ -496,20 +512,7 @@
         <? endforeach; ?>
     <? endif; ?>*/?>
 
-      <? $urls = $this->driver->getAccess();
-    if (!empty($urls)): ?>
-        <? $contentDisplayed = true; ?>
-        <tr valign="top">
-            <th><?= $this->transEsc('Link') ?>:</th>
-            <td>
-	      <? foreach ($urls as $url): ?>
-		<a href="<?= $this->escapeHtml($url) ?>" class="fulltext" target="new">
-		  <i class="fa fa-external-link"></i>
-                   <?=$this->transEsc('Get full text')?></a>
-		 <? endforeach; ?>
-		</td>
-       </tr>
-    <? endif; ?>
+
 
 
     <? $issns = $this->driver->getISSNs(); ?>
