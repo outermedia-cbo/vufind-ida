@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildpath>
+	<buildpathentry kind="src" path="module/Ida"/>
+	<buildpathentry kind="src" path="tests/unit"/>
+	<buildpathentry kind="src" path="themes/genderbib"/>
+	<buildpathentry kind="src" path="themes/ida"/>
+	<buildpathentry kind="src" path="themes/meta"/>
+	<buildpathentry kind="src" path="themes/meta-bootstrap3"/>
+	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+</buildpath>
