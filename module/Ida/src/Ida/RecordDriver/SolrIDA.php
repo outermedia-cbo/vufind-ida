@@ -411,7 +411,7 @@ abstract class SolrIDA extends SolrDefault
         return $this->getSingleValuedField("documentType");
     }
 
-    public function getReviewer()
+    public function getReviewers()
     {
         return $this->getMultiValuedField("reviewer");
     }
