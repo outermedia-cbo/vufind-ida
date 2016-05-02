@@ -242,18 +242,9 @@
         </tr>
     <? endif; ?>-->
     
-    <? $reviewers = $this->driver->getReviewer(); ?>
-    <? if (isset($reviewers)): ?>
-        <? $contentDisplayed = true; ?>
-        <tr valign="top">
-            <th><?=$this->transEsc('Reviewer')?>: </th>
-            <td property="shelfmark"><?= $this->escapeHtml($reviewers) ?></td>
-        </tr>
-    <? endif; ?>
     
-    
-    <!--<? $reviewers = $this->driver->getReviewer(); ?>
-    <? if (isset($reviewers)): ?>
+    <? $reviewers = $this->driver->getReviewers(); ?>
+    <? if (!empty($reviewers)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
             <th><?=$this->transEsc('Reviewer')?>: </th>
@@ -264,7 +255,7 @@
             <? endforeach; ?>
             </td>
         </tr>
-    <? endif; ?>-->
+    <? endif; ?>
     
     
 <?php if ($this->driver->isArchive()): ?>
