@@ -1,4 +1,6 @@
 /.directory
+/.settings
+/.buildpath
 /.idea
 /build
 /cache.properties
