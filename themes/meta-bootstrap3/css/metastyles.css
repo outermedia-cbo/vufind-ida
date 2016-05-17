@@ -999,7 +999,7 @@ ul.search-result-subrecords {
   background: url("../images/smaller/systematik.png") no-repeat scroll 0 0 transparent; }
 .detail-view-sidebar .fa-videocd, .detail-view-sidebar .fa-film {
   background: url("../images/smaller/videocd.png") no-repeat scroll 0 0 transparent; }
-.detail-view-sidebar .fa-zeitschrift {
+.detail-view-sidebar .fa-zeitschrift, .detail-view-sidebar .fa-periodika {
   background: url("../images/smaller/zeitschrift.png") no-repeat scroll 0 0 transparent; }
 .detail-view-sidebar .fa-zeitschriftenheft {
   background: url("../images/smaller/zeitschriftenheft.png") no-repeat scroll 0 0 transparent; }
