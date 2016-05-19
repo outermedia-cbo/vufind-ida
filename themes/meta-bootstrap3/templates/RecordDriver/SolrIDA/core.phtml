@@ -42,7 +42,7 @@
             <?=$this->record($this->driver)->getFormatList()?>
              <? $searchfilter = $this->driver->getSearchFilter(); ?>
 	      <? $displayformats = $this->driver->getDisplayFormats()[0]; ?>
-	      <? if (strcmp($searchfilter, $displayformats) !==0) :?>
+	      <? if (strcmp($searchfilter, $displayformats) !==0 && strlen($searchfilter)>0) :?>
 		<span> <i class="fa fa-angle-double-right"></i> <?= $this->escapeHtml($searchfilter); ?></span>
 		<? endif; ?>
             <span>
