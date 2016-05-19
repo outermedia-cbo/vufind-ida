@@ -10,8 +10,8 @@
         "sebastian/phpcpd": ">=2.0",
         "pdepend/pdepend": ">=2.0",
         "phake/phake": "2.*",
-        "phploc/phploc": "~3",
-        "phpunit/phpunit": "~5",
+        "phploc/phploc": "2.1.5",
+        "phpunit/phpunit": "~4.8",
         "theseer/phpdox": ">=0.7"
     },
     "autoload": {
