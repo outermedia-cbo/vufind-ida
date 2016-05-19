@@ -7,9 +7,13 @@ if [ "$TRAVIS_BRANCH" == "stage" ]
 then
   echo "Deploying to Stage"
   export DEPLOY_PORT=2223
-else
+elif [ "$TRAVIS_BRANCH" == "master" ]
+then
   echo "Deploying to Dev"
   export DEPLOY_PORT=2222
+else
+  echo "Nothing to do"
+  exit 0
 fi
 
 # Add Server to known_hosts manually because variables are not evaluated in addons phase.
