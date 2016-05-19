@@ -1,8 +1,8 @@
 {
-    "name": "outermedia/sep-core",
+    "name": "chboehm/vufind-ida",
     "version": "1.0.0",
     "require": {
-        "php": ">=5.6"
+        "php": ">=5.5"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "~2.5",
@@ -18,8 +18,8 @@
     },
     "authors": [
         {
-            "name": "Denny Kunschmann",
-            "email": "dku@outermedia.de",
+            "name": "Christoph Böhm",
+            "email": "cbo@outermedia.de",
             "homepage": "http://www.outermedia.de",
             "role": "Developer"
         }
