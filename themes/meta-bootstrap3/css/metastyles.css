@@ -1195,7 +1195,9 @@ ul.search-result-subrecords li .is-subrecord {
   z-index: 99; }
 
 .ttHome:hover:after {
+  bottom: 39px;
   left: 15%; }
 
 .ttHome:hover:before {
+  bottom: 33px;
   left: 20%; }
