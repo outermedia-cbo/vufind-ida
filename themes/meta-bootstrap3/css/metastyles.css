@@ -1193,3 +1193,9 @@ ul.search-result-subrecords li .is-subrecord {
   left: 50%;
   position: absolute;
   z-index: 99; }
+
+.ttHome:hover:after {
+  left: 15%; }
+
+.ttHome:hover:before {
+  left: 20%; }

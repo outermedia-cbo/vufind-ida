@@ -77,14 +77,19 @@ $institutionsCols = $this->distributeToArrays($institutions, array(12, 11, 99));
         <h2 data-section-toggle="true"><?= $this->transEsc('Inventory by document types'); ?></h2>
         <div class="body">
        <?php foreach ($inventoryFacet as $entry) : ?>
-            <div class="col-sm-6" style="padding-left: 5px; padding-right: 5px; padding-bottom: 5px;" >
+       		<?  $displayText =  $entry['displayText']; 
+       			$tooltip = $this->transEsc($displayText . "_tooltip");
+       			$className = "";
+       			$tt = "";
+       			if(strpos($tooltip,'_tooltip') == false): $className = "tooltip ttHome"; $tt = $tooltip; endif;?> 
+            <div class="col-sm-6 <?=$className?>" title="<?=$tt?>" style="padding-left: 5px; padding-right: 5px; padding-bottom: 5px;" >
                 <a href="<?= $this->url('search-results'); ?>?limit=20&filter[]=format%3A<?= urlencode($entry['value']); ?>">
                     <div class="media">
                         <div class="media-left pull-left">
-                            <img src="<?= $entry['icon'] ?>" class="recordcover" alt="<?= $entry['displayText']; ?>" />
+                            <img src="<?= $entry['icon'] ?>" class="recordcover" alt="<?= $displayText; ?>" />
                         </div>
                         <div class="media-body">
-                            <h5 class="media-heading" style="margin-bottom: 0px;" ><?= $entry['displayText']; ?></h5>
+                            <h5 class="media-heading" style="margin-bottom: 0px;" ><?=  $displayText; ?></h5>
                             <span style="font-size: 12px;" >(<?= number_format($entry['count'], 0, ',', '.'); ?>)</span>
                         </div>
                     </div>

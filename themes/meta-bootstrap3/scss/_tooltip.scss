@@ -4,8 +4,6 @@
     position: relative;
     opacity: 1; 
 }
-
-
 .tooltip:hover:after{
     background: #333;
     background: rgba(0,0,0,.8);
@@ -19,7 +17,6 @@
     white-space: normal;
     z-index: 98;
     width: 220px;
-    
 }
 .tooltip:hover:before{
     border: solid;
@@ -30,4 +27,11 @@
     left: 50%;
     position: absolute;
     z-index: 99;
+}
+
+.ttHome:hover:after{
+    left: 15%;
+}
+.ttHome:hover:before{
+    left: 20%;
 }
