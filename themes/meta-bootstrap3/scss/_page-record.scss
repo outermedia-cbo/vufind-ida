@@ -137,11 +137,8 @@
     min-height: inherit;
   }
   .jstree-clicked, .jstree-hovered {
-    // https://github.com/marius300482/meta/commit/177e1cb3908cb32e5c54cef23d8f266808d9aee7
-    background-color: transparent;
+    background-color: #FFCE67;
     border: none;
-//    background-color: $color-yellow-4;
-//    border: 1px solid $color-blue-4 !important; // Overwrite super long selector
     box-shadow: none;
   }
   .jstree-children {
@@ -288,6 +285,9 @@
   }
   .fa-zeitschriftenheft {
     background: url($theme-path-images + "/smaller/zeitschriftenheft.png") no-repeat scroll 0 0 transparent;
+  }
+  .fa-visuellematerialien {
+    background: url($theme-path-images + "/smaller/plakate.png") no-repeat scroll 0 0 transparent;
   }
   // Extend detailed "background" attribute of specific icon
   .fa {

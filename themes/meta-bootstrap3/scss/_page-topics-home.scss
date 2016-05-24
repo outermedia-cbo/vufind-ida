@@ -78,8 +78,9 @@
           }
         }
         .institution {
+          margin: 0 0 0.2em;
           padding-left: 20px;
-          &:before {
+           &:before {
             content: "\e609";
             color: $color-purple;
             font-family: 'icomoon';
