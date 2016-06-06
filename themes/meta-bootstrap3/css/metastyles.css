@@ -998,6 +998,8 @@ ul.search-result-subrecords li .is-subrecord {
   background: url("../images/smaller/zeitschriftenheft.png") no-repeat scroll 0 0 transparent; }
 .detail-view-sidebar .fa-visuellematerialien {
   background: url("../images/smaller/plakate.png") no-repeat scroll 0 0 transparent; }
+.detail-view-sidebar .fa-archivgut {
+  background: url("../images/smaller/plakate.png") no-repeat scroll 0 0 transparent; }
 .detail-view-sidebar .fa {
   background-size: contain; }
 
