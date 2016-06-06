@@ -289,6 +289,9 @@
   .fa-visuellematerialien {
     background: url($theme-path-images + "/smaller/plakate.png") no-repeat scroll 0 0 transparent;
   }
+  .fa-archivgut {
+    background: url($theme-path-images + "/smaller/systematik.png") no-repeat scroll 0 0 transparent;
+  }
   // Extend detailed "background" attribute of specific icon
   .fa {
     background-size: contain; // Do not cut icon
