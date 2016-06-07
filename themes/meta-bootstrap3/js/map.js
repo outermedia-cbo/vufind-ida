@@ -1,4 +1,4 @@
-function initMap(mapContainer, lat, lon, url) {
+function initMap(mapContainer, lat, lon) {
     $(function () {
 
         // "Refresh" map after slide down (mobile
@@ -23,7 +23,7 @@ function initMap(mapContainer, lat, lon, url) {
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(lat, lon),
             map: map,
-            icon: url + "themes/meta-bootstrap3/images/marker.png"
+            icon:  markerImg
         });
 
         // Register click on marker
@@ -32,3 +32,12 @@ function initMap(mapContainer, lat, lon, url) {
         });
     })
 }
+
+function initStaticMap(mapContainer, lat, lon,url){
+	marker = url + markerImg;
+	map = $('#'+mapContainer);
+	parent = map.parent();
+	map.attr("src", "https://maps.googleapis.com/maps/api/staticmap?center="+lat+","+lon+"&zoom=15&size="+parent.width()+"x80&markers=icon:"+marker+"|"+lat+","+lon+"&key=AIzaSyAoK_7LQ3D0oMjok03vxB50LXe37yKlteE");
+}
+
+var markerImg = "/themes/meta-bootstrap3/images/marker.png";

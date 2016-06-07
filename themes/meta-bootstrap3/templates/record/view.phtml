@@ -111,8 +111,7 @@ $institutionDetails = $this->driver->getInstitutionDetails($institution, $userLa
                         <script>
                         	$(document).ready(initMap('map-canvas',
                         			<?= (float) $institutionDetails["latitude"]; ?>,
-                        			<?= (float) $institutionDetails["longitude"]; ?>,
-                        			"<?= $this->url('home')?>"));
+                        			<?= (float) $institutionDetails["longitude"]; ?>));
                         </script>
                     <?php endif; ?>
                     <!-- END google maps -->
@@ -135,13 +134,13 @@ $institutionDetails = $this->driver->getInstitutionDetails($institution, $userLa
         <?php endif; ?>
         <!-- Start google maps -->
         <?php if (isset($institutionDetails["latitude"]) && isset($institutionDetails["longitude"])) : ?>
-        	<div id="small-map"></div>
-            	<script>
-                	$(document).ready(initMap('small-map',
-                    	<?= (float) $institutionDetails["latitude"]; ?>,
-                        	<?= (float) $institutionDetails["longitude"]; ?>,
-                        	"<?= $this->url('home')?>"));
-                </script>
+        	<img id ="small-map" alt="Karte" src="">
+        	<script type="text/javascript">
+        		$(document).ready(initStaticMap('small-map',
+        			<?= (float) $institutionDetails["latitude"]; ?>,
+        			<?= (float) $institutionDetails["longitude"]; ?>,
+        			"<?=  $this->driver->getServerUrl()?>"));
+        	</script>
          <?php endif; ?>
          <!-- END google maps -->
 	</div>

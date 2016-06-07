@@ -50,7 +50,7 @@ abstract class SolrIDA extends SolrDefault
     {
         $amazonassociate = false;
         if (isset($this->mainConfig->Content->amazonassociate)) {
-            $amazonassociate = $this->mainConfig->Content->amazonassociate;;
+            $amazonassociate = $this->mainConfig->Content->amazonassociate;
         }
         return $amazonassociate;
     }
@@ -490,6 +490,14 @@ abstract class SolrIDA extends SolrDefault
             $thumbnail['isn'] = $isbn;
         }
         return $thumbnail;
+    }
+    
+    public function getServerUrl() {
+    	$url = "";
+    	if (isset($this->mainConfig->Site->url)) {
+    		$url = $this->mainConfig->Site->url;
+    	}
+    	return $url;
     }
 
     /**
