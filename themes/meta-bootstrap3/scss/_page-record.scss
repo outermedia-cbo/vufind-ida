@@ -88,6 +88,16 @@
   }
 }
 
+//small map in sidebar
+#small-map {
+  width: 100%;
+  height: 80px;
+  margin: 10px 0;
+  img {
+    max-width: inherit;
+  }
+}
+
 // The lower hierarchy tree
 #treeSelector {
   display: none;
@@ -213,7 +223,7 @@
       font-size: 14px;
     }
   }
-  @media (max-width: $device-xs-max-width) {
+  /*@media (max-width: $device-xs-max-width) {*/
     h4 {
       margin-top: 20px;
       padding-bottom: 10px;
@@ -221,7 +231,7 @@
     }
     .list-group-item:first-child, .list-group-item:hover:first-child {
       border-top-width: 0;
-    }
+    /*}*/
   }
   .fa {
     &:before {
