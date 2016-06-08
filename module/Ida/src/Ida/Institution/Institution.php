@@ -101,8 +101,8 @@ class Institution
     private function normalizeSortString($string)
     {
     	$string = strtoupper($string);
-    	$aSearch   = array("Ä","Ö","Ü","ß","-");
-    	$aReplace  = array("Ae","Oe","Ue","Ss"," ");
+    	$aSearch   = array("Ä","Ö","Ü","ß","-","*"," ");
+    	$aReplace  = array("AE","OE","UE","SS","","","");
     	$string = str_replace($aSearch, $aReplace, $string);
     	return $string;
     }
@@ -114,7 +114,7 @@ class Institution
      * @param string $sortSecond
      * @return array
      */
-    public function getAllInstitutions($sortFirst = "country", $sortSecond = "name")
+    public function getAllInstitutions($sortFirst = "country_norm", $sortSecond = "name_norm")
     {
         $institutionDirContent = scandir($this->institutionDir);
         $fileEnding = "_" . $this->language . ".ini";
@@ -130,16 +130,30 @@ class Institution
                 $institution["id"] = $this->institutionId;
                 // Use case insensitive $sortSecond as first array element which is
                 // used in array_multisort() as second sort condition
-                $institution = array($this->normalizeSortString($institution[$sortSecond])) + $institution;
+                $institution["name_norm"] = $this->normalizeSortString($institution["name"]);
+                $institution["country_norm"] = $this->normalizeSortString($institution["country"]);
                 $institutions[] = $institution;
             }
         }
-
-        // Sort the institutions by $sortFirst. Equal $sortFirst entries will
-        // automatically be sorted by $sortSecond in array_multisort()
-        $institutions = $this->sortBySubArrayValue($institutions, $sortFirst);
-
+		$institutions = $this->array_orderby($institutions, $sortFirst, SORT_ASC, $sortSecond, SORT_ASC);
+				
         return $institutions;
+    }
+    
+    private function array_orderby()  {
+    	$args = func_get_args();
+    	$data = array_shift($args);
+    	foreach ($args as $n => $field) {
+    		if (is_string($field)) {
+    			$tmp = array();
+    			foreach ($data as $key => $row)
+    				$tmp[$key] = $row[$field];
+    				$args[$n] = $tmp;
+    		}
+    	}
+    	$args[] = &$data;
+    	call_user_func_array('array_multisort', $args);
+    	return array_pop($args);
     }
 
     /**
