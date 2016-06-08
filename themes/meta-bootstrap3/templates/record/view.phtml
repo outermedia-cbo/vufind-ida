@@ -134,7 +134,7 @@ $institutionDetails = $this->driver->getInstitutionDetails($institution, $userLa
         <?php endif; ?>
         <!-- Start google maps -->
         <?php if (isset($institutionDetails["latitude"]) && isset($institutionDetails["longitude"])) : ?>
-        	<img id ="small-map" alt="Karte" src="">
+        	<a href="#link"><img id ="small-map" alt="Karte" src=""></a>
         	<script type="text/javascript">
         		$(document).ready(initStaticMap('small-map',
         			<?= (float) $institutionDetails["latitude"]; ?>,
