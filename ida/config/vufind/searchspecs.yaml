@@ -326,12 +326,12 @@ Title:
       - [and, 100]
     title_old:
       - [and, ~]
-#    series:
-#      - [onephrase, 100]
-#      - [and, 50]
-#    series2:
-#      - [onephrase, 50]
-#      - [and , ~]
+    series:
+      - [onephrase, 100]
+      - [and, 50]
+    series2:
+      - [onephrase, 50]
+      - [and , ~]
 
 #  ExactSettings:
 #    DismaxFields:
