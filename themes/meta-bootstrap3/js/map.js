@@ -34,10 +34,10 @@ function initMap(mapContainer, lat, lon) {
 }
 
 function initStaticMap(mapContainer, lat, lon,url){
-	marker = url + markerImg;
-	map = $('#'+mapContainer);
-	parent = map.parent();
-	map.attr("src", "https://maps.googleapis.com/maps/api/staticmap?center="+lat+","+lon+"&zoom=15&size="+parent.width()+"x80&markers=icon:"+marker+"|"+lat+","+lon+"&key=AIzaSyAoK_7LQ3D0oMjok03vxB50LXe37yKlteE");
+	var marker = url + markerImg;
+	var map = $('#'+mapContainer);
+	var parentContainer = map.parent().parent();
+	map.attr("src", "https://maps.googleapis.com/maps/api/staticmap?center="+lat+","+lon+"&zoom=15&size="+parentContainer.width()+"x80&markers=icon:"+marker+"|"+lat+","+lon+"&key=AIzaSyAoK_7LQ3D0oMjok03vxB50LXe37yKlteE");
 }
 
 var markerImg = "/themes/meta-bootstrap3/images/marker.png";
