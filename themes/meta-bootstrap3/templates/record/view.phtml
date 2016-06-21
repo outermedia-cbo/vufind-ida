@@ -99,8 +99,11 @@ $institutionDetails = $this->driver->getInstitutionDetails($institution, $userLa
                     <?php if (isset($institutionDetails["city"])) : ?>
                         <div id="institution-address"><?= strip_tags($institutionDetails["city"], '<br><strong><a>'); ?></div>
                     <?php endif; ?>
-                    <?php if (isset($institutionDetails["addressExtra"])) : ?>
-                        <div class="address-extra"><?= strip_tags($institutionDetails["addressExtra"], '<br><strong><a>'); ?>&nbsp;<i class="fa fa-external-link"></i><br /><br /></div>
+                    <?php if (isset($institutionDetails["tel"])) : ?>
+                        <div class="address-telefon"><?php echo $this->transEsc('Telefon'); ?>: <?= strip_tags($institutionDetails["tel"], '<br><strong><a>'); ?></div>
+                    <?php endif; ?>
+                    <?php if (isset($institutionDetails["link"])) : ?>
+                        <div class="address-website"><a target="_blank" href="<?= strip_tags($institutionDetails["link"], '<br><strong><a>'); ?>"><?php echo $this->transEsc('More Institution Information'); ?>&nbsp;<i class="fa fa-external-link"></i></a><br/><br/></div>
                     <?php endif; ?>
                     <?php if (isset($institutionDetails["openingHours"])) : ?>
                         <div class="opening-hours"><?= strip_tags($institutionDetails["openingHours"], '<br><strong><a>'); ?></div>
