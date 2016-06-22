@@ -348,9 +348,9 @@
         </tr>
     <? endif; ?>*/?>
 
-<? $publicationDate = $this->driver->getDisplayPublicationDate(); ?>
-<? $editions = $this->driver->getEditions();  ?>
-     <? if (empty($publicationDate) && !empty($editions)): ?>
+
+  <? $editions = $this->driver->getEditions();  ?>
+   <? if (isset($editions)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
             <th><?= $this->transEsc('Edition') ?>:</th>
