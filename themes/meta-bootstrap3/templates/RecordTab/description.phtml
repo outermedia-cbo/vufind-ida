@@ -350,7 +350,7 @@
 
 
   <? $editions = $this->driver->getEditions();  ?>
-   <? if (isset($editions)): ?>
+   <? if (!empty($editions)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
             <th><?= $this->transEsc('Edition') ?>:</th>
