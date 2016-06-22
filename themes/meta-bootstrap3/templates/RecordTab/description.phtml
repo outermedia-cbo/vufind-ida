@@ -76,34 +76,6 @@
 		</td>
        </tr>
     <? endif; ?>
-    
-<!--
-    <? $displayTitle = $this->driver->getdisplayTitle(); ?>
-    <? if (isset($displayTitle)): ?>
-        <? $contentDisplayed = true; ?>
-        <tr valign="top">
-            <th><?=$this->transEsc('Title')?>: </th>
-            <td property="title"><?= $this->escapeHtml($displayTitle); ?></td>
-        </tr>
-    <? endif; ?>
-
-    <? $titleShort = $this->driver->getShortTitle(); ?>
-    <? if (isset($titleShort)): ?>
-        <? $contentDisplayed = true; ?>
-        <tr valign="top">
-            <th><?=$this->transEsc('Title Short')?>: </th>
-            <td property="shorttitle"><?= $this->escapeHtml($titleShort); ?></td>
-        </tr>
-    <? endif; ?>
-
-    <? $titleSub = $this->driver->getTitleSub(); ?>
-    <? if (isset($titleSub)): ?>
-        <? $contentDisplayed = true; ?>
-        <tr valign="top">
-            <th><?=$this->transEsc('Title Sub')?>: </th>
-            <td property="titlesub"><?= $this->escapeHtml($titleSub); ?></td>
-        </tr>
-    <? endif; ?>-->
 
     <? $alternativeTitles = $this->driver->getAlternativeTitles(); ?>
     <? if (!empty($alternativeTitles)): ?>
@@ -118,6 +90,46 @@
         </tr>
     <? endif; ?>
 
+    <? $upcomingTitles = $this->driver->getUpcomingTitles(); ?>
+    <? if (!empty($upcomingTitles)): ?>
+        <? $contentDisplayed = true; ?>
+        <tr valign="top">
+            <th><?=$this->transEsc('Upcoming Title')?>: </th>
+            <td property="issue">
+            <? foreach($upcomingTitles as $upcomingTitle): ?>
+                <?= $this->escapeHtml($upcomingTitle) ?><?= $upcomingTitle !== end($upcomingTitles) ? ", " : "" ?>
+            <? endforeach; ?>
+            </td>
+        </tr>
+    <? endif; ?>
+    
+    
+    <? $formerTitles = $this->driver->getFormerTitles(); ?>
+    <? if (!empty($formerTitles)): ?>
+        <? $contentDisplayed = true; ?>
+        <tr valign="top">
+            <th><?=$this->transEsc('Former Title')?>: </th>
+            <td property="issue">
+            <? foreach($formerTitles as $formerTitle): ?>
+                <?= $this->escapeHtml($formerTitle) ?><?= $formerTitle !== end($formerTitles) ? ", " : "" ?>
+            <? endforeach; ?>
+            </td>
+        </tr>
+    <? endif; ?>
+    
+    <? $originalTitles = $this->driver->getOriginalTitles(); ?>
+    <? if (!empty($originalTitles)): ?>
+        <? $contentDisplayed = true; ?>
+        <tr valign="top">
+            <th><?=$this->transEsc('Original Title')?>: </th>
+            <td property="issue">
+            <? foreach($originalTitles as $originalTitle): ?>
+                <?= $this->escapeHtml($originalTitle) ?><?= $originalTitle !== end($originalTitles) ? ", " : "" ?>
+            <? endforeach; ?>
+            </td>
+        </tr>
+    <? endif; ?>
+    
     <? $authors = $this->driver->getDeduplicatedAuthors(); ?>
     <? if (!empty($authors['main']) || !empty($authors['additional'])):  ?>
         <? $contentDisplayed = true; ?>
@@ -336,9 +348,9 @@
         </tr>
     <? endif; ?>*/?>
 
-<? $publicationDate = $this->driver->getDisplayPublicationDate(); ?>
-<? $editions = $this->driver->getEditions();  ?>
-     <? if (empty($publicationDate) && !empty($editions)): ?>
+
+  <? $editions = $this->driver->getEditions();  ?>
+   <? if (isset($editions)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
             <th><?= $this->transEsc('Edition') ?>:</th>

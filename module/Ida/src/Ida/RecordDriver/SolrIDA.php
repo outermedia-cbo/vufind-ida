@@ -270,6 +270,11 @@ abstract class SolrIDA extends SolrDefault
       return $this->getMultiValuedField("title_alt");
     }
     
+    public function getOriginalTitles()
+    {
+      return $this->getMultiValuedField("originalTitle");
+    }
+    
     public function getEditors()
     {
         return $this->getMultiValuedField("editor");
