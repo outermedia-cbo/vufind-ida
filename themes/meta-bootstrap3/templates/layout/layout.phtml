@@ -85,14 +85,14 @@
   _paq.push(['trackPageView']);
   _paq.push(['enableLinkTracking']);
   (function() {
-    var u="//piwik.genderbibliothek.de/";
+    var u="//stats.ida-dachverband.de/";
     _paq.push(['setTrackerUrl', u+'piwik.php']);
     _paq.push(['setSiteId', 2]);
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
     g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
   })();
 </script>
-<noscript><p><img src="//piwik.genderbibliothek.de/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
+<noscript><p><img src="//stats.ida-dachverband.de/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
 <!-- End Piwik Code -->
   <body>
     <header role="banner" class="hidden-print">
@@ -105,32 +105,6 @@
         <nav class="nav searchbox hidden-lg hidden-print">
           <?=$this->layout()->searchbox ?>
         </nav>
-<?php /* PHE is not required
-        <? if((!isset($this->layout()->showBreadcrumbs) || $this->layout()->showBreadcrumbs == true)
-          && !empty($this->layout()->breadcrumbs)
-          && $this->layout()->breadcrumbs !== false
-        ): ?>
-          <ul class="breadcrumb hidden-print">
-          <? if(is_array($this->layout()->breadcrumbs)): ?>
-            <? if(count($this->layout()->breadcrumbs) > 1): ?>
-              <?=$this->render('breadcrumbs/multi.phtml', array(
-                  'parents' => $this->layout()->breadcrumbs,
-                  'title'   => $this->layout()->title,
-                  'end'     => $this->layout()->breadcrumbEnd,
-                  'from'    => $this->layout()->from
-                )) ?>
-            <? else: ?>
-              <?=$this->render('breadcrumbs/default.phtml', array(
-                  'parents' => $this->layout()->breadcrumbs,
-                  'title'   => $this->layout()->title
-                )) ?>
-            <? endif; ?>
-          <? else: ?>
-            <?=$this->layout()->breadcrumbs ?>
-          <? endif; ?>
-          </ul>
-        <? endif; ?>
-*/ ?>
       </div>
     </header>
     <div role="main" class="main">
