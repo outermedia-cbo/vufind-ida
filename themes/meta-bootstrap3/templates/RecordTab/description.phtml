@@ -349,14 +349,14 @@
     <? endif; ?>*/?>
 
 
-  <? $editions = $this->driver->getEditions();  ?>
+ <?php /* Not required <? $editions = $this->driver->getEditions();  ?>
      <? if (isset($editions)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
             <th><?= $this->transEsc('Edition') ?>:</th>
             <td><? foreach ($editions as $edition): ?><?= $this->escapeHtml($edition) ?><?= $edition !== end($editions) ? " <br /> " : "" ?><? endforeach; ?></td>
         </tr>
-    <? endif; ?>
+    <? endif; ?>*/?>
 
     <? $publicationDate = $this->driver->getDisplayPublicationDate(); ?>
     <? if (isset($publicationDate)): ?>
