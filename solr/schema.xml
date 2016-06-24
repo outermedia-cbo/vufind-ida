@@ -265,6 +265,7 @@
    <field name="upcomingTitle" type="text" indexed="true" stored="true" multiValued="true"/>
    <field name="formerTitle" type="text" indexed="true" stored="true" multiValued="true"/>
    <field name="alternativeTitle" type="text" indexed="true" stored="true" multiValued="true"/>
+   <field name="originalTitle" type="text" indexed="true" stored="true" multiValued="true"/>
    <field name="sourceInfo" type="text" indexed="true" stored="true" multiValued="true" />
    <field name="listOfContents" type="text" indexed="true" stored="true" multiValued="true" />
    <field name="details" type="text" indexed="true" stored="true" multiValued="true" />
