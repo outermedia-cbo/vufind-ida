@@ -640,7 +640,7 @@ abstract class SolrIDA extends SolrDefault
         $this->mapChar($map, $series);
         $this->addDataField($map, "490", "0", " ", $record, $marc21);
 
-        $description=$this->getDescription();
+        $description=$this->getDescriptions();
         $this->mapChar($map, $description);
         $this->addDataField($map, "500", " ", " ", $record, $marc21);
 
@@ -859,7 +859,7 @@ abstract class SolrIDA extends SolrDefault
         {
             $xml->addChild('description', htmlspecialchars($current), $dc);
         }
-        $desc = $this->getDescription();
+        $desc = $this->getDescriptions();
         if (!empty($desc))
         {
             $xml->addChild('description', htmlspecialchars($desc), $dc);
