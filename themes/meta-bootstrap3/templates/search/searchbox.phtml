@@ -17,7 +17,17 @@
     $lastSort = $options->getLastSort();
     $lastLimit = $options->getLastLimit();
 ?>
-<? if ($this->searchType == 'advanced'): ?>
+<div class="search-nav-wrapper">
+    <ul class="nav nav-tabs search-nav">
+        <li id="simpleSearchTab" class="active">
+            <span><?=$this->transEsc("Standard")?></span>
+        </li>
+        <li id="advanceSearchTab">
+            <span><?=$this->transEsc("Advanced")?></span>
+        </li>
+    </ul>
+</div>
+<? /*if ($this->searchType == 'advanced'):
   <div id="searchForm">
     <? $searchTabs = $this->searchtabs($this->searchClassId, $this->lookfor, $this->searchIndex, $this->searchType); ?>
     <? if (count($searchTabs) > 0): ?>
@@ -40,19 +50,8 @@
       </div>
     <? endif; ?>
   </div>
-<? else: ?>
+<? else:*/ ?>
   <form role="search" class="navbar-form navbar-left" method="get" action="<?=$this->url($basicSearch)?>" name="searchForm" id="searchForm" autocomplete="off">
-      <div class="search-nav-wrapper">
-          <ul class="nav nav-tabs search-nav">
-              <li id="simpleSearchTab" class="active">
-                  <span><?=$this->transEsc("Standard")?></span>
-              </li>
-              <li id="advanceSearchTab">
-                  <span><?=$this->transEsc("Advanced")?></span>
-              </li>
-          </ul>
-      </div>
-      <?php ?>
       <?php
       $filterDetails = $this->searchbox()->getFilterDetails(
           isset($this->filterList) && is_array($this->filterList) ? $this->filterList : array(),
@@ -62,7 +61,11 @@
         ?>
      <div<?= true === $displayFiltersRemove ? ' class="display-filters-rm"' : ''; ?> id="simple-search-body">
         <div class="simple-search-input-wrapper">
-            <input class="form-control search-query<? if($this->searchbox()->autocompleteEnabled($this->searchClassId)):?> autocomplete searcher:<?=$this->escapeHtmlAttr($this->searchClassId) ?><? endif ?>" id="searchForm_lookfor" type="text" name="lookfor" value="<?=$this->escapeHtmlAttr($this->lookfor)?>"/>
+            <input class="form-control search-query<? if($this->searchbox()->autocompleteEnabled($this->searchClassId)):?> autocomplete searcher:<?=$this->escapeHtmlAttr($this->searchClassId) ?><? endif ?>"
+                   id="searchForm_lookfor"
+                   type="text"
+                   name="lookfor"
+                   value="<?= ($this->searchType == 'advanced') ? '' : $this->escapeHtmlAttr($this->lookfor) ?>"/>
             <span class="closer"></span>
         </div>
         <?php $handlerCount = 0; ?><?php /* phe disable select field */ ?>
@@ -131,7 +134,7 @@
      </div>
   </form>
   <? /*<script type="text/javascript">$("#searchForm_lookfor").focus()</script> */ ?>
-<? endif; ?>
+<?/* endif;*/ ?>
 
 <?php // PHE added the advanced search from "search/advanced.phtml"
 // Load the Solr-specific advanced search controls and inject them into the

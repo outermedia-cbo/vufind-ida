@@ -386,23 +386,35 @@ header .closer:before {
   color: #D6D3DE;
   font-family: 'icomoon';
   font-size: 20px; }
+header .search-box-wrapper {
+  margin-top: 8px;
+  padding: 0 15px;
+}
+@media (max-width: 768px) {
+  header .search-box-wrapper {
+    padding: 0;
+  }
+}
+header .navbar-form {
+  padding: 0;
+  margin: 0; }
 header #searchForm {
   display: block;
   float: none !important;
   margin-bottom: 0;
   padding-bottom: 0;
   border: 0 none; }
-header #searchForm .search-nav-wrapper {
+header .search-nav-wrapper {
   overflow: hidden;
   padding: 3px 0 0 3px;
   margin-left: -3px; }
-header #searchForm .search-nav-wrapper .search-nav {
+header .search-nav-wrapper .search-nav {
   border: 0; }
-header #searchForm .search-nav-wrapper .search-nav li {
+header .search-nav-wrapper .search-nav li {
   margin-right: 10px; }
-header #searchForm .search-nav-wrapper .search-nav li:last-child {
+header .search-nav-wrapper .search-nav li:last-child {
   margin-right: 0; }
-header #searchForm .search-nav-wrapper .search-nav li span {
+header .search-nav-wrapper .search-nav li span {
   background-color: #FFAD00;
   color: #664500;
   border: 0;
@@ -412,12 +424,12 @@ header #searchForm .search-nav-wrapper .search-nav li span {
   cursor: pointer;
   font-size: 17px; }
 @media (max-width: 768px) {
-  header #searchForm .search-nav-wrapper .search-nav li span {
+  header .search-nav-wrapper .search-nav li span {
     padding: 5px 30px; } }
 @media (max-width: 400px) {
-  header #searchForm .search-nav-wrapper .search-nav li span {
+  header .search-nav-wrapper .search-nav li span {
     padding: 5px 20px; } }
-header #searchForm .search-nav-wrapper .search-nav li.active span {
+header .search-nav-wrapper .search-nav li.active span {
   background-color: #FFEFCC;
   cursor: inherit;
   color: #000000;
@@ -498,8 +510,6 @@ header #searchForm #simple-search-body .btn-primary {
   vertical-align: top; }
 header #searchForm #simple-search-body .btn-primary i {
   display: none; }
-header #advSearchForm {
-  padding: 0 15px; }
 header #advSearchForm #groupPlaceHolder {
   position: absolute; }
 header #advSearchForm a, header #advSearchForm label, header #advSearchForm select, header #advSearchForm p {
@@ -557,15 +567,15 @@ header #advSearchForm input.reset-form-button, header #advSearchForm input.reset
   font-weight: normal;
   line-height: 30px;
   height: 30px; }
-@media (min-width: 768px) {
+@media (min-width: 767px) {
   header #advSearchForm .closer {
     right: 20px; } }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   header #advSearchForm .col-xs-12, header #advSearchForm .col-xs-11, header #advSearchForm .col-xs-1, header #advSearchForm .col-sm-6 {
     padding: 0; }
   header #advSearchForm .col-sm-6:last-child {
     margin-top: 15px; } }
-@media (max-width: 992px) {
+@media (max-width: 767px) {
   header #advSearchForm {
     padding: 0; }
   header #advSearchForm select {
