@@ -8,7 +8,7 @@
   <a role="logo" class="navbar-brand" href="<?=$this->url('home')?>">SUCHE IN META <small>| beta</small></a>
 </div>
 <? if ($this->layout()->searchbox !== false): ?>
-  <section>
+  <section class="search-box-wrapper">
     <?=$this->layout()->searchbox ?>
   </section>
 <? endif; ?>

@@ -1,6 +1,9 @@
 <?
-  // Set page title.
-  $this->headTitle($this->translate('Advanced Search'));
+  if ($this->searchType == 'advanced')
+  {
+    // Set page title.
+    $this->headTitle($this->translate('Advanced Search'));
+  }
 
   // Disable top search box -- this page has a special layout.
   $this->layout()->searchbox = false;
