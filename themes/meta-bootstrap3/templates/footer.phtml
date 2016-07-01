@@ -3,32 +3,23 @@
 <? endif; ?>
 <div class="col-sm-12"><div class="footer-brand">METADATEN-<br />KATALOG | beta</div></div>
 <div class="col-sm-3"><p><strong><?=$this->transEsc('Search Options')?></strong></p>
-<ul>
-  <li><a href="<?=$this->url('search-history')?>"><?=$this->transEsc('Search History')?></a></li>
-  <li><a href="<?=$this->url('topics/topics')?>"><?=$this->transEsc('Tagcloud of Subjects')?></a></li>
-<?php /* PHE not required
-  <li><a href="<?=$this->url('search-advanced')?>"><?=$this->transEsc('Advanced Search')?></a></li>
-  <li><a href="<?=$this->url('browse-home')?>"><?=$this->transEsc('Browse the Catalog')?></a></li>
- */ ?>
-</ul>
+	<ul>
+	  <li><a href="<?=$this->url('search-history')?>"><?=$this->transEsc('Search History')?></a></li>
+	  <li><a href="<?=$this->url('topics/topics')?>"><?=$this->transEsc('Tagcloud of Subjects')?></a></li>
+	</ul>
 </div>
 <div class="col-sm-3"><p><strong><?=$this->transEsc('Need Help?')?></strong></p>
     <ul>
-        <!--<li><a href="<?=$this->url('help-home')?>?topic=search" class="help-link" title="<?=$this->transEsc('Search Tips')?>"><?=$this->transEsc('Search Tips')?></a></li>-->
-	<li>
-	  <a href="http://www.ida-dachverband.de/fileadmin/REDAKTION/EINRICHTUNGEN/ida/downloads/Dokumentation_meta-katalog.pdf">Dokumentation</a></li>
-	  </li> 
-        <?php /* PHE not required
-        <li><a href="#"><?=$this->transEsc('Ask a Librarian')?></a></li>
-        <li><a href="#"><?=$this->transEsc('FAQs')?></a></li>
-*/ ?>
+		<li>
+		  <a href="http://www.ida-dachverband.de/fileadmin/REDAKTION/EINRICHTUNGEN/ida/downloads/Dokumentation_meta-katalog.pdf">Dokumentation</a>
+		</li> 
     </ul>
 </div>
 <div class="col-sm-3"><p><strong><?=$this->transEsc('Service')?></strong></p>
 <ul>
   <li><a href="mailto:metaprojekt@ida-dachverband.de?subject=[Anfrage META]"><?=$this->transEsc('Contact')?></a></li>
   <li><a href="http://www.ida-dachverband.de/impressum/"><?=$this->transEsc('Imprint')?></a></li>
-  <li><a href="http://www.ida-dachverband.de/"><?=$this->transEsc('Website')?></a></li>
+  <li><a href="http://www.ida-dachverband.de/"><?=$this->transEsc('idaLink')?></a></li>
 </ul>
 </div>
 <div class="col-sm-3">
