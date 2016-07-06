@@ -2,6 +2,8 @@
 // Set up standard record scripts:
 $this->headScript()->appendFile("record.js");
 $this->headScript()->appendFile("check_save_statuses.js");
+$this->headScript()->appendFile("map.js");
+$this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?language=de&key=AIzaSyAoK_7LQ3D0oMjok03vxB50LXe37yKlteE");
 
 // Activate Syndetics Plus if necessary:
 if ($this->syndeticsPlus()->isActive()) {
@@ -45,9 +47,6 @@ $institutionDetails = $this->driver->getInstitutionDetails($institution, $userLa
   </ul>
 <? endif; ?>
 
-<?php /*PHE not required
-<?=$this->record($this->driver)->getToolbar()?>
-*/ ?>
 <div class="col-md-9">
     <div class="record recordId source<?= $this->escapeHtmlAttr($this->driver->getResourceSource()) ?>" id="record">
         <input type="hidden" value="<?= $this->escapeHtmlAttr($this->driver->getUniqueId()) ?>" class="hiddenId" id="record_id"/>
@@ -55,35 +54,6 @@ $institutionDetails = $this->driver->getInstitutionDetails($institution, $userLa
         <?= $this->flashmessages() ?>
         <?= $this->record($this->driver)->getCoreMetadata() ?>
     </div>
-
-    <?php /* PHE Building tabs is not required. Echoing them directly below
-      <? if (count($this->tabs) > 0): ?>
-        <a name="tabnav"></a>
-        <ul class="recordTabs nav nav-tabs">
-          <? foreach ($this->tabs as $tab => $obj): ?>
-          <? // add current tab to breadcrumbs if applicable:
-            $desc = $obj->getDescription();
-            $isCurrent = (strtolower($this->activeTab) == strtolower($tab));
-            if ($isCurrent) {
-              $this->layout()->breadcrumbs .= '<li class="active">' . $this->transEsc($desc) . '</li>';
-              $activeTabObj = $obj;
-            }
-          ?>
-        <li<?=$isCurrent ? ' class="active"' : ''?>>
-            <a id="<?=strtolower($tab) ?>" href="<?=$this->recordLink()->getTabUrl($this->driver, $tab)?>#tabnav"><?=$this->transEsc($desc)?></a>
-          </li>
-          <? endforeach; ?>
-        </ul>
-      <? endif; ?>
-
-      <div class="tab-content" id="record-tabs">
-        <div class="tab-pane active" id="<?=$this->activeTab ?>-tab">
-          <?=isset($activeTabObj) ? $this->record($this->driver)->getTab($activeTabObj) : '' ?>
-        </div>
-      </div>
-
-      <span class="Z3988" title="<?=$this->escapeHtmlAttr($this->driver->getOpenURL())?>"></span>
-    */ ?>
 
       <div class="record row detail-view-detail-row">
         <?php $tabCount = 0; ?>
@@ -123,79 +93,61 @@ $institutionDetails = $this->driver->getInstitutionDetails($institution, $userLa
                 </h4>
                 <div class="collapsible">
                     <h5><?= strip_tags($institutionName, "<br>"); ?></h5>
-                    <?php if (isset($institutionDetails["address"])) : ?>
-                        <div id="institution-address"><?= strip_tags($institutionDetails["address"], '<br><strong><a>'); ?></div>
+                    <?php if (isset($institutionDetails["street"])) : ?>
+                        <div id="institution-address"><?= strip_tags($institutionDetails["street"], '<br><strong><a>'); ?></div>
                     <?php endif; ?>
-                    <?php if (isset($institutionDetails["addressExtra"])) : ?>
-                        <div class="address-extra"><?= strip_tags($institutionDetails["addressExtra"], '<br><strong><a>'); ?>&nbsp;<i class="fa fa-external-link"></i><br /><br /></div>
+                    <?php if (isset($institutionDetails["city"])) : ?>
+                        <div id="institution-address"><?= strip_tags($institutionDetails["city"], '<br><strong><a>'); ?></div>
+                    <?php endif; ?>
+                    <?php if (isset($institutionDetails["tel"])) : ?>
+                        <div class="address-telefon"><?php echo $this->transEsc('Telefon'); ?>: <?= strip_tags($institutionDetails["tel"], '<br><strong><a>'); ?></div>
+                    <?php endif; ?>
+                    <?php if (isset($institutionDetails["link"])) : ?>
+                        <div class="address-website"><a target="_blank" href="<?= strip_tags($institutionDetails["link"], '<br><strong><a>'); ?>"><?php echo $this->transEsc('More Institution Information'); ?>&nbsp;<i class="fa fa-external-link"></i></a><br/><br/></div>
                     <?php endif; ?>
                     <?php if (isset($institutionDetails["openingHours"])) : ?>
                         <div class="opening-hours"><?= strip_tags($institutionDetails["openingHours"], '<br><strong><a>'); ?></div>
                     <?php endif; ?>
                     <!-- Start google maps -->
-                    <?php if (isset($institutionDetails["address"])) : ?>
+                    <?php if (isset($institutionDetails["latitude"]) && isset($institutionDetails["longitude"])) : ?>
                         <div id="map-canvas"></div>
-                        <script src="https://maps.googleapis.com/maps/api/js?language=de"></script>
                         <script>
-                            (function($) {
-
-                                var map,
-                                    lat = <?= (float) $institutionDetails["latitude"]; ?>,
-                                    lng = <?= (float) $institutionDetails["longitude"]; ?>;
-
-                                $(function () {
-
-                                    // "Refresh" map after slide down (mobile devices)
-                                    $('#map-canvas')
-                                        .parents('.collapsible')
-                                        // Custom event
-                                        .on('afterSlideDown', function () {
-
-                                            // Repaint map
-                                            google.maps.event.trigger(map, 'resize');
-
-                                            // Re-center map
-                                            map.setCenter(new google.maps.LatLng(lat, lng));
-                                        });
-                                });
-
-                                google.maps.event.addDomListener(window, 'load', function () {
-                                    var mapOptions = {zoom: 14, zoomControlOptions: { position: google.maps.ControlPosition.LEFT_BOTTOM }};
-                                    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-                                    var address = <?= json_encode(strip_tags($institutionDetails["address"], "<br>")); ?>.replace("<br>", ", ");
-                                    map.setCenter(new google.maps.LatLng(lat, lng));
-                                    var marker = new google.maps.Marker({
-                                        position: new google.maps.LatLng(lat, lng),
-                                        map: map,
-                                        icon: '<?= $this->url('home') . "themes/meta-bootstrap3/images/marker.png"; ?>'
-                                    });
-
-                                    // Register click on marker
-                                    google.maps.event.addListener(marker, 'click', function() {
-                                        window.open('https://maps.google.com?q=' + lat + ',' + lng);
-                                    });
-                                });
-                            })(jQuery);
+                        	$(document).ready(initMap('map-canvas',
+                        			<?= (float) $institutionDetails["latitude"]; ?>,
+                        			<?= (float) $institutionDetails["longitude"]; ?>));
                         </script>
                     <?php endif; ?>
                     <!-- END google maps -->
                 </div>
             </div>
         <?php endif; ?>
-        <?php /* PHE - END of the institution details */ ?>
-        
-        
-      
-        
-        
     </div>
     
-    
-    
-    
 </div>
-
+<div class="sidebar col-md-3 hidden-print detail-view-sidebar" data-sidebar-toggle="true">
+	<h4><?=$this->transEsc('Location'); ?></h4>
+	<div class="collapsible">
+		<h5><a href="#link"><?= strip_tags($institutionName, "<br>"); ?></a></h5>
+        <?php if (isset($institutionDetails["street"])) : ?>
+        	<div id="institution-address"><?= strip_tags($institutionDetails["street"]) ; 
+		        if (isset($institutionDetails["street2"])) : 
+		        ?>, <?= strip_tags($institutionDetails["street2"]) ; ?>
+		        <?php endif; ?>, <?= strip_tags($institutionDetails["city"]) ; ?>
+        	</div>
+        <?php endif; ?>
+        <!-- Start google maps -->
+        <?php if (isset($institutionDetails["latitude"]) && isset($institutionDetails["longitude"])) : ?>
+        	<a href="#link"><img id ="small-map" alt="Karte" src=""></a>
+        	<script type="text/javascript">
+        		$(document).ready(initStaticMap('small-map',
+        			<?= (float) $institutionDetails["latitude"]; ?>,
+        			<?= (float) $institutionDetails["longitude"]; ?>,
+        			"<?=  $this->driver->getServerUrl()?>"));
+        	</script>
+         <?php endif; ?>
+         <!-- END google maps -->
+	</div>
+</div>
 <div class="sidebar col-md-3 hidden-print detail-view-sidebar" data-sidebar-toggle="true">
     <?php foreach ($this->related()->getList($this->driver) as $current): ?>
         <?= $this->related()->render($current) ?>

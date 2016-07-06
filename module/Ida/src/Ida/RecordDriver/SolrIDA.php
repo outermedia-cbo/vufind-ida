@@ -50,7 +50,7 @@ abstract class SolrIDA extends SolrDefault
     {
         $amazonassociate = false;
         if (isset($this->mainConfig->Content->amazonassociate)) {
-            $amazonassociate = $this->mainConfig->Content->amazonassociate;;
+            $amazonassociate = $this->mainConfig->Content->amazonassociate;
         }
         return $amazonassociate;
     }
@@ -268,6 +268,11 @@ abstract class SolrIDA extends SolrDefault
     public function getAlternativeTitles()
     {
       return $this->getMultiValuedField("title_alt");
+    }
+    
+    public function getOriginalTitles()
+    {
+      return $this->getMultiValuedField("originalTitle");
     }
     
     public function getEditors()
@@ -491,6 +496,14 @@ abstract class SolrIDA extends SolrDefault
         }
         return $thumbnail;
     }
+    
+    public function getServerUrl() {
+    	$url = "";
+    	if (isset($this->mainConfig->Site->url)) {
+    		$url = $this->mainConfig->Site->url;
+    	}
+    	return $url;
+    }
 
     /**
      * @return string
@@ -627,7 +640,7 @@ abstract class SolrIDA extends SolrDefault
         $this->mapChar($map, $series);
         $this->addDataField($map, "490", "0", " ", $record, $marc21);
 
-        $description=$this->getDescription();
+        $description=$this->getDescriptions();
         $this->mapChar($map, $description);
         $this->addDataField($map, "500", " ", " ", $record, $marc21);
 
@@ -846,7 +859,7 @@ abstract class SolrIDA extends SolrDefault
         {
             $xml->addChild('description', htmlspecialchars($current), $dc);
         }
-        $desc = $this->getDescription();
+        $desc = $this->getDescriptions();
         if (!empty($desc))
         {
             $xml->addChild('description', htmlspecialchars($desc), $dc);

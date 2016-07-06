@@ -26,7 +26,7 @@ class Server extends \VuFind\OAI\Server
      */
     protected function listRecordsGetNonDeleted($from, $until, $offset, $limit, $set = '')
     {
-        $results = parent::listRecordsGetNonDeleted($from, $until, $offset, $limit, $set = '');
+        $results = parent::listRecordsGetNonDeleted($from, $until, $offset, $limit, $set);
         $params = $results->getParams();
         $params->addFilter(
             '-format:Systemaktik');

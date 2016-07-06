@@ -29,7 +29,7 @@
         </div>
         <div>
             <? if($this->driver->isCollection()): ?>
-                <?=implode('<br>', $this->driver->getSummary()); ?>
+                <?=$this->truncate(implode('<br>', $this->driver->getSummary()),150); ?><br/>
             <? endif; ?>
 
             <? $summAuthor = $this->driver->getPrimaryAuthor();?>
