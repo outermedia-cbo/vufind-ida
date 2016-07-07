@@ -502,8 +502,8 @@
     <? endif; ?>*/?>
 
   
-      <? $isbn = $this->driver->getCleanISBN(); ?>
-    <? if (isset($isbn)): ?>
+    <? $isbn = $this->driver->getCleanISBN(); ?>
+    <? if (isset($isbn) && strlen(trim($isbn))>0): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
             <th><?=$this->transEsc('ISBN')?>: </th>
