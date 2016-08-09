@@ -594,7 +594,7 @@
         <? $contentDisplayed = true; ?>
         <tr valign="top">
             <th><?=$this->transEsc('Publication frequency')?>: </th>
-            <td property=volume">
+            <td property="publicationFrequency">
             <? foreach($publicationfrequencys as $publicationfrequency): ?>
                 <?= $this->escapeHtml($publicationfrequency) ?><?= $publicationfrequency !== end($publicationfrequencys) ? ", " : "" ?>
             <? endforeach; ?>
@@ -606,15 +606,25 @@
         <? $contentDisplayed = true; ?>
         <tr valign="top">
             <th><?=$this->transEsc('Special Issues')?>: </th>
-            <td property=volume">
+            <td property="specialIssue">
             <? foreach($specialissues as $specialissue): ?>
                 <?= $this->escapeHtml($specialissue) ?><?= $specialissue !== end($specialissues) ? ", " : "" ?>
             <? endforeach; ?>
             </td>
         </tr>
     <? endif; ?>
-   
-   
+<? $inserts = $this->driver->getInsertOf(); ?>
+    <? if (!empty($inserts)): ?>
+        <? $contentDisplayed = true; ?>
+        <tr valign="top">
+            <th><?=$this->transEsc('insertOf')?>: </th>
+            <td property="insert">
+            <? foreach($inserts as $insertOf): ?>
+                <?= $this->escapeHtml($insertOf) ?><?= $insertOf !== end($inserts) ? ", " : "" ?>
+            <? endforeach; ?>
+            </td>
+        </tr>
+    <? endif; ?>
    
    <!--ENDE-->
    

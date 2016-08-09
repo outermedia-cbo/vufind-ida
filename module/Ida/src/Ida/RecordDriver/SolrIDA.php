@@ -167,6 +167,11 @@ abstract class SolrIDA extends SolrDefault
         return $this->getMultiValuedField("publicationFrequency");
     }
     
+    public function getInsertOf()
+    {
+    	return $this->getMultiValuedField("insertOf");
+    }
+    
      public function getSpecialIssue()
     {
         return $this->getMultiValuedField("specialIssue");
