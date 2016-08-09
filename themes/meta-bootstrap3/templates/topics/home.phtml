@@ -37,7 +37,7 @@ $institutionsCols = $this->distributeToArrays($institutions, array(12, 11, 99));
                                 <?= (float) $institution['longitude']; ?>,
                                 <?= json_encode($institution['short']); ?>,
                                 <?= json_encode($institution['street']); ?>,
-                                <?= json_encode($institution['street2']); ?>,
+                                <? if(!empty($institution['street2'])):?><?= json_encode($institution['street2']); ?>,<?endif;?>
                                 <?= json_encode($institution['city']); ?>
                             ]
                             <?php if ($i != count($institutions) - 1) : ?>,<?php endif; ?>
@@ -85,7 +85,7 @@ $institutionsCols = $this->distributeToArrays($institutions, array(12, 11, 99));
        			$tt = "";
        			if(strpos($tooltip,'_tooltip') == false): $className = "tooltip ttHome"; $tt = $tooltip; endif;?> 
             <div class="col-sm-6 <?=$className?>" title="<?=$tt?>" style="padding-left: 5px; padding-right: 5px; padding-bottom: 5px;" >
-                <a href="<?= $this->url('search-results'); ?>?limit=20&filter[]=format%3A<?= urlencode($entry['value']); ?>">
+                <a href="<?= $this->url('search-results'); ?>?limit=20&sort=title&filter[]=format%3A<?= urlencode($entry['value']); ?>">
                     <div class="media">
                         <div class="media-left pull-left">
                             <img src="<?= $entry['icon'] ?>" class="recordcover" alt="<?= $displayText; ?>" />
