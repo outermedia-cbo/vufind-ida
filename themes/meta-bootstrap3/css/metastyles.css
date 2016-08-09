@@ -388,22 +388,10 @@ header .closer:before {
   font-size: 20px; }
 header .search-box-wrapper {
   margin-top: 8px;
-  padding: 0 15px;
-}
+  padding: 0 15px; }
 @media (max-width: 768px) {
   header .search-box-wrapper {
-    padding: 0;
-  }
-}
-header .navbar-form {
-  padding: 0;
-  margin: 0; }
-header #searchForm {
-  display: block;
-  float: none !important;
-  margin-bottom: 0;
-  padding-bottom: 0;
-  border: 0 none; }
+    padding: 0; } }
 header .search-nav-wrapper {
   overflow: hidden;
   padding: 3px 0 0 3px;
@@ -434,6 +422,15 @@ header .search-nav-wrapper .search-nav li.active span {
   cursor: inherit;
   color: #000000;
   box-shadow: 0 1px 2px rgba(64, 57, 91, 0.6); }
+header .navbar-form {
+  padding: 0;
+  margin: 0; }
+header #searchForm {
+  display: block;
+  float: none !important;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border: 0 none; }
 header #searchForm #simple-search-body {
   background-color: #FFEFCC;
   padding: 15px;
@@ -575,7 +572,7 @@ header #advSearchForm input.reset-form-button, header #advSearchForm input.reset
     padding: 0; }
   header #advSearchForm .col-sm-6:last-child {
     margin-top: 15px; } }
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   header #advSearchForm {
     padding: 0; }
   header #advSearchForm select {
@@ -843,6 +840,7 @@ ul.search-result-subrecords li .is-subrecord {
 .detail-view-detail-row .institution strong {
   font-weight: 500; }
 .detail-view-detail-row #detail-view-description {
+  width: 100%;
   margin-top: 20px; }
 .detail-view-detail-row #detail-view-description th {
   font-weight: 300;
@@ -855,6 +853,9 @@ ul.search-result-subrecords li .is-subrecord {
 .detail-view-detail-row #detail-view-description td a {
   font-size: 14px;
   color: #990099; }
+.detail-view-detail-row #detail-view-description .divider {
+  border-top: 1px solid #D6D3DE;
+  height: 0px; }
 
 #map-canvas {
   width: 100%;
