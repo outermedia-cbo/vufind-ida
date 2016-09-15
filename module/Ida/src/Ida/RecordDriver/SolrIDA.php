@@ -385,6 +385,16 @@ abstract class SolrIDA extends SolrDefault
     {
         return $this->getSingleValuedField('shelfMark');
     }
+    
+    public function getMedia()
+    {
+    	return $this->getMultiValuedField('media');
+    }
+    
+    public function getMediaType()
+    {
+    	return $this->getMultiValuedField('mediaType');
+    }
 
     public function getTimeSpanStart()
     {

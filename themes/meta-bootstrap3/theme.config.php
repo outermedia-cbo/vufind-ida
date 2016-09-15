@@ -3,6 +3,8 @@ return array(
     'extends' => 'bootstrap3',
     'css' => array(
         'metastyles.css:screen, projection',
+    	'jquery.fancybox.css:screen, projection',
+    	'audioplayer.css:screen, projection',
         /*
         'blueprint/screen.css:screen, projection',
         'blueprint/print.css:print',
@@ -15,6 +17,8 @@ return array(
     ),
     'js' => array(
         'meta.js',
+    	'jquery.fancybox.js',
+    	'audioplayer.js',
     /*
         ,'jquery.min.js',
         'jquery.form.js',

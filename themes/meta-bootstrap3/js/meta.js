@@ -78,6 +78,24 @@ $(document).ready(function () {
             }
         });
     }
+    //register fancybox for digitized media
+	$(".fancybox").fancybox({
+		prevEffect		: 'none',
+		nextEffect		: 'none',
+		closeBtn		: true,
+		helpers		: {
+			title	: { type : 'inside' },
+			buttons	: {}
+		}
+	});
+	//register audioplayer
+	/*$( 'audio' ).audioPlayer(
+		{
+			classPrefix: 'audioplayer', // default value: 'audioplayer'
+			strPlay: 'Abspielen', // default value: 'Play'
+			strPause: 'Pause', // default value: 'Pause'
+			strVolume: 'Lautstärke', // default value: 'Volume'
+	});*/
 });
 
 (function ($) {

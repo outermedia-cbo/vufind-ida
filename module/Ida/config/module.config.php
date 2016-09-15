@@ -31,7 +31,9 @@ $config = array(
             ),
         	'recordtab' => array(
         		'factories' => array(
-        			'OtherInstitutions' => 'Ida\RecordTab\TabFactory::getOtherInstitutions'
+        			'OtherInstitutions' => 'Ida\RecordTab\TabFactory::getOtherInstitutions',
+        			'Media' => 'Ida\RecordTab\TabFactory::getMedia'
+        				
         		)
         	),
         ),
@@ -47,6 +49,7 @@ $config = array(
                     'Description' => 'Description',
                     //'Details' => 'StaffViewArray',
                     'HierarchyTree' => 'HierarchyTree',
+                	'Media' => 'Media',
                     //'Map' => 'Map', // <-- This is NOT the institution
                     // The INSTITUTION is not tab, but part of the record/view.phtml template.
                     'OtherInstitutions' => 'OtherInstitutions'

@@ -58,6 +58,19 @@
       font-weight: 500;
     }
   }
+  .fancybox {
+    img {
+      max-width: 100px;
+      margin-right: 10px;
+    }
+  }
+  audio {
+    width:100%;
+  }
+  object {
+    width: 100%;
+    height: 500px;
+  }
   // The lower description table
   #detail-view-description {
     width: 100%;

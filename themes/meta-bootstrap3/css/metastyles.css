@@ -839,6 +839,14 @@ ul.search-result-subrecords li .is-subrecord {
   font-size: 18px; }
 .detail-view-detail-row .institution strong {
   font-weight: 500; }
+.detail-view-detail-row .fancybox img {
+  max-width: 100px;
+  margin-right: 10px; }
+.detail-view-detail-row audio {
+  width: 100%; }
+.detail-view-detail-row object {
+  width: 100%;
+  height: 500px; }
 .detail-view-detail-row #detail-view-description {
   width: 100%;
   margin-top: 20px; }
