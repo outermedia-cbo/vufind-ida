@@ -1,0 +1,25 @@
+    <div id="media">
+    	<?  switch ($this->driver->getMediaType()[0]) {
+    		case "image" :
+    			//images displayed in a lightbox
+	    		for ($loop =0; $loop < sizeof($this->driver->getMedia()) ; $loop++){ ?>	
+			    	<a class="fancybox" rel="digitized-media" href="/digitalisate/<?=$this->driver->getMedia()[$loop]?>"><img src="/digitalisate/<?=$this->driver->getMedia()[$loop]?>"/></a>
+	    		<? }
+	    		break;
+    		case "audio": ?>
+    			<audio src="/digitalisate/<?=$this->driver->getMedia()[0]?>" preload="auto" controls></audio>
+    			<a href="/digitalisate/<?=$this->driver->getMedia()[0]?>" target="_blank" download><?=$this->transEsc('Audio Download')?></a>
+    		<?break;
+			case "pdf" :?>
+			  <object type="application/pdf" data="/digitalisate/<?=$this->driver->getMedia()[0]?>" id="pdf_content">
+			    <p><?=$this->transEsc('PDF Error Message')?></p>
+			  </object>
+			  <a href="/digitalisate/<?=$this->driver->getMedia()[0]?>" target="_blank" download><?=$this->transEsc('PDF Download')?></a>
+			<?
+				break;
+			case "video" :?>
+			Kommt in Kürze...
+			<?
+    	}//end switch
+    	?>
+    </div>
