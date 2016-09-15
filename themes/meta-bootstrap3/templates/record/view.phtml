@@ -58,6 +58,7 @@ $institutionDetails = $this->driver->getInstitutionDetails($institution, $userLa
       <div class="record row detail-view-detail-row">
         <?php $tabCount = 0; ?>
         <?php foreach ($this->tabs as $tab => $obj): ?>
+        	<!--TAB <?= $tab?> -->
             <div class="col-sm-6">
                 <?php if ($tab == "Description") : ?>
                     <h4 data-section-toggle="true" id="tabnav"><?php echo $this->transEsc('further information'); ?></h4>
@@ -68,6 +69,8 @@ $institutionDetails = $this->driver->getInstitutionDetails($institution, $userLa
                     		<?php echo $this->transEsc('Context'); ?>
                     	<?php endif;?>
                     </h4>
+                <?php elseif ($tab == "Media") : ?>
+                    <h4 data-section-toggle="true" id="media"><?php echo $this->transEsc('media'); ?></h4>
                 <?php elseif ($tab == "OtherInstitutions") : ?>
                 	<h4 data-section-toggle="true"><?php echo $this->transEsc('Also available in other institutions'); ?></h4>
                 <?php endif; ?>
