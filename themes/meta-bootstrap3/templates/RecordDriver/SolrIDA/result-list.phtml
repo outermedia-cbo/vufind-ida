@@ -25,20 +25,33 @@ if (true === $isSubRecord) {
 
 $cssClasses[] = 'col-xs-12';
 
+$link = '<a' . true === $hasSubRecords ? ' data-toggle="collapse" data-target="#subrecords-' . $uniqueId . '"' : '' . 'href="' . $this->recordLink()->getUrl($this->driver) . '">';
+
 ?>
     <div class="<?= implode(' ', $cssClasses); ?>">
-    <? // edit dku: https://github.com/marius300482/meta/issues/161 ?>
     <? if (false && true === $isSubRecord): ?><div class="wrapppppppppp col-xs-12"><? endif; ?>
     <input type="hidden" value="<?=$this->escapeHtmlAttr($this->driver->getUniqueID())?>" class="hiddenId" />
     <input type="hidden" value="<?=$this->escapeHtmlAttr($this->driver->getResourceSource())?>" class="hiddenSource" />
     <div class="col-xs-1">
-        <a<?= true === $hasSubRecords ? ' data-toggle="collapse" data-target="#subrecords-' . $uniqueId . '"' : '' ?> href="<?=$this->recordLink()->getUrl($this->driver)?>">
-            <? if ($summThumb = $this->record($this->driver)->getThumbnail('medium')): ?>
-                <img class="recordcover" src="<?=$this->escapeHtmlAttr($summThumb)?>" alt="<?=$this->transEsc('Cover Image')?>"/>
+            <? if ($summThumb = $this->record($this->driver)->getThumbnail('medium')): 
+            		if(!empty($this->driver->getMedia())):
+            			switch ($this->driver->getMediaType()[0]) {
+    						case "image" :?>
+				    	<?=$link?><img class="recordcover" src="/digitalisate/<?=$this->driver->getMedia()[0]?>"/></a>
+            		<?		break;
+							case "audio" :?>
+							<audio src="/digitalisate/<?=$this->driver->getMedia()[0]?>" preload="auto" controls="controls"></audio>
+            			<?
+            				break;
+							default :?>
+							<?=$link?><img class="recordcover" src="<?=$this->escapeHtmlAttr($summThumb)?>" alt="<?=$this->transEsc('Cover Image')?>"/></a>
+						<?}//end switch 
+            		else : ?>
+                		<?=$link?><img class="recordcover" src="<?=$this->escapeHtmlAttr($summThumb)?>" alt="<?=$this->transEsc('Cover Image')?>"/></a>
+                	<? endif; ?>
             <? else: ?>
-                <img class="recordcover" src="<?=$this->url('cover-unavailable')?>" alt="<?=$this->transEsc('No Cover Image')?>"/>
+                <?=$link?><img class="recordcover" src="<?=$this->url('cover-unavailable')?>" alt="<?=$this->transEsc('No Cover Image')?>"/></a>
             <? endif; ?>
-        </a>
         <? if (true === $hasSubRecords): ?>
             <a class="result-subrecords-count" data-toggle="collapse" data-target="#subrecords-<?= $uniqueId; ?>" href="">
                 <?= $subRecordsCount; ?>

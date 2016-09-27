@@ -691,6 +691,16 @@ footer .sponsorLogo {
   padding: 0; }
 .result .col-xs-1 {
   padding: 0; }
+.result .col-xs-1 .audioplayer {
+  padding-top: 20px; }
+.result .col-xs-1 .audioplayer .audioplayer-playpause {
+  width: 50%; }
+.result .col-xs-1 .audioplayer .audioplayer-time {
+  visibility: hidden; }
+.result .col-xs-1 .audioplayer .audioplayer-bar {
+  visibility: hidden; }
+.result .col-xs-1 .audioplayer .audioplayer-volume {
+  width: 50%; }
 .result .label-info {
   color: inherit;
   background-color: transparent;
@@ -842,7 +852,9 @@ ul.search-result-subrecords li .is-subrecord {
 .detail-view-detail-row .fancybox img {
   max-width: 100px;
   margin-right: 10px; }
-.detail-view-detail-row audio {
+.detail-view-detail-row .audioplayer {
+  margin: 10px; }
+.detail-view-detail-row .audioplayer audio {
   width: 100%; }
 .detail-view-detail-row object {
   width: 100%;

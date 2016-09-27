@@ -99,6 +99,21 @@
   }
   .col-xs-1 {
     padding: 0;
+    .audioplayer {
+      padding-top: 20px;
+      .audioplayer-playpause {
+        width: 50%;
+      }
+      .audioplayer-time {
+        visibility: hidden;
+      }
+      .audioplayer-bar {
+        visibility: hidden;
+      }
+      .audioplayer-volume {
+        width: 50%;
+      }
+    }
   }
   .label-info {
     color: inherit;

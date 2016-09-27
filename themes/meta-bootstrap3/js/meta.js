@@ -89,13 +89,13 @@ $(document).ready(function () {
 		}
 	});
 	//register audioplayer
-	/*$( 'audio' ).audioPlayer(
+	$( 'audio' ).audioPlayer(
 		{
 			classPrefix: 'audioplayer', // default value: 'audioplayer'
 			strPlay: 'Abspielen', // default value: 'Play'
 			strPause: 'Pause', // default value: 'Pause'
 			strVolume: 'Lautstärke', // default value: 'Volume'
-	});*/
+	});
 });
 
 (function ($) {

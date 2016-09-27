@@ -64,8 +64,11 @@
       margin-right: 10px;
     }
   }
-  audio {
-    width:100%;
+  .audioplayer {
+    margin: 10px;
+    audio {
+      width:100%;
+    }
   }
   object {
     width: 100%;
