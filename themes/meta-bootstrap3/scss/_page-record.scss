@@ -60,6 +60,7 @@
   }
   // The lower description table
   #detail-view-description {
+    width: 100%;
     margin-top: 20px;
     th {
       font-weight: 300;
@@ -74,6 +75,10 @@
         font-size: 14px;
         color: $color-purple;
       }
+    }
+    .divider {
+      border-top:1px solid #D6D3DE;
+      height:0px;
     }
   }
 }

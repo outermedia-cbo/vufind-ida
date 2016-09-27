@@ -223,8 +223,7 @@
    <field name="laufzeit" type="string" indexed="true" multiValued="true" stored="true"/>
    <field name="contributor" type="string" indexed="true" stored="true"  multiValued="true"/>
    <field name="contributorNoFacet" type="string" indexed="true" stored="true"  multiValued="true"/>
-   <field name="rel" type="string" indexed="true" stored="true"
-   multiValued="true"/>
+   <field name="rel" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="toHost" type="text" indexed="true" stored="true" multiValued="true"/>
    <field name="entity" type="text" indexed="true" stored="true" multiValued="true"/>
    <field name="person" type="text" indexed="true" stored="true" multiValued="true"/>
@@ -273,6 +272,7 @@
    <field name="translatedTopic" type="text" indexed="true" stored="true" multiValued="true" />
    <field name="outOfStocks" type="text" indexed="true" stored="true" multiValued="true" />
    <field name="publicationFrequency" type="text" indexed="true" stored="true" multiValued="true" />
+   <field name="insertOf" type="text" indexed="true" stored="true" multiValued="true"/>
    <field name="specialIssue" type="text" indexed="true" stored="true" multiValued="true" />
    <field name="classification" type="text" indexed="true" stored="true" multiValued="true" />
     <field name="specificMaterialDesignation" type="text" indexed="true" stored="true" multiValued="true" />
