@@ -1,29 +1,29 @@
 footer {
   margin-top: 90px;
   padding: 50px 0;
-  background-color: $color-yellow-4;
+  background-color: $color-violett-5;
   line-height: 2;
+  border-color: $color-violett-6;
+  border-top-width: 1px;
+  border-top-style: solid;
   p strong {
     display: block;
-    border-bottom: 4px solid $color-yellow-1;
+    border-bottom: 5px solid $color-violett-3;
     font-weight: 500;
     font-size: 15px;
   }
   .footer-brand {
     color: $color-black-logo;
     display: inline-block;
-    font-family: 'Libre Baskerville', serif;
+    font-family: 'Roboto Black';
     height: auto;
-    font-size: 21px;
+    font-size: 28px;
     line-height: 30px;
-    letter-spacing: 2px;
+    letter-spacing: 0.11em;
     margin: 0 0 30px 0;
     @media (max-width: $device-xs-max-width) {
       margin: 0 0 10px 0;
     }
-  }
-  .sponsored {
-    font-size: 15px;
   }
   .sponsorLogo {
     margin-top: 8px;
