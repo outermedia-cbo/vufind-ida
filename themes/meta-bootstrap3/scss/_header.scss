@@ -27,7 +27,7 @@ header {
     font-weight: 900;
     font-size: 28px;
     display: inline-block;
-    height: 100px;
+    height: 90px;
     line-height: 35px;
     letter-spacing: 0.11em;
     float: none;
@@ -38,7 +38,7 @@ header {
       font-size: 23px;
       letter-spacing: 0.02em;
     }
-    @media (max-width: $device-xs-max-width) {
+    @media (max-width: $device-xxs-max-width) {
       font-size: 21px;
       //height: auto;
       font-size: 18px;
@@ -53,7 +53,9 @@ header {
         font-size: 23px;
         font-size: 15px;
       }
+
     }
+
   }
   .navbar-header {
     float: none;
