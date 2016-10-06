@@ -3,33 +3,56 @@ header {
   color: $color-black;
   .header-background {
     position: absolute;
-    background-color: $color-yellow-2;
+    background: url($theme-path-images + "/img_mood_desktop.jpg") no-repeat scroll 0 0 #640075;
     width: 100%;
-    height: 212px;
+    height: 194px;
+
     @media (max-width: $device-xs-max-width) {
-      height: 262px;
+      height: 164px;
+      background: url($theme-path-images + "/img_mood_ipad_portrait.jpg") no-repeat scroll 0 0 #640075;
+  }
+    @media (max-width: $device-xxs-max-width) {
+      height: 164px;
+      background: url($theme-path-images + "/img_mood_smartphone.jpg") no-repeat scroll center right #640075;
     }
+
   }
   &> .navbar {
     border: 0 none;
     margin-bottom: -40px;
   }
   .navbar-brand {
-    color: $color-black-logo;
-    font-family: 'Libre Baskerville', serif;
-    font-size: 23px;
+    color: $color-white;
+    font-family: 'Roboto', serif;
+    font-weight: 900;
+    font-size: 28px;
     display: inline-block;
     height: 100px;
     line-height: 35px;
-    letter-spacing: 2px;
+    letter-spacing: 0.11em;
     float: none;
-    margin: 20px 0 4px 15px;
+    margin: 20px 0 4px 0;
+    small {
+      font-family: 'Roboto', serif;
+      font-weight: 300;
+      font-size: 23px;
+      letter-spacing: 0.02em;
+    }
     @media (max-width: $device-xs-max-width) {
       font-size: 21px;
-      height: auto;
+      //height: auto;
+      font-size: 18px;
+      height: 64px;
       line-height: 30px;
       padding-top: 10px;
       padding-bottom: 0;
+      margin: 20px 0 0 0;
+      small {
+        font-family: 'Roboto', serif;
+        font-weight: 300;
+        font-size: 23px;
+        font-size: 15px;
+      }
     }
   }
   .navbar-header {
@@ -39,24 +62,23 @@ header {
     display: none;
   }
   .logo {
-    background: url($theme-path-images + "/logo_ida_blau.png") no-repeat scroll 0 0 $color-white;
+    background: url($theme-path-images +"/img_ida_logo@2x.png") no-repeat scroll 0 0;
     background-size: cover;
-    box-shadow: $shadow-outer;
     display: inline-block;
     height: 95px;
-    width: 342px;
+    width: 110px;
     position: absolute;
     right: 30px;
     top: 0;
     @media (max-width: $device-xs-max-width) {
-      background-image: url($theme-path-images + "/ida-logo_mobil_retina.png");
+      background-image: url($theme-path-images + "/img_ida_logo@2x.png");
       display: block;
-      position: relative;
+      //position: relative;
       right: 15px;
       top: auto;
       margin: 0 0 0 auto;
-      width: 229px;
-      height: 53px;
+      width: 80px;
+      height: 73px;
     }
   }
   .searchbox.hidden-lg {
@@ -65,18 +87,19 @@ header {
   .closer {
     cursor: pointer;
     position: absolute;
-    right: 5px;
-    top: 3px;
+    right: 9px;
+    top: 7px;
     &:before {
-      content: "\e607";
-      color: $color-grey-border;
-      font-family: 'icomoon';
-      font-size: 20px;
+      content: "";
+      display: block;
+      background: url($theme-path-images + "/img_clear.svg") center center no-repeat;
+      width: 15px;
+      height: 15px;
     }
   }
 
   .search-box-wrapper {
-    margin-top: 8px;
+    margin-top: 1px;
     padding: 0 15px;
     @media (max-width: 768px) {
       padding: 0;
@@ -98,8 +121,8 @@ header {
         }
 
         span {
-          background-color: $color-yellow-1;
-          color: #664500; // Special color
+          background-color: $color-violett-1;
+          color: $color-black;
           border: 0;
           border-radius: 0;
           padding: 5px 50px;
@@ -117,7 +140,7 @@ header {
         }
 
         &.active span {
-          background-color: $color-yellow-4;
+          background-color: $color-violett-4;
           cursor: inherit;
           color: $color-black;
           box-shadow: $shadow-outer;
@@ -140,7 +163,7 @@ header {
     border: 0 none;
 
     #simple-search-body {
-      background-color: $color-yellow-4;
+      background-color: $color-violett-4;
       padding: 15px;
       box-shadow: $shadow-outer;
 
@@ -284,7 +307,7 @@ header {
       }
     }
     #advanced-search-body {
-      background-color: $color-yellow-4;
+      background-color: $color-violett-4;
       box-shadow: $shadow-outer;
       padding: 15px;
     }
