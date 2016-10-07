@@ -27,406 +27,375 @@ $cssClasses[] = 'col-xs-12';
 
 ?>
     <div class="<?= implode(' ', $cssClasses); ?>">
-    <? // edit dku: https://github.com/marius300482/meta/issues/161 ?>
-    <? if (false && true === $isSubRecord): ?><div class="wrapppppppppp col-xs-12"><? endif; ?>
-    <input type="hidden" value="<?=$this->escapeHtmlAttr($this->driver->getUniqueID())?>" class="hiddenId" />
-    <input type="hidden" value="<?=$this->escapeHtmlAttr($this->driver->getResourceSource())?>" class="hiddenSource" />
-    <div class="col-xs-1">
-        <a<?= true === $hasSubRecords ? ' data-toggle="collapse" data-target="#subrecords-' . $uniqueId . '"' : '' ?> href="<?=$this->recordLink()->getUrl($this->driver)?>">
-            <? if ($summThumb = $this->record($this->driver)->getThumbnail('medium')): ?>
-                <img class="recordcover" src="<?=$this->escapeHtmlAttr($summThumb)?>" alt="<?=$this->transEsc('Cover Image')?>"/>
-            <? else: ?>
-                <img class="recordcover" src="<?=$this->url('cover-unavailable')?>" alt="<?=$this->transEsc('No Cover Image')?>"/>
-            <? endif; ?>
-        </a>
-        <? if (true === $hasSubRecords): ?>
-            <a class="result-subrecords-count" data-toggle="collapse" data-target="#subrecords-<?= $uniqueId; ?>" href="">
-                <?= $subRecordsCount; ?>
-            </a>
-        <? endif; ?>
-    </div>
-    <div class="col-xs-11">
-        <? $format = str_replace('class="', 'class="label  label-info ', $this->record($this->driver)->getFormatList()); ?>
-       	<? if(strlen($format) <1 ):?>
-       		<?= $this->transEsc('Archivgut');?>
-       	   <? else: ?>
-       		<?= $format ?>
-       	<? endif; ?>
-        <? $searchfilter = $this->driver->getSearchFilter(); ?>
-        <? $displayformats = $this->driver->getDisplayFormats()[0]; ?>
-         
-         
-         <? if (strcmp($searchfilter, $displayformats) !==0 && strlen($searchfilter) > 0) :?>
-          <span> <i class="fa fa-angle-double-right"></i> <?= $this->escapeHtml($searchfilter); ?></span>
-          <? endif; ?>
-          
-         
-       
-      <? if (false === $hasSubRecords): ?>
-
-       <? $issues = $this->driver->getInstitution() ; ?> 
-       
-	<? if (!empty($issues)): ?>
-        <? $contentDisplayed = true; ?>
-        -
-            <? foreach($issues as $issue): ?>
-             
-                  <?= $this->transEsc($issue) ?><?= $issue !== end($issues) ? ", " : "" ?>
-            <? endforeach; ?>
-          <? endif; ?>
-        <? endif; ?>
-       
-        <div>
-            <a href="<?=$this->recordLink()->getUrl($this->driver)?>" class="title"<?= true === $hasSubRecords ? ' data-toggle="collapse" data-target="#subrecords-' . $uniqueId . '"' : '' ?>>
-                <?php
-                    $summHighlightedTitle = $this->driver->getHighlightedTitle();
-                    $summTitle = $this->driver->getDisplayTitle();
-                    if (!empty($summHighlightedTitle)) {
-                      echo $this->highlight($this->addEllipsis($summHighlightedTitle, $summTitle));
-                    } else if (!empty($summTitle)) {
-                      echo $this->escapeHtml($this->truncate($summTitle, 180));
-                    } else {
-                      echo $this->transEsc('Title not available');
-                    }
-                ?>
-            </a>
-        </div>
-        <? if (false === $hasSubRecords): ?>
-        <div>
-            <? if($this->driver->isCollection()): ?>
-                <?=implode('<br>', $this->driver->getSummary()); ?>
-            <? endif; ?>
-
-            <? $summAuthor = $this->driver->getPrimaryAuthor();?>
-            <?php if (!empty($summAuthor)): ?>
-
-                <?=$this->transEsc('From')?>:
-                <a href="<?=$this->record($this->driver)->getLink('author', $summAuthor)?>"><?
-                    $summHighlightedAuthor = $this->driver->getHighlightedAuthor();
-                    echo !empty($summHighlightedAuthor)
-                      ? $this->highlight($summHighlightedAuthor)
-                      : $this->escapeHtml($summAuthor);
-                ?></a>
-
-                <? $authors = $this->driver->getDeduplicatedAuthors(); ?>
-                <? if (isset($authors['additional']) && !empty($authors['additional'])): ?>
-                    [<a href="<?=$this->recordLink()->getUrl($this->driver)?>#tabnav"><?=$this->transEsc("weitere")?></a>]
-                <? endif; ?>
-                <br />
-
-            <?php else : ?>
-
-                <? $editors = $this->driver->getEditors(); ?>
-                <?php if (!empty($editors)) : ?>
-                    <?=$this->transEsc('Editors')?>:
-                    <a href="<?= $this->record($this->driver)->getLink('editor', reset($editors)) ?>"><?= $this->escapeHtml(reset($editors)) ?></a>
-                    <? if (1 < count($editors)): ?>
-                        [<a href="<?=$this->recordLink()->getUrl($this->driver)?>#tabnav"><?=$this->transEsc("weitere")?></a>]
+        <? // edit dku: https://github.com/marius300482/meta/issues/161 ?>
+        <? if (false && true === $isSubRecord): ?>
+        <div class="wrapppppppppp col-xs-12"><? endif; ?>
+            <input type="hidden" value="<?= $this->escapeHtmlAttr($this->driver->getUniqueID()) ?>" class="hiddenId"/>
+            <input type="hidden" value="<?= $this->escapeHtmlAttr($this->driver->getResourceSource()) ?>"
+                   class="hiddenSource"/>
+            <div class="col-xs-1">
+                <a<?= true === $hasSubRecords ? ' data-toggle="collapse" data-target="#subrecords-' . $uniqueId . '"' : '' ?>
+                    href="<?= $this->recordLink()->getUrl($this->driver) ?>">
+                    <? if ($summThumb = $this->record($this->driver)->getThumbnail('medium')): ?>
+                        <img class="recordcover" src="<?= $this->escapeHtmlAttr($summThumb) ?>"
+                             alt="<?= $this->transEsc('Cover Image') ?>"/>
+                    <? else: ?>
+                        <img class="recordcover" src="<?= $this->url('cover-unavailable') ?>"
+                             alt="<?= $this->transEsc('No Cover Image') ?>"/>
                     <? endif; ?>
-                    <br/>
-                <?php endif; ?>
-
-            <? endif; ?>
-
-            <? $sourceInfo = $this->driver->getSourceInfos(); ?>
-            <? if (!empty($sourceInfo)): ?>
-                In:
-                <? foreach($sourceInfo as $info): ?>
-                    <?= $this->escapeHtml($info) ?><?= $info !== end($sourceInfo) ? ", " : "" ?>
-                <? endforeach; ?>
-                <br />
-            <? endif; ?>
-
-         
-            
-            
-            <? if(!$this->driver->isCollection()): ?>
-
-                <? $journalTitle = $this->driver->getContainerTitle(); ?>
-                <? $summDate = $this->driver->getPublicationDates(); ?>
-                <? $publishers = (array) $this->driver->getPublishers(); ?>
-                <? $publicationDate = $this->driver->getDisplayPublicationDate(); ?>
-                <? $issues = (array) $this->driver->getIssues(); ?>
-                <? $volumes = (array) $this->driver->getVolumes(); ?>
-                <? $physicals = (array) $this->driver->getPhysicalDescriptions(); ?>
-                <? $issn = $this->driver->getCleanISSN(); ?>
-                <? $isbn = $this->driver->getCleanISBN(); ?>
-		<?php if ($this->driver->isLibrary()): ?>
-		  <? $showPublished = !empty($journalTitle) || !empty($publishers) || !empty($publicationDate) || !empty($issues) || !empty($volumes) || !empty($physicals) || !empty($issn) || !empty($isbn); ?>
-	          <?php endif; ?>
-          
-          <?php if ($this->driver->isLibrary()): ?>
-            
-            <? if ($showPublished) : ?>
-                    <?= $this->transEsc('Published'); ?>:
+                </a>
+                <? if (true === $hasSubRecords): ?>
+                    <a class="result-subrecords-count" data-toggle="collapse"
+                       data-target="#subrecords-<?= $uniqueId; ?>" href="">
+                        <?= $subRecordsCount; ?>
+                    </a>
                 <? endif; ?>
-
-                <? if (!empty($journalTitle)): ?>
-                    <?/* TODO: handle highlighting more elegantly here */ ?>
-                    <?= $this->transEsc('Published in') . ' <a href="' . $this->record($this->driver)->getLink('journaltitle', str_replace(array('{{{{START_HILITE}}}}', '{{{{END_HILITE}}}}'), '', $journalTitle)) . '">' . $this->highlight($journalTitle) . '</a>';?>
-                    <?=!empty($summDate) ? ' (' . $this->escapeHtml($summDate[0]) . ')' : ''?>
-                <? endif; ?>
-
-                <? $secondLineNotEmpty = false; ?>
-                <? if (!empty($publishers)): ?>
-                    <? $secondLineNotEmpty = true; ?>
-                    <? foreach($publishers as $publisher): ?>
-                        <span property="publisher" typeof="Organization"><?= $this->escapeHtml($publisher) ?></span><?= $publisher !== end($publishers) ? ", " : "" ?>
-                    <? endforeach; ?>
-                <? endif; ?>
-
-                <? if (!empty($publicationDate)): ?>
-                    <? if ($secondLineNotEmpty): ?>
-                        ,
-                    <? endif; ?>
-                    <? $secondLineNotEmpty = true; ?>
-                    <span property="publicationDate"><?= $this->escapeHtml($publicationDate) ?></span>
-                <? endif; ?>
-
-                <? if (!empty($issues)): ?>
-                    <? $contentDisplayed = true; ?>
-                    Heft:
-                    <? foreach($issues as $issue): ?>
-                        <?= $this->escapeHtml($issue) ?><?= $issue !== end($issues) ? ", " : "" ?>
-                    <? endforeach; ?>
-                <? endif; ?>
-
-                <? if (!empty($volumes)): ?>
-                    <? $contentDisplayed = true; ?>
-                    <?=$this->transEsc('Volume')?>:
-                    <? foreach($volumes as $volume): ?>
-                        <?= $this->escapeHtml($volume) ?><?= $volume !== end($volumes) ? ", " : "" ?>
-                    <? endforeach; ?>
-                <? endif; ?>
-	    <?php endif; ?>
-	
-	  
-	
-	   <?php if ($this->driver->isArchive()): ?>
-            
-            <? if ($showPublished) : ?>
-                    <?= $this->transEsc('Published'); ?>:
-                <? endif; ?>
-
-                <? if (!empty($publicationDate)): ?>
-                    <? if ($secondLineNotEmpty): ?>
-                        ,
-                    <? endif; ?>
-                    <? $secondLineNotEmpty = true; ?>
-                    <span property="publicationDate"><?= $this->escapeHtml($publicationDate) ?></span>
-                <? endif; ?>
-
-	    <?php endif; ?>
-	
-	<?php if ($this->driver->isLibrary()): ?>
-	  <? if (!empty($physicals)): ?>
-                    <? if ($secondLineNotEmpty): ?>
-                        ,
-                    <? endif; ?>
-                    <? $secondLineNotEmpty = true; ?>
-                    <? foreach($physicals as $physical): ?>
-                        <span property="physical"><?= $this->escapeHtml($physical) ?></span><?= $physical !== end($physicals) ? ", " : ""; ?>
-                        S.
-                    <? endforeach; ?>
-                <? endif; ?>
-	  <?php endif; ?>
-               
-		
-	<?php if ($this->driver->isArchive()): ?>
-	   <? if (!empty($physicals)): ?>
-                    <? if ($secondLineNotEmpty): ?>
-                        ,
-                    <? endif; ?>
-                    <? $secondLineNotEmpty = true; ?>
-                    <? foreach($physicals as $physical): ?>
-                        <span property="physical"><?= $this->escapeHtml($physical) ?></span><?= $physical !== end($physicals) ? ", " : ""; ?>
-                       
-                    <? endforeach; ?>
-                <? endif; ?>
-	  <?php endif; ?>
-		
-		 
-		
-                <? if (!empty($issn)): ?>
-                    <? if ($secondLineNotEmpty): ?>
-                        ,
-                    <? endif; ?>
-                    <? $secondLineNotEmpty = true; ?>
-                    ISSN <span property="issn"><?= $this->escapeHtml($issn); ?></span>
-                <? endif; ?>
-
-                <? if (!empty($issn) && !empty($isbn)): ?>
-                    <!--/Entfernt von Marius-->
-                <? endif; ?>
-
-                <? if (!empty($isbn)): ?>
-                    <? if ($secondLineNotEmpty): ?>
-                        ,
-                    <? endif; ?>
-                    <? $secondLineNotEmpty = true; ?>
-                    ISBN <span property="isbn"><?= $this->escapeHtml($isbn); ?></span>
-                <? endif; ?>
-
-                <? if ($showPublished) : ?>
-                    <br />
-                <? endif; ?>
-
-                <!--<? $timeSpanStart = $this->driver->getTimeSpanStart(); ?>
-                <? $timeSpanEnd = $this->driver->getTimeSpanEnd(); ?>
-                <? if (!empty($timeSpanStart) || !empty($timeSpanEnd)): ?>
-                    <?=$this->transEsc('Time span')?>:
-                    <? if (!empty($timeSpanStart)): ?>
-                        <?= $this->escapeHtml($timeSpanStart) ?>
-                        <? if (!empty($timeSpanEnd)): ?>
-                            -
-                            <?= $this->escapeHtml($timeSpanEnd) ?>
-                        <? endif ?>
-                    <? elseif (!empty($timeSpanEnd)): ?>
-                        <?= $this->escapeHtml($timeSpanEnd) ?>
-                    <? endif; ?>
-                    <br />
-                <? endif; ?>-->
-
-                <? $summInCollection = $this->driver->getContainingCollections(); ?>
-                <?php if (!empty($summInCollection)): ?>
-                    <? foreach ($summInCollection as $collId => $collText): ?>
-                    <div>
-                        <b><?=$this->transEsc("in_collection_label")?></b>
-                        <a class="collectionLinkText" href="<?=$this->url('collection', array('id' => $collId))?>?recordID=<?=urlencode($this->driver->getUniqueID())?>">
-                            <?=$this->escapeHtml($collText)?>
-                        </a>
-                    </div>
-                    <? endforeach; ?>
-                <? endif; ?>
-
-            <? endif; ?>
-        </div>
-
-        <? // endif "false === $hasSubRecords" ?>
-        <? endif; ?>
-
-        <?php /* PHE replaced with subjects below
-        <? if(!$this->driver->isCollection()): ?>
-            <? if ($snippet = $this->driver->getHighlightedSnippet()): ?>
-                <? if (!empty($snippet['caption'])): ?>
-                    <strong><?=$this->transEsc($snippet['caption']) ?>:</strong> ';
-                <? endif; ?>
-                <? if (!empty($snippet['snippet'])): ?>
-                    <span class="quotestart">&#8220;</span>...<?=$this->highlight($snippet['snippet']) ?>...<span class="quoteend">&#8221;</span><br/>
-                <? endif; ?>
-            <? endif; ?>
-        <? endif; ?>
-        */ ?>
-
-        <? $subjects = $this->driver->getAllSubjectHeadings(); ?>
-        <? if (!empty($subjects)): ?>
-            <? $subjectTypes = ["Topic" => 20,]; ?>
-            <? if (false === $hasSubRecords): ?>
-            <? $subjectTypes += ["Person" => 5, "Geo" => 0,]; ?>
-            <? endif; ?>
-            <? foreach ($subjectTypes as $type => $limit): ?>
-                <? if (isset($subjects[strtolower($type)]) && 0 < $limit): ?>
-                    <div>
-                        <?= $this->transEsc('Subjects ' . $type); ?>:
-                        <? $fields = $subjects[strtolower($type)]; ?>
-                        <? foreach (array_slice($fields, 0, $limit) as $subject): ?>
-                            <a title="<?= $this->escapeHtml($subject) ?>"
-                                href="<?= $this->record($this->driver)->getLink(strtolower($type), $subject) ?>">
-                            <?= $this->escapeHtml($subject) ?></a><?= $subject !== end($fields) ? ", " : "" ?>
-                            <? // Keep above in one line to avoid unwanted whitespace ?>
-                        <? endforeach; ?>
-                        <?php if ($limit < count($fields)) : ?>
-                            <a href="<?=$this->recordLink()->getUrl($this->driver)?>">
-                                <?= $this->transEsc('further'); ?>...
-                            </a>
-                        <?php endif; ?>
-                    </div>
-                <? endif; ?>
-            <? endforeach; ?>
-        <? endif; ?>
-
-        <? if (false === $hasSubRecords): ?>
-
-        <? /* Display information on duplicate records if available */ ?>
-        <? $dedupData = $this->driver->getDedupData(); ?>
-        <? if ($dedupData): ?>
-            <div class="dedupInformation">
-                <? $i = 0; ?>
-                <? foreach ($dedupData as $source => $current) : ?>
-                    <? if (++$i == 1) : ?>
-                        <span class="currentSource"><a href="<?=$this->recordLink()->getUrl($this->driver)?>"><?=$this->transEsc("source_$source", array(), $source)?></a></span>
-                    <?php else : ?>
-                        <?php if ($i == 2) : ?>
-                            <span class="otherSources">(<?=$this->transEsc('Other Sources')?>:
-                        <?php else : ?>
-                            ,
-                        <?php endif; ?>
-                        <a href="<?=$this->recordLink()->getUrl($current['id'])?>"><?=$this->transEsc("source_$source", array(), $source)?></a>
-                    <?php endif; ?>
-                <? endforeach; ?>
-              <? if ($i > 1) : ?>
-                )</span>
-              <?php endif; ?>
             </div>
-        <? endif; ?>
-
-        <div class="callnumAndLocation ajax-availability hidden">
-            <? if ($this->driver->supportsAjaxStatus()): ?>
-                <strong class="hideIfDetailed"><?=$this->transEsc('Call Number')?>:</strong>
-                <span class="callnumber ajax-availability hidden">
-                    <?=$this->transEsc('Loading')?>...<br/>
-                </span>
-                <strong><?=$this->transEsc('Located')?>:</strong>
-                <span class="location ajax-availability hidden">
-                    <?=$this->transEsc('Loading')?>...
-                </span>
-                <div class="locationDetails"></div>
-            <? else: ?>
-                <? $summCallNo = $this->driver->getCallNumber(); ?>
-                <?if (!empty($summCallNo)): ?>
-                    <strong><?=$this->transEsc('Call Number')?>:</strong>
-                    <?=$this->escapeHtml($summCallNo)?>
+            <div class="col-xs-11">
+                <? $format = str_replace('class="', 'class="label  label-info ', $this->record($this->driver)->getFormatList()); ?>
+                <? if (strlen($format) < 1): ?>
+                    <?= $this->transEsc('Archivgut'); ?>
+                <? else: ?>
+                    <?= $format ?>
                 <? endif; ?>
-            <? endif; ?>
-        </div>
+                <? $searchfilter = $this->driver->getSearchFilter(); ?>
+                <? $displayformats = $this->driver->getDisplayFormats()[0]; ?>
 
-        <? /* We need to find out if we're supposed to display an OpenURL link ($openUrlActive),
+
+                <? if (strcmp($searchfilter, $displayformats) !== 0 && strlen($searchfilter) > 0) : ?>
+                    <span> <i class="fa fa-angle-double-right"></i> <?= $this->escapeHtml($searchfilter); ?></span>
+                <? endif; ?>
+
+                <? if (false === $hasSubRecords): ?>
+
+                    <? $issues = $this->driver->getInstitution(); ?>
+
+                    <? if (!empty($issues)): ?>
+                        <? $contentDisplayed = true; ?>
+                        -
+                        <? foreach ($issues as $issue): ?>
+                            <?= $this->transEsc($issue) ?><?= $issue !== end($issues) ? ", " : "" ?>
+                        <? endforeach; ?>
+                    <? endif; ?>
+                <? endif; ?>
+
+                <div>
+                    <a href="<?= $this->recordLink()->getUrl($this->driver) ?>"
+                       class="title"<?= true === $hasSubRecords ? ' data-toggle="collapse" data-target="#subrecords-' . $uniqueId . '"' : '' ?>>
+                        <?php
+                        $summHighlightedTitle = $this->driver->getHighlightedTitle();
+                        $summTitle = $this->driver->getDisplayTitle();
+                        if (!empty($summHighlightedTitle)) {
+                            echo $this->highlight($this->addEllipsis($summHighlightedTitle, $summTitle));
+                        } else if (!empty($summTitle)) {
+                            echo $this->escapeHtml($this->truncate($summTitle, 180));
+                        } else {
+                            echo $this->transEsc('Title not available');
+                        }
+                        ?>
+                    </a>
+                </div>
+                <? if (false === $hasSubRecords): ?>
+                    <div>
+                        <? if ($this->driver->isCollection()): ?>
+                            <?= implode('<br>', $this->driver->getSummary()); ?>
+                        <? endif; ?>
+
+                        <? $summAuthor = $this->driver->getPrimaryAuthor(); ?>
+                        <?php if (!empty($summAuthor)): ?>
+
+                            <?= $this->transEsc('From') ?>:
+                            <a href="<?= $this->record($this->driver)->getLink('author', $summAuthor) ?>"><?
+                                $summHighlightedAuthor = $this->driver->getHighlightedAuthor();
+                                echo !empty($summHighlightedAuthor)
+                                    ? $this->highlight($summHighlightedAuthor)
+                                    : $this->escapeHtml($summAuthor);
+                                ?></a>
+
+                            <? $authors = $this->driver->getDeduplicatedAuthors(); ?>
+                            <? if (isset($authors['additional']) && !empty($authors['additional'])): ?>
+                                [
+                                <a href="<?= $this->recordLink()->getUrl($this->driver) ?>#tabnav"><?= $this->transEsc("weitere") ?></a>]
+                            <? endif; ?>
+                            <br/>
+
+                        <?php else : ?>
+
+                            <? $editors = $this->driver->getEditors(); ?>
+                            <?php if (!empty($editors)) : ?>
+                                <?= $this->transEsc('Editors') ?>:
+                                <a href="<?= $this->record($this->driver)->getLink('editor', reset($editors)) ?>"><?= $this->escapeHtml(reset($editors)) ?></a>
+                                <? if (1 < count($editors)): ?>
+                                    [
+                                    <a href="<?= $this->recordLink()->getUrl($this->driver) ?>#tabnav"><?= $this->transEsc("weitere") ?></a>]
+                                <? endif; ?>
+                                <br/>
+                            <?php endif; ?>
+
+                        <? endif; ?>
+
+                        <? $sourceInfo = $this->driver->getSourceInfos(); ?>
+                        <? if (!empty($sourceInfo)): ?>
+                            In:
+                            <? foreach ($sourceInfo as $info): ?>
+                                <?= $this->escapeHtml($info) ?><?= $info !== end($sourceInfo) ? ", " : "" ?>
+                            <? endforeach; ?>
+                            <br/>
+                        <? endif; ?>
+
+                        <? $journalTitle = $this->driver->getContainerTitle(); ?>
+                        <? $summDate = $this->driver->getPublicationDates(); ?>
+                        <? $publishers = (array)$this->driver->getPublishers(); ?>
+                        <? $publicationDate = $this->driver->getDisplayPublicationDate(); ?>
+                        <? $issues = (array)$this->driver->getIssues(); ?>
+                        <? $volumes = (array)$this->driver->getVolumes(); ?>
+                        <? $physicals = (array)$this->driver->getPhysicalDescriptions(); ?>
+                        <? $issn = $this->driver->getCleanISSN(); ?>
+                        <? $isbn = $this->driver->getCleanISBN(); ?>
+                        <?php if ($this->driver->isLibrary()): ?>
+                            <? $showPublished = !empty($journalTitle) || !empty($publishers) || !empty($publicationDate) || !empty($issues) || !empty($volumes) || !empty($physicals) || !empty($issn) || !empty($isbn); ?>
+                        <?php endif; ?>
+
+                        <?php if ($this->driver->isLibrary()): ?>
+
+                            <? if ($showPublished) : ?>
+                                <?= $this->transEsc('Published'); ?>:
+                            <? endif; ?>
+
+                            <? if (!empty($journalTitle)): ?>
+                                <? /* TODO: handle highlighting more elegantly here */ ?>
+                                <?= $this->transEsc('Published in') . ' <a href="' . $this->record($this->driver)->getLink('journaltitle', str_replace(array('{{{{START_HILITE}}}}', '{{{{END_HILITE}}}}'), '', $journalTitle)) . '">' . $this->highlight($journalTitle) . '</a>'; ?>
+                                <?= !empty($summDate) ? ' (' . $this->escapeHtml($summDate[0]) . ')' : '' ?>
+                            <? endif; ?>
+
+                            <? $secondLineNotEmpty = false; ?>
+                            <? if (!empty($publishers)): ?>
+                                <? $secondLineNotEmpty = true; ?>
+                                <? foreach ($publishers as $publisher): ?>
+                                    <span property="publisher"
+                                          typeof="Organization"><?= $this->escapeHtml($publisher) ?></span><?= $publisher !== end($publishers) ? ", " : "" ?>
+                                <? endforeach; ?>
+                            <? endif; ?>
+
+                            <? if (!empty($publicationDate)): ?>
+                                <? if ($secondLineNotEmpty): ?>
+                                    ,
+                                <? endif; ?>
+                                <? $secondLineNotEmpty = true; ?>
+                                <span property="publicationDate"><?= $this->escapeHtml($publicationDate) ?></span>
+                            <? endif; ?>
+
+                            <? if (!empty($issues)): ?>
+                                <? $contentDisplayed = true; ?>
+                                Heft:
+                                <? foreach ($issues as $issue): ?>
+                                    <?= $this->escapeHtml($issue) ?><?= $issue !== end($issues) ? ", " : "" ?>
+                                <? endforeach; ?>
+                            <? endif; ?>
+
+                            <? if (!empty($volumes)): ?>
+                                <? $contentDisplayed = true; ?>
+                                <?= $this->transEsc('Volume') ?>:
+                                <? foreach ($volumes as $volume): ?>
+                                    <?= $this->escapeHtml($volume) ?><?= $volume !== end($volumes) ? ", " : "" ?>
+                                <? endforeach; ?>
+                            <? endif; ?>
+                        <?php endif; ?>
+
+
+                        <?php if ($this->driver->isArchive()): ?>
+
+                            <? if ($showPublished) : ?>
+                                <?= $this->transEsc('Published'); ?>:
+                            <? endif; ?>
+
+                            <? if (!empty($publicationDate)): ?>
+                                <? if ($secondLineNotEmpty): ?>
+                                    ,
+                                <? endif; ?>
+                                <? $secondLineNotEmpty = true; ?>
+                                <span property="publicationDate"><?= $this->escapeHtml($publicationDate) ?></span>
+                            <? endif; ?>
+
+                        <?php endif; ?>
+
+                        <?php if ($this->driver->isLibrary()): ?>
+                            <? if (!empty($physicals)): ?>
+                                <? if ($secondLineNotEmpty): ?>
+                                    ,
+                                <? endif; ?>
+                                <? $secondLineNotEmpty = true; ?>
+                                <? foreach ($physicals as $physical): ?>
+                                    <span
+                                        property="physical"><?= $this->escapeHtml($physical) ?></span><?= $physical !== end($physicals) ? ", " : ""; ?>
+                                    S.
+                                <? endforeach; ?>
+                            <? endif; ?>
+                        <?php endif; ?>
+
+
+                        <?php if ($this->driver->isArchive()): ?>
+                            <? if (!empty($physicals)): ?>
+                                <? if ($secondLineNotEmpty): ?>
+                                    ,
+                                <? endif; ?>
+                                <? $secondLineNotEmpty = true; ?>
+                                <? foreach ($physicals as $physical): ?>
+                                    <span
+                                        property="physical"><?= $this->escapeHtml($physical) ?></span><?= $physical !== end($physicals) ? ", " : ""; ?>
+
+                                <? endforeach; ?>
+                            <? endif; ?>
+                        <?php endif; ?>
+
+
+                        <? if (!empty($issn)): ?>
+                            <? if ($secondLineNotEmpty): ?>
+                                ,
+                            <? endif; ?>
+                            <? $secondLineNotEmpty = true; ?>
+                            ISSN <span property="issn"><?= $this->escapeHtml($issn); ?></span>
+                        <? endif; ?>
+
+                        <? if (!empty($isbn)): ?>
+                            <? if ($secondLineNotEmpty): ?>
+                                ,
+                            <? endif; ?>
+                            <? $secondLineNotEmpty = true; ?>
+                            ISBN <span property="isbn"><?= $this->escapeHtml($isbn); ?></span>
+                        <? endif; ?>
+
+                        <? if ($showPublished) : ?>
+                            <br/>
+                        <? endif; ?>
+
+                        <? $summInCollection = $this->driver->getContainingCollections(); ?>
+                        <?php if (!empty($summInCollection)): ?>
+                            <? foreach ($summInCollection as $collId => $collText): ?>
+                                <div>
+                                    <b><?= $this->transEsc("in_collection_label") ?></b>
+                                    <a class="collectionLinkText"
+                                       href="<?= $this->url('collection', array('id' => $collId)) ?>?recordID=<?= urlencode($this->driver->getUniqueID()) ?>">
+                                        <?= $this->escapeHtml($collText) ?>
+                                    </a>
+                                </div>
+                            <? endforeach; ?>
+                        <? endif; ?>
+                    </div>
+                    <? // endif "false === $hasSubRecords" ?>
+                <? endif; ?>
+
+                <? $subjects = $this->driver->getAllSubjectHeadings(); ?>
+                <? if (!empty($subjects)): ?>
+                    <? $subjectTypes = ["Topic" => 20,]; ?>
+                    <? if (false === $hasSubRecords): ?>
+                        <? $subjectTypes += ["Person" => 5, "Geo" => 0,]; ?>
+                    <? endif; ?>
+                    <? foreach ($subjectTypes as $type => $limit): ?>
+                        <? if (isset($subjects[strtolower($type)]) && 0 < $limit): ?>
+                            <div>
+                                <?= $this->transEsc('Subjects ' . $type); ?>:
+                                <? $fields = $subjects[strtolower($type)]; ?>
+                                <? foreach (array_slice($fields, 0, $limit) as $subject): ?>
+                                <a title="<?= $this->escapeHtml($subject) ?>"
+                                   href="<?= $this->record($this->driver)->getLink(strtolower($type), $subject) ?>">
+                                    <?= $this->escapeHtml($subject) ?></a><?= $subject !== end($fields) ? ", " : "" ?>
+                                    <? // Keep above in one line to avoid unwanted whitespace ?>
+                                <? endforeach; ?>
+                                <?php if ($limit < count($fields)) : ?>
+                                    <a href="<?= $this->recordLink()->getUrl($this->driver) ?>">
+                                        <?= $this->transEsc('further'); ?>...
+                                    </a>
+                                <?php endif; ?>
+                            </div>
+                        <? endif; ?>
+                    <? endforeach; ?>
+                <? endif; ?>
+
+                <? if (false === $hasSubRecords): ?>
+
+                    <? /* Display information on duplicate records if available */ ?>
+                    <? $dedupData = $this->driver->getDedupData(); ?>
+                    <? if ($dedupData): ?>
+                        <div class="dedupInformation">
+                            <? $i = 0; ?>
+                            <? foreach ($dedupData as $source => $current) : ?>
+                        <? if (++$i == 1) : ?>
+                            <span class="currentSource"><a
+                                    href="<?= $this->recordLink()->getUrl($this->driver) ?>"><?= $this->transEsc("source_$source", array(), $source) ?></a></span>
+                        <?php else : ?>
+                        <?php if ($i == 2) : ?>
+                            <span class="otherSources">(<?= $this->transEsc('Other Sources') ?>:
+                                <?php else : ?>
+                                    ,
+                                <?php endif; ?>
+                                <a href="<?= $this->recordLink()->getUrl($current['id']) ?>"><?= $this->transEsc("source_$source", array(), $source) ?></a>
+                                <?php endif; ?>
+                                <? endforeach; ?>
+                                <? if ($i > 1) : ?>
+                                )</span>
+                        <?php endif; ?>
+                        </div>
+                    <? endif; ?>
+
+                    <div class="callnumAndLocation ajax-availability hidden">
+                        <? if ($this->driver->supportsAjaxStatus()): ?>
+                            <strong class="hideIfDetailed"><?= $this->transEsc('Call Number') ?>:</strong>
+                            <span class="callnumber ajax-availability hidden">
+                    <?= $this->transEsc('Loading') ?>...<br/>
+                </span>
+                            <strong><?= $this->transEsc('Located') ?>:</strong>
+                            <span class="location ajax-availability hidden">
+                    <?= $this->transEsc('Loading') ?>...
+                </span>
+                            <div class="locationDetails"></div>
+                        <? else: ?>
+                            <? $summCallNo = $this->driver->getCallNumber(); ?>
+                            <? if (!empty($summCallNo)): ?>
+                                <strong><?= $this->transEsc('Call Number') ?>:</strong>
+                                <?= $this->escapeHtml($summCallNo) ?>
+                            <? endif; ?>
+                        <? endif; ?>
+                    </div>
+
+                    <? /* We need to find out if we're supposed to display an OpenURL link ($openUrlActive),
               but even if we don't plan to display the link, we still want to get the $openUrl
               value for use in generating a COinS (Z3988) tag -- see bottom of file.
             */
-        ?>
-        <? $openUrl = $this->driver->getOpenURL(); ?>
-        <? $openUrlActive = $this->driver->openURLActive('results'); ?>
-        <? $urls = $this->record($this->driver)->getLinkDetails();?>
-        <? if ($openUrlActive || !empty($urls)): ?>
-            <? if ($openUrlActive): ?>
-                <br/>
-                <?= $this->openUrl($openUrl) ?>
-                <? if ($this->driver->replaceURLsWithOpenURL()) $urls = array(); // clear URL list if replace setting is active ?>
-            <? endif; ?>
-            <? if (!is_array($urls)) $urls = array(); ?>
-            <? if(!$this->driver->isCollection()): ?>
-                <? foreach ($urls as $current): ?>
-                    <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>" class="fulltext" target="new">
-                       <i class="fa fa-external-link"></i>
-                        <?=($current['url'] == $current['desc']) ? $this->transEsc('Get full text') : $this->escapeHtml($current['desc'])?>
-                    </a>
-                    <br/>
-                <? endforeach; ?>
-            <? endif; ?>
-        <? endif; ?>
-        <? if (!$openUrlActive && empty($urls) && $this->driver->supportsAjaxStatus()): ?>
-            <span class="status ajax-availability hidden">
-                <span class="label label-default"><?=$this->transEsc('Loading')?>...</span>
+                    ?>
+                    <? $openUrl = $this->driver->getOpenURL(); ?>
+                    <? $openUrlActive = $this->driver->openURLActive('results'); ?>
+                    <? $urls = $this->record($this->driver)->getLinkDetails(); ?>
+                    <? if ($openUrlActive || !empty($urls)): ?>
+                        <? if ($openUrlActive): ?>
+                            <br/>
+                            <?= $this->openUrl($openUrl) ?>
+                            <? if ($this->driver->replaceURLsWithOpenURL()) $urls = array(); // clear URL list if replace setting is active ?>
+                        <? endif; ?>
+                        <? if (!is_array($urls)) $urls = array(); ?>
+                        <? if (!$this->driver->isCollection()): ?>
+                            <? foreach ($urls as $current): ?>
+                                <a href="<?= $this->escapeHtmlAttr($this->proxyUrl($current['url'])) ?>"
+                                   class="fulltext" target="new">
+                                    <i class="fa fa-external-link"></i>
+                                    <?= ($current['url'] == $current['desc']) ? $this->transEsc('Get full text') : $this->escapeHtml($current['desc']) ?>
+                                </a>
+                                <br/>
+                            <? endforeach; ?>
+                        <? endif; ?>
+                    <? endif; ?>
+                    <? if (!$openUrlActive && empty($urls) && $this->driver->supportsAjaxStatus()): ?>
+                        <span class="status ajax-availability hidden">
+                <span class="label label-default"><?= $this->transEsc('Loading') ?>...</span>
             </span>
-        <? endif; ?>
-        <?=$this->record($this->driver)->getPreviews()?>
+                    <? endif; ?>
+                    <?= $this->record($this->driver)->getPreviews() ?>
 
-        <? // endif "false === $hasSubRecords" ?>
-        <? endif; ?>
-    </div>
+                    <? // endif "false === $hasSubRecords" ?>
+                <? endif; ?>
+            </div>
 
-    <?php /* PHE not required
+            <?php /* PHE not required
     <div class="col-xs-3 right hidden-print">
         <!-- Display qrcode if appropriate:  -->
         <? if ($QRCode = $this->record($this->driver)->getQRCode("results")): ?>
@@ -469,10 +438,10 @@ $cssClasses[] = 'col-xs-12';
     </div>
     */ ?>
 
-    <?=(isset($openUrl) && $openUrl)?'<span class="Z3988" title="'.$this->escapeHtmlAttr($openUrl).'"></span>':''?>
-    <? // edit dku: https://github.com/marius300482/meta/issues/161 ?>
-    <? if (false && true === $isSubRecord): ?></div><? endif; ?>
-</div>
+            <?= (isset($openUrl) && $openUrl) ? '<span class="Z3988" title="' . $this->escapeHtmlAttr($openUrl) . '"></span>' : '' ?>
+            <? // edit dku: https://github.com/marius300482/meta/issues/161 ?>
+            <? if (false && true === $isSubRecord): ?></div><? endif; ?>
+    </div>
 <? // DKU: display sub records ?>
 <? if (true === $hasSubRecords): ?>
     <? // Closing parent <div> (parent tpl file) to get out of .result context. ?>
@@ -480,30 +449,33 @@ $cssClasses[] = 'col-xs-12';
     </div>
     <div class="subrecords-sep row">
         <div class="col-xs-11 col-xs-offset-1">
-            <a class="subrecords-toggle arrow-down" data-toggle="collapse" data-target="#subrecords-<?= $uniqueId; ?>" href="">
+            <a class="subrecords-toggle arrow-down" data-toggle="collapse" data-target="#subrecords-<?= $uniqueId; ?>"
+               href="">
                 <?= $this->transEsc('Show all %results% results', array('%results%' => $subRecordsCount)); ?>
             </a>
-            <a class="subrecords-toggle arrow-up hidden" data-toggle="collapse" data-target="#subrecords-<?= $uniqueId; ?>" href="">
+            <a class="subrecords-toggle arrow-up hidden" data-toggle="collapse"
+               data-target="#subrecords-<?= $uniqueId; ?>" href="">
                 <?= $this->transEsc('Hide results'); ?>
             </a>
         </div>
     </div>
-    <div class="subrecords-wrap collapse" id="subrecords-<?= $uniqueId; ?>">
-        <ul class="search-result-subrecords row">
-            <? $subRecords->rewind(); ?>
-            <? while ($subRecords->valid()): ?>
-                <? $this->driver = $subRecords->current(); ?>
-                <li>
-                    <?= $this->record($this->driver)->getSubRecord(); ?>
-                </li>
-                <? $subRecords->next(); ?>
-            <? endwhile; ?>
-        </ul>
-        <div class="subrecords-sep row">
-            <div class="col-xs-11 col-xs-offset-1">
-                <a class="subrecords-toggle arrow-up" data-toggle="collapse" data-target="#subrecords-<?= $uniqueId; ?>" href="">
-                    <?= $this->transEsc('Hide results'); ?>
-                </a>
-            </div>
+<div class="subrecords-wrap collapse" id="subrecords-<?= $uniqueId; ?>">
+    <ul class="search-result-subrecords row">
+        <? $subRecords->rewind(); ?>
+        <? while ($subRecords->valid()): ?>
+            <? $this->driver = $subRecords->current(); ?>
+            <li>
+                <?= $this->record($this->driver)->getSubRecord(); ?>
+            </li>
+            <? $subRecords->next(); ?>
+        <? endwhile; ?>
+    </ul>
+    <div class="subrecords-sep row">
+        <div class="col-xs-11 col-xs-offset-1">
+            <a class="subrecords-toggle arrow-up" data-toggle="collapse" data-target="#subrecords-<?= $uniqueId; ?>"
+               href="">
+                <?= $this->transEsc('Hide results'); ?>
+            </a>
         </div>
+    </div>
 <? endif; ?>
