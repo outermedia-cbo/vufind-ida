@@ -21,40 +21,10 @@ header {
     border: 0 none;
     margin-bottom: -40px;
   }
-  .navbar-brand {
-    color: $color-white;
-    font-family: 'Roboto', serif;
-    font-weight: 900;
-    font-size: 28px;
-    display: inline-block;
-    height: 90px;
-    line-height: 35px;
-    letter-spacing: 0.11em;
-    float: none;
-    margin: 20px 0 4px 0;
-    small {
-      font-family: 'Roboto', serif;
-      font-weight: 300;
-      font-size: 23px;
-      letter-spacing: 0.02em;
-    }
-    @media (max-width: $device-xxs-max-width) {
-      font-size: 21px;
-      //height: auto;
-      font-size: 18px;
-      height: 64px;
-      line-height: 30px;
-      padding-top: 10px;
-      padding-bottom: 0;
-      margin: 20px 0 0 0;
-      small {
-        font-family: 'Roboto', serif;
-        font-weight: 300;
-        font-size: 23px;
-        font-size: 15px;
-      }
 
-    }
+
+
+  .navbar-brand {
 
   }
   .navbar-header {
@@ -281,6 +251,9 @@ header {
     a, label, select, p {
       color: $color-blue-1;
     }
+    select.form-control {
+        color: $color-white;
+    }
     label, select {
       font-size: 16px;
       font-weight: 500;
@@ -380,4 +353,10 @@ header {
       }
     }
   }
+}
+
+select.form-control {
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  background: $color-blue-6 url($theme-path-images + "/icon_dropdown-ext.svg") center right no-repeat;
 }
