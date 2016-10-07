@@ -43,13 +43,16 @@
 
 // Text input elements in form
 select.form-control {
-  background-color: $color-grey-border;
+  //background: url($theme-path-images + "/icon_dropdown-ext.svg") center center no-repeat;
+
+  background-color: $color-blue-6;
   border: 1px solid $color-grey-border;
   border-radius: 0;
   box-shadow: none;
+  color: $color-white;
 }
 .form-control, .form-control:focus {
-  height: auto;
+  //height: auto;
   padding: 2px 6px;
   border: 1px solid $color-grey-border;
   box-shadow: $shadow-inner;
@@ -61,7 +64,7 @@ select.form-control {
   padding: 4px 30px;
   border: 0 none;
   background-color: $color-blue-button;
-  color: $color-white
+  color: $color-white;
 }
 
 // Breadcrump
@@ -287,5 +290,60 @@ mark, .highlight {
     &.open:after {
       content: "\e606";
     }
+  }
+}
+
+
+
+
+// -----------------
+// modularised components
+// -----------------
+
+// branding
+.brand {
+  // all
+  font-weight: 900;
+  height: auto;
+  display: inline-block;
+  letter-spacing: 0.11em;
+  font-family: 'Roboto';
+  font-size: 28px;
+}
+
+small.small-tag {
+  font-family: 'Roboto', serif;
+  font-weight: 300;
+  font-size: 23px;
+  letter-spacing: 0.02em;
+
+  @media (max-width: $device-xxs-max-width) {
+    font-family: 'Roboto', serif;
+    font-weight: 300;
+    font-size: 23px;
+    font-size: 15px;
+  }
+}
+
+.navbar-brand {
+  height: 90px;
+  float: none;
+  color: $color-white;
+  margin: 20px 0 4px 0;
+  line-height: 35px;
+  text-shadow: 1px 3px 2px rgba(0, 0, 0, 0.7);
+  &:hover {
+    // reset link hover
+    color: white;
+  }
+}
+
+.footer-brand {
+  color: $color-violett-3;
+  margin: 0 0 30px 0;
+  line-height: 30px;
+  &:hover {
+    // reset link hover
+    color: $color-violett-3;
   }
 }
