@@ -347,3 +347,28 @@ small.small-tag {
     color: $color-violett-3;
   }
 }
+
+
+i.fa.fa-plus-circle {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+
+
+.add-search-field {
+  display:inline-block;
+}
+
+@media (max-width: $device-xs-max-width) {
+  .search-match-container {
+    margin-top: 18px;
+  }
+  .search-group-container {
+    margin-bottom:46px;
+  }
+
+  .search-group-container:nth-last-of-type(1) {
+    margin-bottom: 0px;
+  }
+}

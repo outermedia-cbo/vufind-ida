@@ -363,6 +363,22 @@ small.small-tag {
   .footer-brand:hover {
     color: #7E0a86; }
 
+i.fa.fa-plus-circle {
+  font-weight: 700;
+  font-size: 20px; }
+
+.add-search-field {
+  display: inline-block; }
+
+@media (max-width: 768px) {
+  .search-match-container {
+    margin-top: 18px; }
+
+  .search-group-container {
+    margin-bottom: 46px; }
+
+  .search-group-container:nth-last-of-type(1) {
+    margin-bottom: 0px; } }
 header {
   margin-bottom: 100px;
   color: #000000; }
@@ -417,6 +433,9 @@ header {
       background: url("../images/img_clear.svg") center center no-repeat;
       width: 15px;
       height: 15px; }
+    @media (max-width: 768px) {
+      header .closer:before {
+        background: url("../images/icon-font_delete_value.svg") center center no-repeat; } }
   header .search-box-wrapper {
     margin-top: 1px;
     padding: 0 15px; }
@@ -585,10 +604,10 @@ header {
     font-size: 19px; }
   header #advSearchForm .fa-plus-circle:before {
     content: none; }
-  header #advSearchForm .add-seach-criteria .fa-plus-circle:before {
+  header #advSearchForm .add-seach-criteria .fa-plus-circle:before, header #advSearchForm .icon-displayed:before {
     content: "+";
     font-weight: 700;
-    font-size: 20px; }
+    font-size: 24px; }
   header #advSearchForm input.reset-form-button, header #advSearchForm input.reset-form-button:hover, header #advSearchForm input.reset-form-button:active {
     border: 0 none;
     background: transparent none;
