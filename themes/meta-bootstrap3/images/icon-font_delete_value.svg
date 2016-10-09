@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 22 22" enable-background="new 0 0 22 22" xml:space="preserve">
+<symbol  id="bg" viewBox="-35 -35 70 70">
+	<g>
+		<polygon fill="#EFEEF2" points="35,-35 -35,-35 -35,35 35,35 		"/>
+	</g>
+</symbol>
+<symbol  id="feld_leeren" viewBox="-11 -11 22 22">
+	<path fill="#1D1D1B" d="M0,11c-6.075,0-11-4.925-11-11s4.925-11,11-11S11-6.075,11,0S6.075,11,0,11z M4.993-3.58L3.579-4.994
+		L0-1.414l-3.58-3.58L-4.994-3.58L-1.414,0l-3.58,3.58l1.414,1.414L0,1.414l3.58,3.58L4.993,3.58L1.414,0L4.993-3.58z"/>
+</symbol>
+<g id="KOntextpfeil_1_">
+</g>
+<g id="KontextSeite">
+</g>
+<g id="KOntextpfeil">
+</g>
+<g id="arrow_x5F_open">
+</g>
+<use xlink:href="#feld_leeren"  width="22" height="22" id="XMLID_1_" x="-11" y="-11" transform="matrix(1 0 0 -1 11 11)" overflow="visible"/>
+</svg>
