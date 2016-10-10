@@ -1,5 +1,8 @@
 header {
   margin-bottom: 100px;
+  @media (max-width: $device-xs-max-width) {
+    margin-bottom: 76px;
+  }
   color: $color-black;
   .header-background {
     position: absolute;
