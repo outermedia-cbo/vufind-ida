@@ -56,12 +56,14 @@ function addGroup(firstTerm, firstField, join)
   if (firstField == undefined) {firstField = '';}
   if (join       == undefined) {join       = '';}
 
-  var newGroup = '<div id="group'+nextGroup+'" class="group clearfix">' +
-      '<div class="col-sm-6">' +
+  var newGroup = '<div id="group'+nextGroup+'" class="group clearfix  search-group-container">' +
+      '<div class="col-md-6  col-sm-7">' +
           // '<label>'+searchLabel+':</label>' + // PHE not required
-          '<i id="group'+nextGroup+'Holder" class="fa fa-plus-circle"></i> <a href="#" onClick="addSearch('+nextGroup+')">'+addSearchString+'</a>' +
+          // added one more icon which is displayed within the link
+          // the other icon is displa:none so it wont affect the adding of searchbox function
+          '<i id="group'+nextGroup+'Holder" class="fa fa-plus-circle"></i>'+'<a href="#" class="add-search-field" onClick="addSearch('+nextGroup+')">'+'<i class="fa fa-plus-circle  icon-displayed"></i>'+' '+addSearchString+'</a>' +
       '</div>'
-    + '<div class="col-sm-6">'
+    + '<div class="col-md-6  col-sm-5  col-xs-10  search-match-container">'
     + '<label for="search_bool'+nextGroup+'">'+searchMatch+':&nbsp;</label>'
     + '<a href="#" onClick="deleteGroup('+nextGroup+')" class="close hidden" title="'+deleteSearchGroupString+'"></a>'
     + '<select id="search_bool'+nextGroup+'" name="bool'+nextGroup+'[]" class="form-control">'

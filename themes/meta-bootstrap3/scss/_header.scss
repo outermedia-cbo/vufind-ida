@@ -21,40 +21,8 @@ header {
     border: 0 none;
     margin-bottom: -40px;
   }
-  .navbar-brand {
-    color: $color-white;
-    font-family: 'Roboto', serif;
-    font-weight: 900;
-    font-size: 28px;
-    display: inline-block;
-    height: 100px;
-    line-height: 35px;
-    letter-spacing: 0.11em;
-    float: none;
-    margin: 20px 0 4px 0;
-    small {
-      font-family: 'Roboto', serif;
-      font-weight: 300;
-      font-size: 23px;
-      letter-spacing: 0.02em;
-    }
-    @media (max-width: $device-xs-max-width) {
-      font-size: 21px;
-      //height: auto;
-      font-size: 18px;
-      height: 64px;
-      line-height: 30px;
-      padding-top: 10px;
-      padding-bottom: 0;
-      margin: 20px 0 0 0;
-      small {
-        font-family: 'Roboto', serif;
-        font-weight: 300;
-        font-size: 23px;
-        font-size: 15px;
-      }
-    }
-  }
+
+
   .navbar-header {
     float: none;
   }
@@ -88,7 +56,7 @@ header {
     cursor: pointer;
     position: absolute;
     right: 9px;
-    top: 7px;
+    top: 9px;
     &:before {
       content: "";
       display: block;
@@ -132,10 +100,6 @@ header {
 
           @media (max-width: $device-xs-max-width) {
             padding: 5px 30px;
-          }
-
-          @media (max-width: $device-xxs-max-width) {
-            padding: 5px 20px;
           }
         }
 
@@ -279,6 +243,9 @@ header {
     a, label, select, p {
       color: $color-blue-1;
     }
+    select.form-control {
+        color: $color-white;
+    }
     label, select {
       font-size: 16px;
       font-weight: 500;
@@ -318,8 +285,9 @@ header {
         content: "\e608";
         color: $color-black;
         font-family: 'icomoon';
-        font-size: 16px;
+        font-size: 18px;
         font-weight: normal;
+        padding-top: 5px;
       }
       &:hover {
         text-decoration: none;
@@ -328,18 +296,21 @@ header {
     .add-seach-criteria {
       margin: 20px 0 30px 15px;
     }
+    .submit-advanced-search {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
     .submit-advanced-search input {
-      margin-left: 15px;
       font-weight: 500;
       font-size: 19px;
     }
     .fa-plus-circle:before {
       content: none;
     }
-    .add-seach-criteria .fa-plus-circle:before {
+    .add-seach-criteria .fa-plus-circle:before, .icon-displayed:before {
       content: "+";
       font-weight: 700;
-      font-size: 20px;
+      font-size: 24px;
     }
     input.reset-form-button, input.reset-form-button:hover, input.reset-form-button:active {
       border: 0 none;
@@ -352,7 +323,7 @@ header {
     }
     @media (min-width: $device-xs-max-width-fixed) {
       .closer {
-        right: 20px;
+        right: 25px;
       }
     }
     @media (max-width: $device-xs-max-width-fixed) {
@@ -377,5 +348,10 @@ header {
         text-align: right;
       }
     }
+  }
+  select.form-control {
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    background: $color-blue-6 url($theme-path-images + "/icon_dropdown-ext.svg") center right no-repeat;
   }
 }
