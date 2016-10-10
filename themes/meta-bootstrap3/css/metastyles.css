@@ -576,7 +576,7 @@ header {
     color: #FFFFFF; }
   header #advSearchForm label, header #advSearchForm select {
     font-size: 16px;
-    font-weight: 300; }
+    font-weight: 500; }
   header #advSearchForm input[type="text"] {
     font-size: 18px;
     padding-right: 28px;
