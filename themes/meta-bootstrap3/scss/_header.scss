@@ -69,11 +69,11 @@ header {
       height: 15px;
     }
 
-    @media (max-width: $device-xs-max-width) {
-      &:before {
-        background: url($theme-path-images + "/icon-font_delete_value.svg") center center no-repeat;
-      }
-    }
+    //@media (max-width: $device-xs-max-width) {
+    //  &:before {
+    //    background: url($theme-path-images + "/icon-font_delete_value.svg") center center no-repeat;
+    //  }
+    //}
   }
 
   .search-box-wrapper {
@@ -112,9 +112,9 @@ header {
             padding: 5px 30px;
           }
 
-          @media (max-width: $device-xxs-max-width) {
-            padding: 5px 20px;
-          }
+          //@media (max-width: $device-xxs-max-width) {
+          //  padding: 5px 20px;
+          //}
         }
 
         &.active span {
