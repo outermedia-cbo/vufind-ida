@@ -252,7 +252,7 @@ header {
     }
     label, select {
       font-size: 16px;
-      font-weight: 300;
+      font-weight: 500;
     }
     input[type="text"] {
       font-size: 18px;
@@ -359,5 +359,3 @@ header {
     background: $color-blue-6 url($theme-path-images + "/icon_dropdown-ext.svg") center right no-repeat;
   }
 }
-
-
