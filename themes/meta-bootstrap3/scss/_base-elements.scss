@@ -51,9 +51,16 @@ select.form-control {
   box-shadow: none;
   color: $color-white;
 }
+
+.jumpMenu.form-control {
+  background-color:$color-violett-4;
+  border-radius: 6px;
+  color: $color-black;
+}
+
 .form-control, .form-control:focus {
   //height: auto;
-  padding: 2px 6px;
+  padding: 2px 15px;
   border: 1px solid $color-grey-border;
   box-shadow: $shadow-inner;
 }
