@@ -60,7 +60,7 @@ header {
     cursor: pointer;
     position: absolute;
     right: 9px;
-    top: 7px;
+    top: 9px;
     &:before {
       content: "";
       display: block;
@@ -252,7 +252,7 @@ header {
     }
     label, select {
       font-size: 16px;
-      font-weight: 500;
+      font-weight: 300;
     }
     input[type="text"] {
       font-size: 18px;
@@ -289,8 +289,9 @@ header {
         content: "\e608";
         color: $color-black;
         font-family: 'icomoon';
-        font-size: 16px;
+        font-size: 18px;
         font-weight: normal;
+        padding-top: 5px;
       }
       &:hover {
         text-decoration: none;
@@ -299,8 +300,11 @@ header {
     .add-seach-criteria {
       margin: 20px 0 30px 15px;
     }
+    .submit-advanced-search {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
     .submit-advanced-search input {
-      margin-left: 15px;
       font-weight: 500;
       font-size: 19px;
     }
@@ -323,7 +327,7 @@ header {
     }
     @media (min-width: $device-xs-max-width-fixed) {
       .closer {
-        right: 20px;
+        right: 25px;
       }
     }
     @media (max-width: $device-xs-max-width-fixed) {
@@ -349,10 +353,11 @@ header {
       }
     }
   }
+  select.form-control {
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    background: $color-blue-6 url($theme-path-images + "/icon_dropdown-ext.svg") center right no-repeat;
+  }
 }
 
-select.form-control {
-  -webkit-appearance:none;
-  -moz-appearance:none;
-  background: $color-blue-6 url($theme-path-images + "/icon_dropdown-ext.svg") center right no-repeat;
-}
+
