@@ -301,23 +301,29 @@ mark, .highlight {
 // -----------------
 
 // branding
+//a.brand.navbar-brand {
+//  margin-top: 0px;
+//}
+
 .brand {
   // all
-  font-weight: 900;
   height: auto;
   display: inline-block;
   letter-spacing: 0.11em;
   font-family: 'Roboto';
   font-size: 28px;
+  @media (max-width: $device-xxs-max-width-sub-1) {
+    font-size: 18px;
+  }
 }
 
 small.small-tag {
   font-family: 'Roboto', serif;
-  font-weight: 300;
+  font-weight: 200;
   font-size: 23px;
   letter-spacing: 0.02em;
 
-  @media (max-width: $device-xxs-max-width) {
+  @media (max-width: $device-xxs-max-width-sub-1) {
     font-family: 'Roboto', serif;
     font-weight: 300;
     font-size: 23px;
@@ -325,26 +331,37 @@ small.small-tag {
   }
 }
 
+
 .navbar-brand {
   height: 90px;
   float: none;
+  font-weight: 600;
   color: $color-white;
   margin: 20px 0 4px 0;
   line-height: 35px;
-  text-shadow: 1px 3px 2px rgba(0, 0, 0, 0.7);
+  text-shadow: 1px 3px 2px rgba(0, 0, 0, 0.3);
   &:hover {
     // reset link hover
     color: white;
   }
+  @media (max-width: $device-xxs-max-width-sub-1) {
+    margin: 0px 0px;
+    height: 76px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  }
 }
 
 .footer-brand {
-  color: $color-violett-3;
   margin: 0 0 30px 0;
   line-height: 30px;
+  font-weight: 800;
+  color: $color-violett-3;
   &:hover {
     // reset link hover
     color: $color-violett-3;
+  }
+  @media (max-width: $device-xxs-max-width-sub-1)  {
+    line-height: 18px;
   }
 }
 
