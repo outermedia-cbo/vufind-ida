@@ -32,3 +32,6 @@ chmod 0600 ssh_ida_travis_rsa
 #scp -C -q -r -i ssh_ida_travis_rsa -P 2222 -p themes module ida languages solr $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
 echo RSYNC to server
 rsync -az -e "ssh -o StrictHostKeyChecking=no -o LogLevel=ERROR -p $DEPLOY_PORT -i ssh_ida_travis_rsa" themes module ida languages solr $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+
+echo "Clear language cache"
+ssh -o StrictHostKeyChecking=no -o LogLevel=ERROR -p $DEPLOY_PORT -i ssh_ida_travis_rsa `rm -r /usr/local/vufind2/local/cache/languages/*`

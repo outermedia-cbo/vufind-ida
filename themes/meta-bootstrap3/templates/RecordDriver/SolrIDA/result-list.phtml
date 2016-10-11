@@ -96,7 +96,7 @@ $cssClasses[] = 'col-xs-12';
                     </a>
                 </div>
                 <? if (false === $hasSubRecords): ?>
-                    <div>
+                    <div class="search-result-details">
                         <? if ($this->driver->isCollection()): ?>
                             <?= implode('<br>', $this->driver->getSummary()); ?>
                         <? endif; ?>
@@ -293,7 +293,7 @@ $cssClasses[] = 'col-xs-12';
                     <? endif; ?>
                     <? foreach ($subjectTypes as $type => $limit): ?>
                         <? if (isset($subjects[strtolower($type)]) && 0 < $limit): ?>
-                            <div>
+                            <div class="search-result-details">
                                 <?= $this->transEsc('Subjects ' . $type); ?>:
                                 <? $fields = $subjects[strtolower($type)]; ?>
                                 <? foreach (array_slice($fields, 0, $limit) as $subject): ?>

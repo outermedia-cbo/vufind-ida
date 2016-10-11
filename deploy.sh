@@ -27,6 +27,9 @@ rm -r /usr/local/vufind2/module/Ida/
 echo "Copy all to vufind"
 cp -R themes module ida languages solr /usr/local/vufind2/
 
+echo "Clear language cache"
+rm -r /usr/local/vufind2/local/cache/languages/*
+
 #echo "Restart Solr"
 #pushd $VUFIND_HOME
 #./vufind.sh restart
