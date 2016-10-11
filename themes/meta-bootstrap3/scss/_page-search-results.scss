@@ -277,3 +277,10 @@ ul.search-result-subrecords {
     }
   }
 }
+
+// hide search-details on mobile devices
+@media (max-width: $device-xs-max-width) {
+  .search-result-details {
+    display: none;
+  }
+}
