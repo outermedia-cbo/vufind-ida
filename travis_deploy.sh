@@ -34,4 +34,4 @@ echo RSYNC to server
 rsync -az -e "ssh -o StrictHostKeyChecking=no -o LogLevel=ERROR -p $DEPLOY_PORT -i ssh_ida_travis_rsa" themes module ida languages solr $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
 
 echo "Clear language cache"
-ssh -o StrictHostKeyChecking=no -o LogLevel=ERROR -p $DEPLOY_PORT -i ssh_ida_travis_rsa `rm -r /usr/local/vufind2/local/cache/languages/*`
+ssh -o StrictHostKeyChecking=no -o LogLevel=ERROR -p $DEPLOY_PORT -i ssh_ida_travis_rsa `sudo $DEPLOY_PATH/clear-cache.sh`
