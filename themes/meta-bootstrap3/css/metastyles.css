@@ -361,7 +361,7 @@ small.small-tag {
   margin: 20px 0 4px 0;
   line-height: 35px;
   text-shadow: 1px 3px 2px rgba(0, 0, 0, 0.3); }
-  .navbar-brand:hover {
+  .navbar-brand:hover, .navbar-brand:focus {
     color: white; }
   @media (max-width: 430px) {
     .navbar-brand {
@@ -404,7 +404,7 @@ header {
       margin-bottom: 76px; } }
   header .header-background {
     position: absolute;
-    background: url("../images/img_mood_desktop.jpg") no-repeat scroll 0 0 #640075;
+    background: url("../images/img_mood_desktop.jpg") no-repeat scroll center 0 #640075;
     width: 100%;
     height: 194px; }
     @media (max-width: 768px) {
@@ -871,6 +871,9 @@ ul.search-result-subrecords {
     text-align: center;
     width: 32px; }
 
+@media (max-width: 768px) {
+  .search-result-details {
+    display: none; } }
 #record {
   font-weight: 300; }
   #record h1 {
