@@ -96,7 +96,7 @@ $cssClasses[] = 'col-xs-12';
                     </a>
                 </div>
                 <? if (false === $hasSubRecords): ?>
-                    <div class="search-result-details">
+                    <div>
                         <? if ($this->driver->isCollection()): ?>
                             <?= implode('<br>', $this->driver->getSummary()); ?>
                         <? endif; ?>
