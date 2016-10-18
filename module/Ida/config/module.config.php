@@ -62,7 +62,8 @@ $config = array(
         ),
         'invokables' => array(
             'idaoai' => 'Ida\Controller\IdaOaiController',
-            'search' => 'Ida\Controller\SearchController'
+            'search' => 'Ida\Controller\SearchController',
+            'about'  => 'Ida\Controller\AboutController'
         ),
     ),
     'router' => array(
@@ -98,6 +99,16 @@ $config = array(
                             )
                         )
                     )
+                ),
+            ),
+            'about' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/About',
+                    'defaults' => array(
+                        'controller' => 'About',
+                        'action'     => 'Home',
+                    ),
                 ),
             ),
             'idaoai' => array(
