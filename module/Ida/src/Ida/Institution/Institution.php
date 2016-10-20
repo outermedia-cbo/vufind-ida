@@ -75,12 +75,12 @@ class Institution
             }
             catch (Exception\RuntimeException $error)
             {
-                // TODO log error?
+                error_log( "getInstitutionDetails(): error reading from file " . $fileName );
             }
         }
         else
         {
-            // TODO log error?
+            error_log( "can not read file " . $fileName );
         }
 
         return $details;
