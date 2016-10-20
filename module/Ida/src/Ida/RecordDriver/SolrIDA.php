@@ -152,6 +152,21 @@ abstract class SolrIDA extends SolrDefault
         return $this->getSingleValuedField('searchfilter');
     }
 
+    public function getJournalCore()
+    {
+        return $this->getSingleValuedField('journalCore');
+    }
+
+    public function getIssuesInstitutions()
+    {
+        return $this->getSingleValuedField('issuesInstitutions');
+    }
+
+    public function getIssuesGlobal()
+    {
+        return $this->getSingleValuedField('issuesGlobal');
+    }
+
      public function getEditions()
     {
         return $this->getMultiValuedField("edition");
