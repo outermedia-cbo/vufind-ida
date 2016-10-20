@@ -291,7 +291,9 @@
 		<field name="searchfilter" type="string" indexed="true" stored="true" />
 		<field name="media" type="string" indexed="true" stored="true" multiValued="true" />
 		<field name="mediaType" type="string" indexed="true" stored="true" multiValued="true" />
-		
+		<field name="journalCore" type="string" indexed="true" stored="true" />
+		<field name="issuesInstitutions" type="string" indexed="true" stored="true" />
+		<field name="issuesGlobal" type="string" indexed="true" stored="true" />
 		<!-- Dynamic fields for customization without schema modification -->
 		<dynamicField name="*_date" type="date" indexed="true" stored="true" />
 		<dynamicField name="*_date_mv" type="date" indexed="true" stored="true" multiValued="true" />
