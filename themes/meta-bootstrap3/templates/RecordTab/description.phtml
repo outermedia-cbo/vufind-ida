@@ -45,10 +45,60 @@ if ($this->syndeticsPlus ()->isActive ()) {
 			<td property="shelfmark"><?= $this->escapeHtml($shelfMark) ?></td>
 		</tr>
 	      <? endif; ?>
-	  <?php endif; ?>
+	  <?php endif; ?>       
+    
     
     <tr valign="top" class="divider"><td></td><td></td></tr>
+
+
+
+    <? $journalCore = $this->driver->getJournalCore(); ?>
+    <? $title = $this->driver->getDisplayTitle(); ?>
+    <? if (isset($journalCore)): ?>
+        <? $contentDisplayed = true; ?>
+        <tr valign="top">
+		<td property="journalCore" colspan="2" style="text-align: center;">
+			<a
+			href="/Search/Results?lookfor=%22<?= $journalCore?>%22&type=IssuesInstitutions&sort=year">
+			Welche Einrichtung hat die Zeitschrift<br />"<?= $title?>" noch?
+			</a>
+           </td>
+		</tr>
+    <? endif; ?>
+
+    <? $issuesInstitutions = $this->driver->getIssuesInstitutions(); ?>
+    <? if (isset($issuesInstitutions)): ?>
+        <? $contentDisplayed = true; ?>
+        <tr valign="top">
+		<td property="issuesInstitution" colspan="2" style="text-align: center;">
+			<a
+			href="/Search/Results?lookfor=%22<?= $issuesInstitutions?>%22&type=IssuesInstitutions&sort=year">
+			Alle Zeitschriftenhefte dieser Einrichtung anzeigen.
+			</a>
+           </td>
+	</tr>
+    <? endif; ?>
     
+    <? $issuesGlobal = $this->driver->getIssuesGlobal(); ?>
+    <? if (isset($issuesGlobal)): ?>
+        <? $contentDisplayed = true; ?>
+       	<tr valign="top">
+		<td property="issuesInstitution" colspan="2" style="text-align: center;">
+			<!-- <?= $this->escapeHtml($issuesGlobal) ?>-->
+			<a
+			href="/Search/Results?lookfor=%22<?= $issuesGlobal?>%22&type=IssuesInstitutions&sort=year">
+			Alle Zeitschriftenhefte im META-Katalog anzeigen.
+			</a>
+           </td>
+	</tr>
+    <? endif; ?>
+    
+
+
+<tr valign="top" class="divider"><td></td><td></td></tr> 
+
+
+   
     <? $location = $this->driver->getLocation(); ?>
     <? if (isset($location)): ?>
         <? $contentDisplayed = true; ?>
@@ -498,6 +548,8 @@ $listOfContents = $this->driver->getListOfContents ();
            </td>
 	</tr>
     <? endif; ?>
+    
+ 
     
    <!--neu eingefügt-->
    

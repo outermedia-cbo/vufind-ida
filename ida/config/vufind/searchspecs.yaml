@@ -235,7 +235,20 @@ Publisher:
    - [and, 200]
    - [or, 100]  
 
-
+IssuesInstitutions:
+  DismaxFields:
+   - issuesInstitutions^500 
+   - issuesGlobal^500 
+   - journalCore^500
+  QueryFields:
+   issuesInstitutions: 
+   - [onephrase, 500]
+   issuesGlobal:
+   - [onephrase, 500]
+   journalCore:
+   - [onephrase, 500]
+   
+   
 #  ExactSettings:
 #    DismaxFields:
 #      - topic_unstemmed^150
