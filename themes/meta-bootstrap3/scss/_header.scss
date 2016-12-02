@@ -1,37 +1,31 @@
 header {
   margin-bottom: 100px;
+  @media (max-width: $device-xs-max-width) {
+    margin-bottom: 76px;
+  }
   color: $color-black;
   .header-background {
     position: absolute;
-    background-color: $color-yellow-2;
+    background: url($theme-path-images + "/img_mood_desktop.jpg") no-repeat scroll center 0 #640075;
     width: 100%;
-    height: 212px;
+    height: 194px;
+
     @media (max-width: $device-xs-max-width) {
-      height: 262px;
+      height: 164px;
+      background: url($theme-path-images + "/img_mood_ipad_portrait.jpg") no-repeat scroll 0 0 #640075;
+  }
+    @media (max-width: $device-xxs-max-width) {
+      height: 164px;
+      background: url($theme-path-images + "/img_mood_smartphone.jpg") no-repeat scroll center right #640075;
     }
+
   }
   &> .navbar {
     border: 0 none;
     margin-bottom: -40px;
   }
-  .navbar-brand {
-    color: $color-black-logo;
-    font-family: 'Libre Baskerville', serif;
-    font-size: 23px;
-    display: inline-block;
-    height: 100px;
-    line-height: 35px;
-    letter-spacing: 2px;
-    float: none;
-    margin: 20px 0 4px 15px;
-    @media (max-width: $device-xs-max-width) {
-      font-size: 21px;
-      height: auto;
-      line-height: 30px;
-      padding-top: 10px;
-      padding-bottom: 0;
-    }
-  }
+
+
   .navbar-header {
     float: none;
   }
@@ -39,24 +33,23 @@ header {
     display: none;
   }
   .logo {
-    background: url($theme-path-images + "/logo_ida_blau.png") no-repeat scroll 0 0 $color-white;
+    background: url($theme-path-images +"/img_ida_logo@2x.png") no-repeat scroll 0 0;
     background-size: cover;
-    box-shadow: $shadow-outer;
     display: inline-block;
     height: 95px;
-    width: 342px;
+    width: 110px;
     position: absolute;
     right: 30px;
     top: 0;
     @media (max-width: $device-xs-max-width) {
-      background-image: url($theme-path-images + "/ida-logo_mobil_retina.png");
+      background-image: url($theme-path-images + "/img_ida_logo@2x.png");
       display: block;
-      position: relative;
+      //position: relative;
       right: 15px;
       top: auto;
       margin: 0 0 0 auto;
-      width: 229px;
-      height: 53px;
+      width: 80px;
+      height: 73px;
     }
   }
   .searchbox.hidden-lg {
@@ -65,18 +58,19 @@ header {
   .closer {
     cursor: pointer;
     position: absolute;
-    right: 5px;
-    top: 3px;
+    right: 9px;
+    top: 9px;
     &:before {
-      content: "\e607";
-      color: $color-grey-border;
-      font-family: 'icomoon';
-      font-size: 20px;
+      content: "";
+      display: block;
+      background: url($theme-path-images + "/img_clear.svg") center center no-repeat;
+      width: 15px;
+      height: 15px;
     }
   }
 
   .search-box-wrapper {
-    margin-top: 8px;
+    margin-top: 1px;
     padding: 0 15px;
     @media (max-width: 768px) {
       padding: 0;
@@ -98,8 +92,8 @@ header {
         }
 
         span {
-          background-color: $color-yellow-1;
-          color: #664500; // Special color
+          background-color: $color-violett-1;
+          color: $color-black;
           border: 0;
           border-radius: 0;
           padding: 5px 50px;
@@ -110,14 +104,10 @@ header {
           @media (max-width: $device-xs-max-width) {
             padding: 5px 30px;
           }
-
-          @media (max-width: $device-xxs-max-width) {
-            padding: 5px 20px;
-          }
         }
 
         &.active span {
-          background-color: $color-yellow-4;
+          background-color: $color-violett-4;
           cursor: inherit;
           color: $color-black;
           box-shadow: $shadow-outer;
@@ -140,7 +130,7 @@ header {
     border: 0 none;
 
     #simple-search-body {
-      background-color: $color-yellow-4;
+      background-color: $color-violett-4;
       padding: 15px;
       box-shadow: $shadow-outer;
 
@@ -256,6 +246,9 @@ header {
     a, label, select, p {
       color: $color-blue-1;
     }
+    select.form-control {
+        color: $color-white;
+    }
     label, select {
       font-size: 16px;
       font-weight: 500;
@@ -284,7 +277,7 @@ header {
       }
     }
     #advanced-search-body {
-      background-color: $color-yellow-4;
+      background-color: $color-violett-4;
       box-shadow: $shadow-outer;
       padding: 15px;
     }
@@ -295,8 +288,9 @@ header {
         content: "\e608";
         color: $color-black;
         font-family: 'icomoon';
-        font-size: 16px;
+        font-size: 18px;
         font-weight: normal;
+        padding-top: 5px;
       }
       &:hover {
         text-decoration: none;
@@ -305,18 +299,21 @@ header {
     .add-seach-criteria {
       margin: 20px 0 30px 15px;
     }
+    .submit-advanced-search {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
     .submit-advanced-search input {
-      margin-left: 15px;
       font-weight: 500;
       font-size: 19px;
     }
     .fa-plus-circle:before {
       content: none;
     }
-    .add-seach-criteria .fa-plus-circle:before {
+    .add-seach-criteria .fa-plus-circle:before, .icon-displayed:before {
       content: "+";
       font-weight: 700;
-      font-size: 20px;
+      font-size: 24px;
     }
     input.reset-form-button, input.reset-form-button:hover, input.reset-form-button:active {
       border: 0 none;
@@ -329,7 +326,7 @@ header {
     }
     @media (min-width: $device-xs-max-width-fixed) {
       .closer {
-        right: 20px;
+        right: 25px;
       }
     }
     @media (max-width: $device-xs-max-width-fixed) {
@@ -354,5 +351,10 @@ header {
         text-align: right;
       }
     }
+  }
+  select.form-control {
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    background: $color-blue-6 url($theme-path-images + "/icon_dropdown-ext.svg") center right no-repeat;
   }
 }

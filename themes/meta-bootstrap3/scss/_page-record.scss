@@ -60,6 +60,7 @@
   }
   // The lower description table
   #detail-view-description {
+    width: 100%;
     margin-top: 20px;
     th {
       font-weight: 300;
@@ -74,6 +75,10 @@
         font-size: 14px;
         color: $color-purple;
       }
+    }
+    .divider {
+      border-top:1px solid #D6D3DE;
+      height:0px;
     }
   }
 }
@@ -225,8 +230,8 @@
   }
   /*@media (max-width: $device-xs-max-width) {*/
     h4 {
-      margin-top: 20px;
-      padding-bottom: 10px;
+      margin-top: 5px;
+      padding-bottom: 15px;
       border-bottom: 5px solid #d6d3de;
     }
     .list-group-item:first-child, .list-group-item:hover:first-child {

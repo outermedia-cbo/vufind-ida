@@ -6,9 +6,11 @@ $theme-path-images: '../images';
 // Responsive breakpoints (same as bootstrap!!!!)
 
 $device-xxs-max-width: 400px;
+$device-xxs-max-width-sub-1: 430px;
 $device-xs-max-width: 768px; // Should be 767px
 $device-xs-max-width-fixed: 767px;
 $device-md-max-width: 992px;
+$device-md-max-width-fixed: 991px;
 $device-lg-max-width: 1200px;
 $screen-lg-min: 993px;
 
@@ -19,6 +21,17 @@ $color-yellow-2: #FFCE67;
 $color-yellow-3: #FFDE99;
 $color-yellow-4: #FFEFCC;
 $color-yellow-5: #F8F4F0;
+
+
+// New Violett Colors
+$color-violett-1: #C474b2;
+$color-violett-2: #640075;
+$color-violett-3: #7E0a86;
+$color-violett-4: #E1D8EA;
+$color-violett-5: #EFEEF4;
+$color-violett-6: #D6D3DE;
+
+
 
 $color-blue-1: #2E264D;
 $color-blue-2: #645E78;
