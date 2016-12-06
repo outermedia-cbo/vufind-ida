@@ -1,657 +1,611 @@
 <?
 // Set page title.
-$this->headTitle($this->translate('further information') . ': ' . $this->driver->getBreadcrumb());
+$this->headTitle ( $this->translate ( 'further information' ) . ': ' . $this->driver->getBreadcrumb () );
 
 // Grab clean ISBN for convenience:
-$isbn = $this->driver->getCleanISBN();
+$isbn = $this->driver->getCleanISBN ();
 
 // Activate Syndetics Plus if necessary:
-if ($this->syndeticsPlus()->isActive()) {
-    $this->headScript()->appendFile($this->syndeticsPlus()->getScript());
+if ($this->syndeticsPlus ()->isActive ()) {
+	$this->headScript ()->appendFile ( $this->syndeticsPlus ()->getScript () );
 }
 ?>
 <table id="detail-view-description" cellpadding="0" cellspacing="0"
-       border="0" summary="<?= $this->transEsc('further information') ?>">
+	border="0" summary="<?=$this->transEsc('further information')?>">
+
 
     <? $institutions = $this->driver->getInstitutions(); ?>
     <? if (!empty($institutions)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Institution') ?>:</th>
-            <td property="institution">
-                <? foreach ($institutions as $institution): ?>
-                    <a href="#link"><?= $this->transEsc($institution) ?><?= $institution !== end($institutions) ? ", " : "" ?>
-                        <i
-                            class="fa fa-map-marker"></i></a>
-                <? endforeach; ?>
-            </td>
-        </tr>
+			<th><?=$this->transEsc('Institution')?>: </th>
+			<td property="institution">
+	            <? foreach($institutions as $institution): ?>
+	             <a href="#link"><?= $this->transEsc($institution) ?><?= $institution !== end($institutions) ? ", " : "" ?>  <i
+					class="fa fa-map-marker"></i></a>
+	            <? endforeach; ?>
+	            </td>
+		</tr>
     <? endif; ?>
 
+	
     <? $signatory = $this->driver->getSignatory(); ?>
     <? if (isset($signatory)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Signatory') ?>:</th>
-            <td property="signatory"><?= $this->escapeHtml($signatory) ?></td>
-        </tr>
+			<th><?=$this->transEsc('Signatory')?>: </th>
+			<td property="signatory"><?= $this->escapeHtml($signatory) ?></td>
+		</tr>
     <? endif; ?>
-
+    
     <?php if ($this->driver->isLibrary()): ?>
-        <? $shelfMark = $this->driver->getShelfMark(); ?>
-        <? if (isset($shelfMark)): ?>
-            <? $contentDisplayed = true; ?>
-            <tr valign="top">
-                <th><?= $this->transEsc('Signatory') ?>:</th>
-                <td property="shelfmark"><?= $this->escapeHtml($shelfMark) ?></td>
-            </tr>
-        <? endif; ?>
-    <?php endif; ?>
+	   <? $shelfMark = $this->driver->getShelfMark(); ?>
+	  <? if (isset($shelfMark)): ?>
+		  <? $contentDisplayed = true; ?>
+		  <tr valign="top">
+			<th><?=$this->transEsc('Signatory')?>: </th>
+			<td property="shelfmark"><?= $this->escapeHtml($shelfMark) ?></td>
+		</tr>
+	      <? endif; ?>
+	  <?php endif; ?>       
 
+<!-- comment -->
+<tr valign="top" class="divider"><td></td><td></td></tr> 
 
-    <tr valign="top" class="divider">
-        <td></td>
-        <td></td>
-    </tr>
-
-
-    <? $journalCore = $this->driver->getJournalCore(); ?>
-    <? $title = $this->driver->getDisplayTitle(); ?>
-    <? if (isset($journalCore)): ?>
-        <? $contentDisplayed = true; ?>
-        <tr valign="top">
-            <td property="journalCore" colspan="2" style="text-align: center;">
-                <a
-                    href="/Search/Results?lookfor=%22<?= $journalCore ?>%22&type=IssuesInstitutions&sort=year">
-                    Welche Einrichtung hat die Zeitschrift<br/>"<?= $title ?>" noch?
-                </a>
-            </td>
-        </tr>
-    <? endif; ?>
-
-    <? $issuesInstitutions = $this->driver->getIssuesInstitutions(); ?>
-    <? if (isset($issuesInstitutions)): ?>
-        <? $contentDisplayed = true; ?>
-        <tr valign="top">
-            <td property="issuesInstitution" colspan="2" style="text-align: center;">
-                <a
-                    href="/Search/Results?lookfor=%22<?= $issuesInstitutions ?>%22&type=IssuesInstitutions&sort=year">
-                    Alle Zeitschriftenhefte dieser Einrichtung anzeigen.
-                </a>
-            </td>
-        </tr>
-    <? endif; ?>
-
-    <? $issuesGlobal = $this->driver->getIssuesGlobal(); ?>
-    <? if (isset($issuesGlobal)): ?>
-        <? $contentDisplayed = true; ?>
-        <tr valign="top">
-            <td property="issuesInstitution" colspan="2" style="text-align: center;">
-                <!-- <?= $this->escapeHtml($issuesGlobal) ?>-->
-                <a
-                    href="/Search/Results?lookfor=%22<?= $issuesGlobal ?>%22&type=IssuesInstitutions&sort=year">
-                    Alle Zeitschriftenhefte im META-Katalog anzeigen.
-                </a>
-            </td>
-        </tr>
-    <? endif; ?>
-
+   
     <? $location = $this->driver->getLocation(); ?>
     <? if (isset($location)): ?>
         <? $contentDisplayed = true; ?>
-
-        <tr valign="top" class="divider">
-            <td></td>
-            <td></td>
-        </tr>
-
-        <tr valign="top">
-            <th><?= $this->transEsc('Location') ?>:</th>
-            <td property="location"><?= $this->escapeHtml($location); ?></td>
-        </tr>
-
-
+        
+            
+	<tr valign="top"><th><?=$this->transEsc('Location')?>: </th>
+	<td property="location"><?= $this->escapeHtml($location); ?></td>
+	</tr>
+	
+	
     <? endif; ?>
-
+    
     <? $documentType = $this->driver->getDocumentType(); ?>
     <? if (isset($documentType) && "" != $documentType): ?>
         <? $contentDisplayed = true; ?>
-
-
-        <tr valign="top">
-            <th><?= $this->transEsc('Document Type') ?>:</th>
-            <td property="type"><?= $this->escapeHtml($documentType); ?></td>
-        </tr>
+        
+	
+	
+	<tr valign="top">
+		<th><?=$this->transEsc('Document Type')?>: </th>
+		<td property="type"><?= $this->escapeHtml($documentType); ?></td>
+	</tr>
     <? endif; ?>
-
-    <?
-
-    $urls = $this->driver->getAccess();
-    if (!empty ($urls)) :
-        ?>
+    
+          <?
+										
+$urls = $this->driver->getAccess ();
+										if (! empty ( $urls )) :
+											?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Link') ?>:</th>
-            <td>
-                <? foreach ($urls as $url): ?>
-                    <a href="<?= $this->escapeHtml($url) ?>" class="fulltext" target="new">
-                        <i class="fa fa-external-link"></i>
-                        <?= $this->transEsc('Get full text') ?></a>
-                <? endforeach; ?>
-            </td>
-        </tr>
+		<th><?= $this->transEsc('Link') ?>:</th>
+		<td>
+	      <? foreach ($urls as $url): ?>
+		<a href="<?= $this->escapeHtml($url) ?>" class="fulltext" target="new">
+				<i class="fa fa-external-link"></i>
+                   <?=$this->transEsc('Get full text')?></a>
+		 <? endforeach; ?>
+		</td>
+	</tr>
     <? endif; ?>
 
     <? $alternativeTitles = $this->driver->getAlternativeTitles(); ?>
     <? if (!empty($alternativeTitles)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Title variation') ?>:</th>
-            <td property="issue">
-                <? foreach ($alternativeTitles as $alternativeTitle): ?>
-                    <?= $this->escapeHtml($alternativeTitle) ?><?= $alternativeTitle !== end($alternativeTitles) ? ", " : "" ?>
-                <? endforeach; ?>
+		<th><?=$this->transEsc('Title variation')?>: </th>
+		<td property="issue">
+            <? foreach($alternativeTitles as $alternativeTitle): ?>
+                <?= $this->escapeHtml($alternativeTitle) ?><?= $alternativeTitle !== end($alternativeTitles) ? ", " : ""?>
+            <? endforeach; ?>
             </td>
-        </tr>
+	</tr>
     <? endif; ?>
 
     <? $upcomingTitles = $this->driver->getUpcomingTitles(); ?>
     <? if (!empty($upcomingTitles)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Upcoming Title') ?>:</th>
-            <td property="issue">
-                <? foreach ($upcomingTitles as $upcomingTitle): ?>
-                    <?= $this->escapeHtml($upcomingTitle) ?><?= $upcomingTitle !== end($upcomingTitles) ? ", " : "" ?>
-                <? endforeach; ?>
+		<th><?=$this->transEsc('Upcoming Title')?>: </th>
+		<td property="issue">
+            <? foreach($upcomingTitles as $upcomingTitle): ?>
+                <?= $this->escapeHtml($upcomingTitle) ?><?= $upcomingTitle !== end($upcomingTitles) ? ", " : ""?>
+            <? endforeach; ?>
             </td>
-        </tr>
+	</tr>
     <? endif; ?>
-
+    
     <? $formerTitles = $this->driver->getFormerTitles(); ?>
     <? if (!empty($formerTitles)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Former Title') ?>:</th>
-            <td property="issue">
-                <? foreach ($formerTitles as $formerTitle): ?>
-                    <?= $this->escapeHtml($formerTitle) ?><?= $formerTitle !== end($formerTitles) ? ", " : "" ?>
-                <? endforeach; ?>
+		<th><?=$this->transEsc('Former Title')?>: </th>
+		<td property="issue">
+            <? foreach($formerTitles as $formerTitle): ?>
+                <?= $this->escapeHtml($formerTitle) ?><?= $formerTitle !== end($formerTitles) ? ", " : ""?>
+            <? endforeach; ?>
             </td>
-        </tr>
+	</tr>
     <? endif; ?>
-
+    
     <? $originalTitles = $this->driver->getOriginalTitles(); ?>
     <? if (!empty($originalTitles)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Original Title') ?>:</th>
-            <td property="issue">
-                <? foreach ($originalTitles as $originalTitle): ?>
-                    <?= $this->escapeHtml($originalTitle) ?><?= $originalTitle !== end($originalTitles) ? ", " : "" ?>
-                <? endforeach; ?>
+		<th><?=$this->transEsc('Original Title')?>: </th>
+		<td property="issue">
+            <? foreach($originalTitles as $originalTitle): ?>
+                <?= $this->escapeHtml($originalTitle) ?><?= $originalTitle !== end($originalTitles) ? ", " : ""?>
+            <? endforeach; ?>
             </td>
-        </tr>
+	</tr>
     <? endif; ?>
-
+    
     <? $authors = $this->driver->getDeduplicatedAuthors(); ?>
-    <? if (!empty($authors['main']) || !empty($authors['additional'])): ?>
+    <? if (!empty($authors['main']) || !empty($authors['additional'])):  ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Authors') ?>:</th>
+		<th><?=$this->transEsc('Authors')?>: </th>
             <? // Funny  &gt; to avoid unwanted whitespace ?>
             <td><span property="author"><a
-                        href="<?= $this->record($this->driver)->getLink('author', $authors['main']) ?>"><?= $this->escapeHtml($authors['main']) ?></a></span
-                    <? foreach ($authors['additional'] as $field): ?>
+				href="<?=$this->record($this->driver)->getLink('author', $authors['main'])?>"><?=$this->escapeHtml($authors['main'])?></a></span
+            <? foreach ($authors['additional'] as $field): ?>
                 >; <span property="contributor"><a
-                        href="<?= $this->record($this->driver)->getLink('author', $field) ?>"><?= $this->escapeHtml($field) ?></a></span
-                    <? endforeach; ?>
-                ></td>
-        </tr>
+				href="<?=$this->record($this->driver)->getLink('author', $field)?>"><?=$this->escapeHtml($field)?></a></span
+            <? endforeach; ?>
+            ></td>
+	</tr>
     <? endif; ?>
 
-    <!-- Herausgeber -->
+     <!-- Herausgeber -->
     <?
-
-    $editors = $this->driver->getEditors();
-    if (!empty ($editors)) :
-        ?>
-
+				
+$editors = $this->driver->getEditors ();
+				if (! empty ( $editors )) :
+					?>
+    
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Editors') ?>:</th>
-            <td property="editor">
-                <? foreach ($editors as $editor): ?>
-                    <a
-                    href="<?= $this->record($this->driver)->getLink('editor', $editor) ?>"><?= $this->escapeHtml($editor) ?></a><?= $editor !== end($editors) ? "; " : "" ?>
-                <? endforeach; ?>
+		<th><?=$this->transEsc('Editors')?>: </th>
+		<td property="editor">
+            <? foreach ($editors as $editor): ?>
+                <a
+			href="<?= $this->record($this->driver)->getLink('editor', $editor) ?>"><?= $this->escapeHtml($editor) ?></a><?= $editor !== end($editors) ? "; " : ""?>
+            <? endforeach; ?>
             </td>
-        </tr>
+	</tr>
     <? endif; ?>
-
+    
 
     <?
-
-    $contributors = $this->driver->getContributors();
-    if (!empty ($contributors)) :
-        ?>
+				
+$contributors = $this->driver->getContributors ();
+				if (! empty ( $contributors )) :
+					?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Contributor') ?>:</th>
-            <td><? foreach ($contributors as $contributor): ?><?= $this->escapeHtml($contributor) ?><?= $contributor !== end($contributors) ? " <br /> " : "" ?><? endforeach; ?></td>
-        </tr>
+		<th><?= $this->transEsc('Contributor') ?>:</th>
+		<td><? foreach ($contributors as $contributor): ?><?= $this->escapeHtml($contributor) ?><?= $contributor !== end($contributors) ? " <br /> " : "" ?><? endforeach; ?></td>
+	</tr>
     <? endif; ?>
 
-
-    <? $sourceInfo = $this->driver->getSourceInfos(); ?>
-    <? if (!empty($sourceInfo)): ?>
-        <? $top = $this->driver->getBelongsToTop(); ?>
-        <tr valign="top">
-            <th><?= $this->transEsc('Source') ?>:</th>
-            <td>
-                <? foreach ($sourceInfo as $info): ?>
-                    <? $inText = $this->escapeHtml($info) ?>
+    
+      <? $sourceInfo = $this->driver->getSourceInfos(); ?>
+            <? if (!empty($sourceInfo)): ?>
+                <? $top = $this->driver->getBelongsToTop(); ?>
+                <tr valign="top">
+		<th><?= $this->transEsc('Source') ?>:</th>
+		<td>
+                <? foreach($sourceInfo as $info): ?>
+                    <? $inText = $this->escapeHtml($info)?>
                     <? if (substr($top[1], 0, strlen($info)) === $info): ?>
                         <a
-                            href="<?= $this->recordLink()->getUrl($top[0]) ?>">
-                            <?= $inText ?>
+			href="<?= $this->recordLink()->getUrl($top[0]) ?>">
+                            <?= $inText?>
                         </a>
                     <? else: ?>
-                        <?= $inText ?>
+                        <?= $inText?>
                     <? endif; ?>
-                    <?= $info !== end($sourceInfo) ? ", " : "" ?>
+                    <?= $info !== end($sourceInfo) ? ", " : ""?>
                 <? endforeach; ?>
-            </td>
-        </tr>
-    <? endif; ?>
-
+               </td>
+	</tr>
+            <? endif; ?>
+    
     <?
-
-    $contributorsNoFacet = $this->driver->getContributorsNoFacet();
-    if (!empty ($contributorsNoFacet)) :
-        ?>
+				
+$contributorsNoFacet = $this->driver->getContributorsNoFacet ();
+				if (! empty ( $contributorsNoFacet )) :
+					?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Contributor') ?>:</th>
-            <td>
-                <? foreach ($contributorsNoFacet as $contributorNoFacet): ?>
-                    <?= $this->escapeHtml($contributorNoFacet) ?>
-                    <?= $contributorNoFacet !== end($contributorsNoFacet) ? ", " : "" ?>
-                <? endforeach; ?>
-            </td>
-        </tr>
+		<th><?= $this->transEsc('Contributor') ?>:</th>
+		<td>
+	      <? foreach ($contributorsNoFacet as $contributorNoFacet): ?>
+		<?= $this->escapeHtml($contributorNoFacet)?>
+		<?= $contributorNoFacet !== end($contributorsNoFacet) ? ", " : ""?>
+		<? endforeach; ?>
+	      </td>
+	</tr>
     <? endif; ?>
-
+  
     <? $entities = $this->driver->getEntities(); ?>
     <? if (!empty($entities)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Entities') ?>:</th>
-            <td property="entity">
-                <? foreach ($entities as $entity): ?>
-                    <?= $this->escapeHtml($entity) ?>
-                    <?= $entity !== end($entities) ? "; " : "" ?>
-                <? endforeach; ?>
+		<th><?=$this->transEsc('Entities')?>: </th>
+		<td property="entity">
+            <? foreach ($entities as $entity): ?>
+	    <?= $this->escapeHtml($entity)?>
+	    <?= $entity !== end($entities) ? "; " : ""?>
+            <? endforeach; ?>
             </td>
-        </tr>
+	</tr>
     <? endif; ?>
+  
 
 
-
-    <? $projects = $this->driver->getProjects(); ?>
+	<? $projects = $this->driver->getProjects(); ?>
     <? if (!empty($projects)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Projects') ?>: <a href="#" class="tooltip"
-                                                       title="Im Rahmen eines Pilotprojekts wurden in Zusammenarbeit mit EIGE, dem European Institute for Gender Equality, 10 Themebereiche benannt. Die Zurordnung der Datensätze, zu den einzelnen Themenbereichen, erfolgt automatisch über Schlagworte."><span><i
-                            class="fa fa-info-circle"></i></span></a></th>
-            <td property="translation">
-                <? foreach ($projects as $project): ?>
-                    <a
-                        href="/Search/Results?lookfor=%22<?= $this->escapeHtml($project) ?>%22&type=AllFields"><?= $this->escapeHtml($project) ?></a>
-                    <br/><?= $project !== end($projects) ? " " : "" ?>
-                <? endforeach; ?>
+		<th><?=$this->transEsc('Projects')?>: <a href="#" class="tooltip"
+			title="Im Rahmen eines Pilotprojekts wurden in Zusammenarbeit mit EIGE, dem European Institute for Gender Equality, 10 Themebereiche benannt. Die Zurordnung der Datensätze, zu den einzelnen Themenbereichen, erfolgt automatisch über Schlagworte."><span><i
+					class="fa fa-info-circle"></i></span></a></th>
+		<td property="translation">
+            <? foreach ($projects as $project): ?>
+              <a
+			href="/Search/Results?lookfor=%22<?=$this->escapeHtml($project)?>%22&type=AllFields"><?=$this->escapeHtml($project)?></a>
+			<br /><?= $project !== end($projects) ? " " : ""?>
+            <? endforeach; ?>
             </td>
-        </tr>
+	</tr>
     <? endif; ?>
-
+    
     <? $reviewers = $this->driver->getReviewers(); ?>
     <? if (!empty($reviewers)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Reviewer') ?>:</th>
-            <td property="reviewer">
-                <? foreach ($reviewers as $reviewer): ?>
-                    <?= $this->escapeHtml($reviewer) ?>
-                    <?= $reviewer !== end($reviewers) ? ";  " : "" ?>
-                <? endforeach; ?>
+		<th><?=$this->transEsc('Reviewer')?>: </th>
+		<td property="reviewer">
+	      <? foreach ($reviewers as $reviewer): ?>
+		<?= $this->escapeHtml($reviewer)?>
+		<?= $reviewer !== end($reviewers) ? ";  " : ""?>
+            <? endforeach; ?>
             </td>
-        </tr>
+	</tr>
     <? endif; ?>
-
-
-    <?php if ($this->driver->isArchive()): ?>
-        <? $shelfMark = $this->driver->getShelfMark(); ?>
-        <? if (isset($shelfMark)): ?>
-            <? $contentDisplayed = true; ?>
-            <tr valign="top">
-                <th><?= $this->transEsc('Shelf Mark') ?>:</th>
-                <td property="shelfmark"><?= $this->escapeHtml($shelfMark) ?></td>
-            </tr>
-        <? endif; ?>
-    <?php endif; ?>
+    
+    
+<?php if ($this->driver->isArchive()): ?>
+	  <? $shelfMark = $this->driver->getShelfMark(); ?>
+	  <? if (isset($shelfMark)): ?>
+	  <? $contentDisplayed = true; ?>
+	  <tr valign="top">
+		<th><?=$this->transEsc('Shelf Mark')?>: </th>
+		<td property="shelfmark"><?= $this->escapeHtml($shelfMark) ?></td>
+	</tr>
+      <? endif; ?>
+	  <?php endif; ?>
 
     <!-- Schriftenreihe -->
     <?
-
-    $series = $this->driver->getSeries();
-    if (!empty ($series)) :
-        ?>
+				
+$series = $this->driver->getSeries ();
+				if (! empty ( $series )) :
+					?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Series') ?>:</th>
-            <td>
+		<th><?= $this->transEsc('Series') ?>:</th>
+		<td>
                 <? foreach ($series as $field): ?>
-                    <?
+                    <? 
 // Depending on the record driver, $field may either be an array with "name" and "number" keys or a flat string containing only the series name. We should account for both cases to maximize compatibility.
-                    ?>
+						?>
                     <? if (is_array($field)): ?>
                         <? if (!empty($field['name'])): ?>
                             <a
-                                href="<?= $this->record($this->driver)->getLink('series', $field['name']) ?>"><?= $this->escapeHtml($field['name']) ?></a>
+			href="<?= $this->record($this->driver)->getLink('series', $field['name']) ?>"><?= $this->escapeHtml($field['name']) ?></a>
                             <? if (!empty($field['number'])): ?>
-                                <?= $this->escapeHtml($field['number']) ?>
+                                <?= $this->escapeHtml($field['number'])?>
                             <? endif; ?>
-                            <br/>
+                            <br />
                         <? endif; ?>
                     <? else: ?>
                         <a
-                            href="<?= $this->record($this->driver)->getLink('series', $field) ?>"><?= $this->escapeHtml($field) ?></a>
-                        <br/>
+			href="<?= $this->record($this->driver)->getLink('series', $field) ?>"><?= $this->escapeHtml($field) ?></a>
+			<br />
                     <? endif; ?>
                 <? endforeach; ?>
             </td>
-        </tr>
-    <? endif; ?>
+	</tr>
+    <? endif; ?> 
 
-    <? $editions = $this->driver->getEditions(); ?>
-    <? if (!empty($editions)): ?>
+   <? $editions = $this->driver->getEditions();  ?>
+   <? if (!empty($editions)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Edition') ?>:</th>
-            <td><? foreach ($editions as $edition): ?><?= $this->escapeHtml($edition) ?><?= $edition !== end($editions) ? " <br /> " : "" ?><? endforeach; ?></td>
-        </tr>
+		<th><?= $this->transEsc('Edition') ?>:</th>
+		<td><? foreach ($editions as $edition): ?><?= $this->escapeHtml($edition) ?><?= $edition !== end($editions) ? " <br /> " : "" ?><? endforeach; ?></td>
+	</tr>
     <? endif; ?>
 
     <? $publicationDate = $this->driver->getDisplayPublicationDate(); ?>
     <? if (isset($publicationDate)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Date of publication') ?>:</th>
-            <td property=publicationDate"><?= $this->escapeHtml($publicationDate) ?></td>
-        </tr>
+		<th><?=$this->transEsc('Date of publication')?>: </th>
+		<td property=publicationDate"><?= $this->escapeHtml($publicationDate) ?></td>
+	</tr>
     <? endif; ?>
 
     <? $issues = $this->driver->getIssues(); ?>
     <? if (!empty($issues)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Issue') ?>:</th>
-            <td property="issue">
-                <? foreach ($issues as $issue): ?>
-                    <?= $this->escapeHtml($issue) ?><?= $issue !== end($issues) ? ", " : "" ?>
-                <? endforeach; ?>
+		<th><?=$this->transEsc('Issue')?>: </th>
+		<td property="issue">
+            <? foreach($issues as $issue): ?>
+                <?= $this->escapeHtml($issue) ?><?= $issue !== end($issues) ? ", " : ""?>
+            <? endforeach; ?>
             </td>
-        </tr>
+	</tr>
     <? endif; ?>
 
     <? $volumes = $this->driver->getVolumes(); ?>
     <? if (!empty($volumes)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Volume') ?>:</th>
-            <td property="volume">
-                <? foreach ($volumes as $volume): ?>
-                    <?= $this->escapeHtml($volume) ?><?= $volume !== end($volumes) ? ", " : "" ?>
-                <? endforeach; ?>
+		<th><?=$this->transEsc('Volume')?>: </th>
+		<td property="volume">
+            <? foreach($volumes as $volume): ?>
+                <?= $this->escapeHtml($volume) ?><?= $volume !== end($volumes) ? ", " : ""?>
+            <? endforeach; ?>
             </td>
-        </tr>
+	</tr>
     <? endif; ?>
 
     <? $provenances = $this->driver->getProvenances(); ?>
     <? if (!empty($provenances)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Provenance') ?>:</th>
-            <td property="provenance">
-                <? foreach ($provenances as $provenance): ?>
-                    <?= $this->escapeHtml($provenance) ?><?= $provenance !== end($provenances) ? ", " : "" ?>
-                <? endforeach; ?>
+		<th><?=$this->transEsc('Provenance')?>: </th>
+		<td property="provenance">
+            <? foreach($provenances as $provenance): ?>
+                <?= $this->escapeHtml($provenance) ?><?= $provenance !== end($provenances) ? ", " : ""?>
+            <? endforeach; ?>
             </td>
-        </tr>
+	</tr>
     <? endif; ?>
 
     <? $specificMaterialDesignations = $this->driver->getSpecificMaterialDesignations(); ?>
     <? if (!empty($specificMaterialDesignations)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Description') ?>:</th>
-            <td property="specificMaterialDesignations">
-                <? foreach ($specificMaterialDesignations as $specificMaterialDesignation): ?>
-                    <?= $specificMaterialDesignation ?><?= $specificMaterialDesignation !== end($specificMaterialDesignations) ? ", " : "" ?>
-                <? endforeach; ?>
+		<th><?=$this->transEsc('Description')?>: </th>
+		<td property="specificMaterialDesignations">
+            <? foreach($specificMaterialDesignations as $specificMaterialDesignation): ?>
+                 <?= $specificMaterialDesignation ?><?= $specificMaterialDesignation !== end($specificMaterialDesignations) ? ", " : ""?>
+            <? endforeach; ?>
             </td>
-        </tr>
+	</tr>
     <? endif; ?>
 
     <? $dimensions = $this->driver->getDimensions(); ?>
     <? if (!empty($dimensions)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Dimension') ?>:</th>
-            <td property="dimension">
-                <? foreach ($dimensions as $dimension): ?>
-                    <?= $this->escapeHtml($dimension) ?><?= $dimension !== end($dimensions) ? ", " : "" ?>
-                <? endforeach; ?>
+		<th><?=$this->transEsc('Dimension')?>: </th>
+		<td property="dimension">
+            <? foreach ($dimensions as $dimension): ?>
+                <?=$this->escapeHtml($dimension)?><?= $dimension !== end($dimensions) ? ", " : ""?>
+            <? endforeach; ?>
             </td>
-        </tr>
+	</tr>
     <? endif; ?>
 
     <? $runTimes = $this->driver->getRunTimes(); ?>
     <? if (!empty($runTimes)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Run Time') ?>:</th>
-            <td property="runTime">
-                <? foreach ($runTimes as $runTime): ?>
-                    <?= $runTime ?><?= $runTime !== end($runTimes) ? ", " : "" ?>
-                <? endforeach; ?>
+		<th><?=$this->transEsc('Run Time')?>: </th>
+		<td property="runTime">
+            <? foreach ($runTimes as $runTime): ?>
+                 <?= $runTime ?><?= $runTime !== end($runTimes) ? ", " : ""?>
+            <? endforeach; ?>
             </td>
-        </tr>
+	</tr>
     <? endif; ?>
-
+  
     <? $isbn = $this->driver->getCleanISBN(); ?>
-    <? if (isset($isbn) && strlen(trim($isbn)) > 0): ?>
+    <? if (isset($isbn) && strlen(trim($isbn))>0): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('ISBN') ?>:</th>
-            <td property=publicationDate"><?= $this->escapeHtml($isbn) ?></td>
-        </tr>
+		<th><?=$this->transEsc('ISBN')?>: </th>
+		<td property=publicationDate"><?= $this->escapeHtml($isbn) ?></td>
+	</tr>
     <? endif; ?>
 
     <? $issns = $this->driver->getISSNs(); ?>
     <? if (!empty($issns)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('ISSN') ?>:</th>
-            <td property="issn">
-                <? foreach ($issns as $field): ?>
-                    <a target=_blank
-                       href="http://beta.zdb-opac.de/zdb/list.xhtml?t=
-                <?= $this->escapeHtml($field) ?>"><?= $this->escapeHtml($field) ?> <i
-                            class="fa fa-external-link"></i></a>
-                    <?= $field !== end($issns) ? "<p/> " : "" ?>
-                <? endforeach; ?>
+		<th><?=$this->transEsc('ISSN')?>: </th>
+		<td property="issn">
+            <? foreach ($issns as $field): ?>
+                 <a target=_blank
+			href="http://beta.zdb-opac.de/zdb/list.xhtml?t=
+                <?=$this->escapeHtml($field)?>"><?=$this->escapeHtml($field)?> <i
+				class="fa fa-external-link"></i></a>
+                <?= $field !== end($issns) ? "<p/> " : ""?>
+            <? endforeach; ?>
             </td>
-        </tr>
+	</tr>
     <? endif; ?>
 
     <? $zdbids = $this->driver->getZDBIDs(); ?>
     <? if (!empty($zdbids)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('ZDBID') ?>:</th>
-            <td property="zdbid">
-                <? foreach ($zdbids as $field): ?>
-                    <a target=_blank
-                       href="http://beta.zdb-opac.de/zdb/list.xhtml?t=
-               <?= $this->escapeHtml($field) ?>"><?= $this->escapeHtml($field) ?> <i
-                            class="fa fa-external-link"></i></a>
-                    <?= $field !== end($zdbids) ? "<p/> " : "" ?>
-                <? endforeach; ?>
+		<th><?=$this->transEsc('ZDBID')?>: </th>
+		<td property="zdbid">
+            <? foreach ($zdbids as $field): ?>
+               <a target=_blank
+			href="http://beta.zdb-opac.de/zdb/list.xhtml?t=
+               <?=$this->escapeHtml($field)?>"><?=$this->escapeHtml($field)?> <i
+				class="fa fa-external-link"></i></a> 
+               <?= $field !== end($zdbids) ? "<p/> " : ""?>
+            <? endforeach; ?>
             </td>
-        </tr>
+	</tr>
     <? endif; ?>
 
 
-
-    <?
-
-    $listOfContents = $this->driver->getListOfContents();
-    if (!empty ($listOfContents)) :
-        ?>
+    
+     <?
+					
+$listOfContents = $this->driver->getListOfContents ();
+					if (! empty ( $listOfContents )) :
+						?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th colspan="2"><?= $this->transEsc('Inhaltsangabe') ?>:</th>
-        </tr>
-        <tr valign="top">
-            <td property="description" colspan="2">
-                <? foreach ($listOfContents as $listOfContent): ?>
-                    <li
-                        style="list-style-type: none; diplay: block; margin-bottom: .5em">
-                        <!-- <?= $this->escapeHtmlAllowBr($listOfContent) ?><?= $listOfContent !== end($listOfContents) ? " " : "" ?>-->
-                        <?= $listOfContent ?><?= $listOfContent !== end($listOfContents) ? " " : "" ?>
-                    </li>
-                <? endforeach; ?>
-
+		<th colspan="2"><?= $this->transEsc('Inhaltsangabe') ?>:</th>
+	</tr>
+	<tr valign="top">
+		<td property="description" colspan="2">
+            <? foreach ($listOfContents as $listOfContent): ?>
+            <li
+			style="list-style-type: none; diplay: block; margin-bottom: .5em">
+				<!-- <?= $this->escapeHtmlAllowBr($listOfContent) ?><?= $listOfContent !== end($listOfContents) ? " " : "" ?>-->
+            <?= $listOfContent ?><?= $listOfContent !== end($listOfContents) ? " " : ""?>
+           </li>
+           <? endforeach; ?>
+               
             </td>
-        </tr>
+	</tr>
     <? endif; ?>
-
+   
     <? $collectionHolding = $this->driver->getCollectionHolding(); ?>
     <? if (isset($collectionHolding)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Bestand') ?>:</th>
-            <td property="collectionHolding" colspan="2">
-                <!-- <?= $this->escapeHtml($collectionHolding) ?>-->
-                <?= $collectionHolding ?>
-            </td>
-        </tr>
+		<th><?=$this->transEsc('Bestand')?>:</th>
+		<td property="collectionHolding" colspan="2">
+			<!-- <?= $this->escapeHtml($collectionHolding) ?>-->
+                 <?= $collectionHolding?>
+           </td>
+	</tr>
     <? endif; ?>
-
-
-    <!--neu eingefügt-->
-
-    <? $outofstocks = $this->driver->getOutOfStocks(); ?>
+    
+ 
+    
+   <!--neu eingefügt-->
+   
+   <? $outofstocks = $this->driver->getOutOfStocks(); ?>
     <? if (!empty($outofstocks)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Out of stock') ?>:</th>
-            <td property=volume">
-                <? foreach ($outofstocks as $outofstock): ?>
-                    <?= $this->escapeHtml($outofstock) ?><?= $outofstock !== end($outofstocks) ? ", " : "" ?>
-                <? endforeach; ?>
+		<th><?=$this->transEsc('Out of stock')?>: </th>
+		<td property=volume">
+            <? foreach($outofstocks as $outofstock): ?>
+                <?= $this->escapeHtml($outofstock) ?><?= $outofstock !== end($outofstocks) ? ", " : ""?>
+            <? endforeach; ?>
             </td>
-        </tr>
+	</tr>
     <? endif; ?>
 
-    <? $publicationfrequencys = $this->driver->getPublicationFrequency(); ?>
+<? $publicationfrequencys = $this->driver->getPublicationFrequency(); ?>
     <? if (!empty($publicationfrequencys)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Publication frequency') ?>:</th>
-            <td property="publicationFrequency">
-                <? foreach ($publicationfrequencys as $publicationfrequency): ?>
-                    <?= $this->escapeHtml($publicationfrequency) ?><?= $publicationfrequency !== end($publicationfrequencys) ? ", " : "" ?>
-                <? endforeach; ?>
+		<th><?=$this->transEsc('Publication frequency')?>: </th>
+		<td property="publicationFrequency">
+            <? foreach($publicationfrequencys as $publicationfrequency): ?>
+                <?= $this->escapeHtml($publicationfrequency) ?><?= $publicationfrequency !== end($publicationfrequencys) ? ", " : ""?>
+            <? endforeach; ?>
             </td>
-        </tr>
+	</tr>
     <? endif; ?>
-    <? $specialissues = $this->driver->getSpecialIssue(); ?>
+<? $specialissues = $this->driver->getSpecialIssue(); ?>
     <? if (!empty($specialissues)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('Special Issues') ?>:</th>
-            <td property="specialIssue">
-                <? foreach ($specialissues as $specialissue): ?>
-                    <?= $this->escapeHtml($specialissue) ?><?= $specialissue !== end($specialissues) ? ", " : "" ?>
-                <? endforeach; ?>
+		<th><?=$this->transEsc('Special Issues')?>: </th>
+		<td property="specialIssue">
+            <? foreach($specialissues as $specialissue): ?>
+                <?= $this->escapeHtml($specialissue) ?><?= $specialissue !== end($specialissues) ? ", " : ""?>
+            <? endforeach; ?>
             </td>
-        </tr>
+	</tr>
     <? endif; ?>
-    <? $inserts = $this->driver->getInsertOf(); ?>
+<? $inserts = $this->driver->getInsertOf(); ?>
     <? if (!empty($inserts)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('insertOf') ?>:</th>
-            <td property="insert">
-                <? foreach ($inserts as $insertOf): ?>
-                    <?= $this->escapeHtml($insertOf) ?><?= $insertOf !== end($inserts) ? ", " : "" ?>
-                <? endforeach; ?>
+		<th><?=$this->transEsc('insertOf')?>: </th>
+		<td property="insert">
+            <? foreach($inserts as $insertOf): ?>
+                <?= $this->escapeHtml($insertOf) ?><?= $insertOf !== end($inserts) ? ", " : ""?>
+            <? endforeach; ?>
             </td>
-        </tr>
+	</tr>
     <? endif; ?>
-
-    <!--ENDE-->
-
-    <? $descriptions = $this->driver->getDescriptions(); ?>
+   
+   <!--ENDE-->
+   
+   <? $descriptions = $this->driver->getDescriptions(); ?>
     <? if (!empty($descriptions)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th colspan="2"><?= $this->transEsc('Description') ?>:</th>
-        </tr>
-        <tr valign="top">
-            <td property="description" colspan="2">
-                <? foreach ($descriptions as $description): ?>
-                    <?= $description ?>
-                    <?= $description !== end($descriptions) ? "<br/> " : "" ?>
-                <? endforeach; ?>
-            </td>
-        </tr>
-    <? endif; ?>
-
-    <? $annotations = $this->driver->getAnnotations(); ?>
+		<th colspan="2"><?=$this->transEsc('Description')?>:</th>
+	</tr>
+	<tr valign="top">
+		<td property="description" colspan="2">
+		<? foreach ($descriptions as $description): ?>
+		<?= $description?>
+		<?= $description !== end($descriptions) ? "<br/> " : ""?>
+	      <? endforeach; ?>
+	     </td>
+	</tr>
+	<? endif; ?>
+   
+   <? $annotations = $this->driver->getAnnotations(); ?>
     <? if (!empty($annotations)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th colspan="2"><?= $this->transEsc('Annotation') ?>:</th>
-        </tr>
-        <tr valign="top">
-            <td property="annotation" colspan="2">
-                <? foreach ($annotations as $annotation): ?>
-                    <?= $annotation ?>
-                    <?= $annotation !== end($annotations) ? "<br/> " : "" ?>
-                <? endforeach; ?>
-            </td>
-        </tr>
-    <? endif; ?>
-
+		<th colspan="2"><?=$this->transEsc('Annotation')?>:</th>
+	</tr>
+	<tr valign="top">
+		<td property="annotation" colspan="2">
+		<? foreach ($annotations as $annotation): ?>
+		<?= $annotation?>
+		<?= $annotation !== end($annotations) ? "<br/> " : ""?>
+	      <? endforeach; ?>
+	     </td>
+	</tr>
+	<? endif; ?>
+	 
     <? $QRCode = $this->record($this->driver)->getQRCode("core"); ?>
     <? if ($QRCode): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
-            <th><?= $this->transEsc('QRCode') ?>:</th>
-            <td style="padding: 0px;"><img alt="<?= $this->transEsc('QR Code') ?>"
-                                           class="qrcode" src="<?= $this->escapeHtml($QRCode); ?>"/></td>
-        </tr>
+		<th><?=$this->transEsc('QRCode')?>: </th>
+		<td style="padding: 0px;"><img alt="<?= $this->transEsc('QR Code') ?>"
+			class="qrcode" src="<?= $this->escapeHtml($QRCode); ?>" /></td>
+	</tr>
     <? endif; ?>
-
-
+    
+    
 
     <? if (!isset($contentDisplayed) || !$contentDisplayed): // Avoid errors if there were no rows above ?>
         <tr>
-            <td><?= $this->transEsc('no_description') ?></td>
-        </tr>
+		<td><?=$this->transEsc('no_description')?></td>
+	</tr>
     <? endif; ?>
 </table>

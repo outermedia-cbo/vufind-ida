@@ -3150,9 +3150,9 @@
 			'					<xsl:copy-of select="./child::node()" />' +
 			'				</a>' +
 			'			</xsl:for-each>' +
-			'			<xsl:if test="$children or @hasChildren"><xsl:call-template name="nodes"><xsl:with-param name="node" select="current()" /></xsl:call-template></xsl:if>' +
+			'			<xsl:if test="$children or @hasChildren"><xsl:call-template name="nodes"><xsl:with-param name="node" select="current()" /></xsl:call-template></xsl:if-->' +
 			'		</li>' +
-			'	</xsl:for-each-->' +
+			'	</xsl:for-each>' +
 			'	</ul>' + 
 			'</xsl:template>' + 
 			'</xsl:stylesheet>',
