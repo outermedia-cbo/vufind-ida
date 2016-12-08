@@ -32,7 +32,7 @@
 
         <!-- Herausgeber -->
         <? $editors = $this->driver->getEditors();
-        if (!empty($editors)):
+        if (!empty($editors) && empty($authors)):
             $mainEditor = array_shift($editors);
             if ($firstLineNotEmpty): ?>
                 |
