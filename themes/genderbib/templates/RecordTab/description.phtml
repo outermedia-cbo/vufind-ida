@@ -423,6 +423,7 @@
     <? endif; ?>
     
     <? $zdbids = $this->driver->getZDBIDs(); ?>
+    <? $id = $this->driver->getUniqueID(); ?>
     <? if (!empty($zdbids)): ?>
         <? $contentDisplayed = true; ?>
         <tr valign="top">
@@ -432,7 +433,7 @@
                 <a target=_blank href="http://beta.zdb-opac.de/zdb/list.xhtml?t=
                <?=$this->escapeHtml($field)?>"><?=$this->escapeHtml($field)?></a> <i class="fa fa-external-link"></i><br>
                <a href="http://genderbibliothek.de/Search/Results?lookfor=<?=$this->escapeHtml($field)?>&type=AllFields&filter%5B%5D=format%3A%22Zeitschriftenheft%22&sort=year">Alle Zeitschriftenhefte anzeigen</a><br>
-               <!-- <a href="HierarchyTree#tabnav">Alle Zeitschriftenhefte anzeigen</a> -->
+               <a href="<?= $id ?>/HierarchyTree#tabnav">Alle Zeitschriftenhefte anzeigen</a>
                <?= $field !== end($zdbids) ? "<p/> " : "" ?>
                
                <!-- <?=$this->escapeHtml($field)?><?= $field !== end($zdbids) ? ", " : "" ?>-->
